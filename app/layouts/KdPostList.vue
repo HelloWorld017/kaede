@@ -2,7 +2,7 @@
 	<main class="KdPostList">
 		<div class="KdPostList__content">
 			<transition name="Fade">
-				<div class="KdPostList__featured" v-if="featured.length > 0">
+				<section class="KdPostList__featured" v-if="featured.length > 0">
 					<h2 class="KdPostList__title">{{$t('featured')}}</h2>
 
 					<vue-agile class="KdPostList__carousel">
@@ -14,10 +14,23 @@
 							<icon-next />
 						</template>
 					</vue-agile>
-				</div>
+				</section>
 			</transition>
 
-			<kd-scroll-trigger :current="current" :max="max" :loadNext="loadMoreBound" ref="trigger" />
+			<section class="KdPostList__list">
+				<div class="KdPostList__columns">
+					<div class="KdPostList__column" v-for="(column, index) in columns" :key="index">
+						<kd-post v-for="post in column"
+							:post="posts[post]"
+							:key="posts[post].id"
+							:index="posts[post].index">
+						</kd-post>
+					</div>
+				</div>
+
+				<kd-scroll-trigger :current="current" :max="max" :loadNext="loadMoreBound" ref="trigger" />
+			</section>
+
 			<div class="KdPostList__thank">{{$t('thank')}}</div>
 		</div>
 	</main>
@@ -136,6 +149,7 @@
 
 	import IconNext from "@/images/IconNext?inline";
 	import IconPrevious from "@/images/IconPrevious?inline";
+	import KdPost from "@/components/KdPost";
 	import KdPostLarge from "@/components/KdPostLarge";
 	import KdScrollTrigger from "@/components/KdScrollTrigger";
 	import { VueAgile } from "vue-agile";
@@ -143,8 +157,14 @@
 	export default {
 		data() {
 			return {
-				posts: [],
+				posts: {},
 				featured: [],
+
+				isTablet: false,
+				leftColumn: [],
+				rightColumn: [],
+				tabletColumn: [],
+
 				current: 0,
 				max: 1
 			};
@@ -154,6 +174,14 @@
 			context: {
 				type: Array,
 				required: true
+			}
+		},
+
+		computed: {
+			columns() {
+				if(this.isTablet) return [this.tabletColumn];
+
+				return [this.leftColumn, this.rightColumn];
 			}
 		},
 
@@ -170,18 +198,22 @@
 					include: 'tags'
 				});
 
-				console.log(featured);
-
 				this.featured = featured;
 			},
 
 			loadMore() {
 
+			},
+
+			updateIsTablet() {
+				this.isTablet = window.innerWidth < 900;
 			}
 		},
 
 		created() {
 			this.loadMoreBound = this.loadMore.bind(this);
+			this.updateIsTabletBound = this.updateIsTablet.bind(this);
+			window.addEventListener('resize', this.updateIsTabletBound);
 		},
 
 		async mounted() {
@@ -189,9 +221,14 @@
 			await this.$refs.trigger.preload();
 		},
 
+		destroyed() {
+			window.removeEventListener('resize', this.updateIsTabletBound);
+		},
+
 		components: {
 			IconNext,
 			IconPrevious,
+			KdPost,
 			KdPostLarge,
 			KdScrollTrigger,
 			VueAgile

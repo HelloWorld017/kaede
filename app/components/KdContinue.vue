@@ -32,6 +32,7 @@
 
 		font-family: var(--font-ui);
 		font-weight: 700;
+		text-decoration: none;
 		text-transform: uppercase;
 
 		&:hover {
@@ -54,6 +55,7 @@
 
 <script>
 	import IconContinue from "@/images/IconContinue?inline";
+	import KdLink from "@/components/KdLink";
 
 	export default {
 		props: {
@@ -64,7 +66,8 @@
 		},
 
 		components: {
-			IconContinue
+			IconContinue,
+			KdLink
 		}
 	};
 </script>

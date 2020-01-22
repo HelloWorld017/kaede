@@ -23,7 +23,7 @@
 	import IconLoad from "@/images/IconLoad?inline";
 
 	const debugLog = str => {};
-	
+
 	export default {
 		data() {
 			return {
@@ -75,7 +75,7 @@
 				this.state = 'requested';
 
 				do {
-					if(this.current >= this.max)
+					if(this.current > this.max)
 						break;
 
 					await this.loadNext();
