@@ -1,0 +1,70 @@
+{
+  "name": "kaede",
+  "version": "1.0.0",
+  "description": "A neat, minimalistic yet fancy ghost theme",
+  "private": true,
+  "engines": {
+    "ghost-api": "v3"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack-dev-server --hot --inline",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HelloWorld017/kaede.git"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme",
+    "blog"
+  ],
+  "author": {
+    "name": "Khinenw",
+    "email": "deu07115@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HelloWorld017/kaede/issues"
+  },
+  "homepage": "https://github.com/HelloWorld017/kaede#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.8.3",
+    "@mdi/font": "^4.8.95",
+    "@tryghost/content-api": "^1.3.6",
+    "intersection-observer": "^0.7.0",
+    "moment": "^2.24.0",
+    "sanitize-html": "^1.21.1",
+    "vue": "^2.6.11",
+    "vue-agile": "^1.0.11",
+    "vue-i18n": "^8.15.3",
+    "vue-intersect": "^1.1.3",
+    "vue-router": "^3.1.5",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@kazupon/vue-i18n-loader": "^0.5.0",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.4.2",
+    "file-loader": "^5.0.2",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "postcss": "^7.0.26",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "raw-loader": "^4.0.0",
+    "vue-loader": "^15.8.3",
+    "vue-svg-loader": "^0.15.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}

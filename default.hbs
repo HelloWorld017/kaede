@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+		<meta name="HandheldFriendly" content="True">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>{{meta_title}}</title>
+		<style>
+			#SearchEngineOptimization {
+				display: none;
+			}
+		</style>
+		
+		{{ghost_head}}
+	</head>
+
+	<body class="{{body_class}}">
+		<div id="App"></div>
+
+		<div id="SearchEngineOptimization">
+			{{#post}}
+				<article>
+					<header>
+						<h1>{{title}}</h1>
+						<section>
+							<time datetime="{{date format='YYYY-MM-DD'}}">
+								{{date format="DD MMMM YYYY"}}
+							</time>
+							<div>{{tags}}</div>
+						</section>
+					</header>
+
+					<section>
+						{{content}}
+					</section>
+				</article>
+			{{/post}}
+
+			{{#foreach posts}}
+				<a href="{{url}}">{{title}}</a>
+			{{/foreach}}
+
+			{{#if pagination}}
+				{{pagination}}
+			{{/if}}
+		</div>
+
+		<script src="http://localhost:8080/dist/kaede.bundle.js"></script>
+	</body>
+</html>
