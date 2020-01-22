@@ -34,6 +34,8 @@
 		font-weight: 700;
 		text-decoration: none;
 		text-transform: uppercase;
+		
+		user-select: none;
 
 		&:hover {
 			background: var(--color-foreground);

@@ -13,6 +13,7 @@
 		font-family: var(--font-ui);
 		font-size: 1rem;
 		font-weight: 700;
+		user-select: none;
 		text-transform: uppercase;
 		text-decoration: none;
 	}

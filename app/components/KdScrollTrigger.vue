@@ -1,11 +1,15 @@
 <template>
 	<div class="KdScrollTrigger" ref="trigger">
 		<div class="KdScrollTrigger__loading" v-if="state === 'requested'"></div>
-		<button class="KdScrollTrigger__load" v-else>
+		<button class="KdScrollTrigger__load" v-else-if="current < max">
 			<icon-load /> {{$t('load-more')}}
 		</button>
 	</div>
 </template>
+
+<style lang="less" scoped>
+	//TODO
+</style>
 
 <i18n>
 {
@@ -75,7 +79,7 @@
 				this.state = 'requested';
 
 				do {
-					if(this.current > this.max)
+					if(this.current >= this.max)
 						break;
 
 					await this.loadNext();

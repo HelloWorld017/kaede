@@ -1,9 +1,22 @@
 <template>
 	<div class="KdPostLarge">
-		<img class="KdPostLarge__image" v-if="post.feature_image" :src="post.feature_image">
+		<kd-link class="KdPostLarge__image-link" :href="post.url">
+			<img class="KdPostLarge__image" v-if="post.feature_image" :src="post.feature_image">
+		</kd-link>
+
 		<div class="KdPostLarge__content PostContent">
-			<h3 class="KdPostLarge__title">{{post.title}}</h3>
-			<p class="KdPostLarge__excerpt" v-html="excerpt"></p>
+			<h3 class="KdPostLarge__title">
+				<kd-link :href="post.url">{{post.title}}</kd-link>
+			</h3>
+
+			<p class="KdPostLarge__custom-excerpt" v-if="post.custom_excerpt">
+				{{post.custom_excerpt}}
+			</p>
+
+			<p class="KdPostLarge__excerpt"
+				:class="{'KdPostLarge__excerpt--has-custom': !!post.custom_excerpt}"
+				v-html="excerpt">
+			</p>
 
 			<div class="KdPostLarge__metadata">
 				<kd-continue class="KdPostLarge__continue" :href="post.url" />
@@ -17,6 +30,8 @@
 </template>
 
 <style lang="less" scoped>
+	@import "../less/utils.less";
+
 	.KdPostLarge {
 		display: flex;
 		background: var(--grey-900);
@@ -24,9 +39,16 @@
 		flex-basis: 0;
 
 		&__image {
+			width: 300px;
+			height: 100%;
 			object-fit: cover;
+		}
+
+		&__image-link {
+			display: inline-block;
 			width: 300px;
 			flex-basis: 300px;
+			user-select: none;
 		}
 
 		&__content {
@@ -44,14 +66,20 @@
 			font-family: var(--font-title);
 			font-weight: 300;
 			font-size: 1.6rem;
+			text-decoration: none;
 			display: inline-block;
 			padding: 10px 20px;
 			margin: 0;
 			margin-top: 10px;
 			margin-right: auto;
+
+			* {
+				color: inherit;
+				text-decoration: inherit;
+			}
 		}
 
-		&__excerpt {
+		&__custom-excerpt, &__excerpt {
 			position: relative;
 			max-height: 12.8rem;
 			line-height: 1.6rem;
@@ -59,7 +87,14 @@
 			overflow: hidden;
 			font-family: var(--font-sans);
 			font-weight: 600;
+		}
 
+		&__custom-excerpt {
+			font-weight: 400;
+			margin-bottom: 0;
+		}
+
+		&__excerpt {
 			&::first-letter {
 				display: inline-block;
 				font-size: 3rem;
@@ -69,13 +104,7 @@
 			}
 
 			&::after {
-				content: '';
-				position: absolute;
-				right: 0;
-				bottom: 0;
-				width: 10rem;
-				height: 1.6rem;
-				background: linear-gradient(to right, transparent, rgba(255, 255, 255, 1));
+				.OverflowFade;
 			}
 		}
 
@@ -97,12 +126,40 @@
 			margin-bottom: 15px;
 		}
 	}
+
+	@media (max-width: 900px) {
+		.KdPostLarge {
+			flex-direction: column;
+			&__image {
+				width: 100%;
+				height: 200px;
+				object-fit: cover;
+			}
+
+			&__image-link {
+				display: inline-block;
+				flex-basis: 200px;
+				width: 100%;
+				height: 200px;
+				user-select: none;
+			}
+
+			&__custom-excerpt {
+				margin-bottom: 20px;
+			}
+			
+			&__excerpt--has-custom {
+				display: none;
+			}
+		}
+	}
 </style>
 
 <script>
 	import createExcerpt from "@/src/excerpt";
 
 	import KdContinue from "@/components/KdContinue";
+	import KdLink from "@/components/KdLink";
 	import KdTag from "@/components/KdTag";
 
 	export default {
@@ -121,6 +178,7 @@
 
 		components: {
 			KdContinue,
+			KdLink,
 			KdTag
 		}
 	};

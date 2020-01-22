@@ -1,26 +1,29 @@
 <template>
 	<main class="KdPostList">
 		<div class="KdPostList__content">
-			<transition name="Fade">
-				<section class="KdPostList__featured" v-if="featured.length > 0">
-					<h2 class="KdPostList__title">{{$t('featured')}}</h2>
+			<section class="KdPostList__featured" v-if="featured.length > 0">
+				<h2 class="KdPostList__title">{{$t('featured')}}</h2>
 
-					<vue-agile class="KdPostList__carousel">
-						<kd-post-large v-for="post in featured" :post="post" :key="post.id" />
-						<template #prevButton>
-							<icon-previous />
-						</template>
-						<template #nextButton>
-							<icon-next />
-						</template>
-					</vue-agile>
-				</section>
-			</transition>
+				<vue-agile class="KdPostList__carousel">
+					<kd-post-large v-for="post in featured" :post="post" :key="post.id" />
+					<template #prevButton>
+						<icon-previous />
+					</template>
+					<template #nextButton>
+						<icon-next />
+					</template>
+				</vue-agile>
+			</section>
 
 			<section class="KdPostList__list">
+				<h2 class="KdPostList__title">{{$t('archives')}}</h2>
+
 				<div class="KdPostList__columns">
-					<div class="KdPostList__column" v-for="(column, index) in columns" :key="index">
-						<kd-post v-for="post in column"
+					<div class="KdPostList__column" ref="columns"
+						v-for="(column, index) in columns"
+						:key="index">
+
+						<kd-post class="KdPostList__post" v-for="post in column"
 							:post="posts[post]"
 							:key="posts[post].id"
 							:index="posts[post].index">
@@ -40,11 +43,13 @@
 {
 	"ko": {
 		"featured": "Featured",
+		"archives": "Archives",
 		"thank": "Thank you for reading!"
 	},
 
 	"en": {
 		"featured": "Featured",
+		"archives": "Archives",
 		"thank": "Thank you for reading!"
 	}
 }
@@ -74,6 +79,19 @@
 			margin: 0 100px;
 		}
 
+		&__columns {
+			display: flex;
+		}
+
+		&__column {
+			flex: 1;
+			margin: 0 15px;
+		}
+
+		&__post {
+			margin: 30px 0;
+		}
+
 		&__thank {
 			color: rgba(64, 64, 64, .3);
 			font-size: 3rem;
@@ -82,7 +100,14 @@
 			text-align: center;
 			margin: 0 auto;
 			margin-top: 30px;
+			padding-bottom: 60px;
 			user-select: none;
+		}
+	}
+
+	@media (max-width: 1300px) {
+		.KdPostList__carousel {
+			margin: 0;
 		}
 	}
 
@@ -108,6 +133,7 @@
 		outline: none;
 		background: transparent;
 		border: none;
+		transform: translate(0, -50%);
 
 		&--prev {
 			left: -100px;
@@ -137,7 +163,7 @@
 		background: var(--grey-100);
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 900px) {
 		.agile__nav-button {
 			display: none;
 		}
@@ -146,6 +172,7 @@
 
 <script>
 	import api from "@/src/api";
+	import calculateHeight from "@/src/calculateHeight";
 
 	import IconNext from "@/images/IconNext?inline";
 	import IconPrevious from "@/images/IconPrevious?inline";
@@ -161,9 +188,11 @@
 				featured: [],
 
 				isTablet: false,
-				leftColumn: [],
-				rightColumn: [],
 				tabletColumn: [],
+				leftColumn: [],
+				leftHeight: 0,
+				rightColumn: [],
+				rightHeight: 0,
 
 				current: 0,
 				max: 1
@@ -179,7 +208,8 @@
 
 		computed: {
 			columns() {
-				if(this.isTablet) return [this.tabletColumn];
+				if(this.isTablet)
+					return [this.tabletColumn];
 
 				return [this.leftColumn, this.rightColumn];
 			}
@@ -201,12 +231,54 @@
 				this.featured = featured;
 			},
 
-			loadMore() {
+			async loadMore() {
+				if(this.current >= this.max)
+					return;
 
+				const posts = await api.posts.browse({
+					page: this.current + 1,
+					filter: this.context.join('+'),
+					include: 'tags'
+				});
+
+				let columnWidth = 300;
+				let columnBoundBox = null;
+				if(this.$refs.columns.length >= 1) {
+					columnBoundBox = this.$refs.columns[0].getBoundingClientRect();
+					columnWidth = columnBoundBox.width;
+				}
+
+				if(this.$refs.columns.length >= 2) {
+					const rightBoundBox = this.$refs.columns[1].getBoundingClientRect();
+
+					this.leftHeight = columnBoundBox.height;
+					this.rightHeight = rightBoundBox.height;
+				}
+
+				posts.forEach((post, index) => {
+					post.index = post;
+
+					const postHeight = calculateHeight(post, columnWidth);
+
+					if(this.leftHeight <= this.rightHeight) {
+						this.leftHeight += postHeight;
+						this.leftColumn.push(post.id);
+					} else {
+						this.rightHeight += postHeight;
+						this.rightColumn.push(post.id);
+					}
+
+					this.tabletColumn.push(post.id);
+
+					this.posts[post.id] = post;
+				});
+
+				this.max = posts.meta.pagination.pages;
+				this.current = posts.meta.pagination.page;
 			},
 
 			updateIsTablet() {
-				this.isTablet = window.innerWidth < 900;
+				this.isTablet = window.innerWidth < 1300;
 			}
 		},
 
@@ -217,6 +289,7 @@
 		},
 
 		async mounted() {
+			this.updateIsTablet();
 			await this.loadFeatured();
 			await this.$refs.trigger.preload();
 		},
