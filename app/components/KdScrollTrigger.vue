@@ -1,14 +1,119 @@
 <template>
 	<div class="KdScrollTrigger" ref="trigger">
-		<div class="KdScrollTrigger__loading" v-if="state === 'requested'"></div>
-		<button class="KdScrollTrigger__load" v-else-if="current < max">
-			<icon-load /> {{$t('load-more')}}
+		<div class="KdScrollTrigger__loading Loading" v-if="state === 'requested'">
+			<div class="Loading__circle"></div>
+		</div>
+		<button class="KdScrollTrigger__load LoadMore" v-else-if="current < max">
+			<icon-load class="LoadMore__icon" /> {{$t('load-more')}}
 		</button>
 	</div>
 </template>
 
 <style lang="less" scoped>
-	//TODO
+	.LoadMore {
+		cursor: pointer;
+		display: block;
+		width: 100%;
+
+		font-family: var(--font-sans);
+		font-size: 1.2rem;
+		font-weight: 600;
+
+		background: transparent;
+		border: none;
+		outline: none;
+		text-align: center;
+
+		&__icon {
+			width: auto;
+			height: 1.2rem;
+			margin-right: 5px;
+			vertical-align: middle;
+		}
+
+		&:hover &__icon {
+			opacity: 1;
+			transform: translate(0, 0);
+			animation-name: loadmore;
+			animation-duration: .8s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+	}
+
+	.Loading {
+		position: relative;
+		width: 100%;
+		height: 30px;
+
+		&__circle {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 32px;
+			height: 32px;
+			box-sizing: border-box;
+			border: 15px solid rgba(0, 0, 0, .4);
+
+			animation-name: loading;
+			animation-duration: .7s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+			transform: translate(-50%, -50%) scale(0) rotate(-45deg);
+		}
+	}
+
+	@keyframes loading {
+		0% {
+			border-width: 16px;
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0) rotate(-45deg);
+		}
+
+		50% {
+			opacity: 1;
+			border-width: 16px;
+			transform: translate(-50%, -50%) scale(1) rotate(-45deg);
+		}
+
+		100% {
+			opacity: 0;
+			border-width: 0;
+			transform: translate(-50%, -50%) scale(1.2) rotate(-45deg);
+		}
+	}
+
+	@keyframes loadmore {
+		0% {
+			opacity: 1;
+			transform: translate(0, 0);
+		}
+
+		20% {
+			opacity: 1;
+			transform: translate(0, 3px);
+		}
+
+		60% {
+			opacity: 0;
+			transform: translate(0, 9px);
+		}
+
+		70% {
+			opacity: 0;
+			transform: translate(0, -9px);
+		}
+
+		90% {
+			opacity: 1;
+			transform: translate(0, -3px);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translate(0, 0);
+		}
+	}
 </style>
 
 <i18n>
@@ -26,6 +131,7 @@
 <script>
 	import IconLoad from "@/images/IconLoad?inline";
 
+	//FIXME
 	const debugLog = str => {};
 
 	export default {
@@ -37,7 +143,7 @@
 					threshold: 0
 				}),
 
-				state: 'initial',
+				state: 'requested',
 				loadFulfilled: true
 			};
 		},
@@ -90,12 +196,16 @@
 
 				this.state = 'initial';
 				debugLog("Preloaded. CurrentState:", this.state, this.loadFulfilled);
+			},
+
+			async init() {
+				this.state = 'initial';
+				await this.preload();
 			}
 		},
 
 		mounted() {
 			this.observer.observe(this.$refs.trigger);
-			this.preload();
 		},
 
 		components: {

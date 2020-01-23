@@ -60,7 +60,7 @@
 </style>
 
 <script>
-	import KdBookmarkBadge from "@/layouts/KdBookmarkBadge";
+	import KdBookmarkBadge from "@/components/KdBookmarkBadge";
 	import KdLink from "@/components/KdLink";
 
 	export default {

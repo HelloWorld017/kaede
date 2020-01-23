@@ -1,5 +1,10 @@
 <template>
 	<div class="KdPost">
+		<div class="KdPost__timestamp Timestamp" v-if="timestamped">
+			{{timestamp}}
+			<div class="Timestamp__dot"></div>
+		</div>
+
 		<div class="KdPost__header">
 			<div class="KdPost__metadata">
 				<h3 class="KdPost__title">
@@ -35,6 +40,10 @@
 	@import "../less/utils.less";
 
 	.KdPost {
+		animation-fill-mode: forwards;
+		transform-origin: top center;
+		transform: rotateX(-90deg);
+		opacity: 0;
 		background: var(--grey-900);
 
 		&__header {
@@ -43,12 +52,20 @@
 			padding: 25px 30px;
 		}
 
+		&__metadata {
+			width: 0;
+			flex: 1;
+		}
+
 		&__title {
 			margin: 0;
 			color: var(--grey-050);
 			font-family: var(--font-sans);
 			font-weight: 800;
 			font-size: 1.6rem;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 			text-decoration: none;
 			user-select: none;
 
@@ -70,6 +87,7 @@
 			font-family: var(--font-sans);
 			font-weight: 200;
 			font-size: 1.2rem;
+			white-space: nowrap;
 			user-select: none;
 		}
 
@@ -113,10 +131,85 @@
 			padding-bottom: 30px;
 		}
 	}
+
+	.Timestamp {
+		position: sticky;
+		top: 10px;
+		height: 0;
+		transform: translate(-10rem, 30px);
+		color: var(--grey-100);
+		font-family: var(--font-ui);
+		font-weight: 400;
+		font-size: 1.1rem;
+
+		&__dot {
+			display: inline-block;
+			width: 7px;
+			height: 7px;
+			margin-left: 10px;
+			background: var(--grey-100);
+			border-radius: 50%;
+			vertical-align: middle;
+		}
+	}
+
+	@media (max-width: 1500px) {
+		.KdPost {
+			&__time {
+				font-size: 1rem;
+			}
+		}
+	}
+
+	@media (max-width: 1300px) {
+		.KdPost {
+			&__time {
+				font-size: 1.2rem;
+			}
+		}
+	}
+
+	@media (max-width: 768px) {
+		.KdPost {
+			&__time {
+				font-size: 1rem;
+			}
+		}
+	}
 </style>
 
+<style lang="less">
+	@keyframes KdPost__flip {
+		from {
+			-webkit-transform: rotateX(-90deg);
+			transform: rotateX(-90deg);
+			opacity: 0;
+		}
+
+		to {
+			-webkit-transform: rotateX(0deg);
+			transform: rotateX(0deg);
+			opacity: 1;
+		}
+	}
+</style>
+
+<i18n>
+{
+	"ko": {
+		"readtime": "읽는데 {time}"
+	},
+
+	"en": {
+		"readtime": "{time} to read"
+	}
+}
+</i18n>
+
 <script>
-	import createExcerpt from "@/src/excerpt";
+	import calculateReadtime from "@/src/calculateReadtime";
+	import createExcerpt from "@/src/createExcerpt";
+	import moment from "moment";
 
 	import KdContinue from "@/components/KdContinue";
 	import KdLink from "@/components/KdLink";
@@ -127,28 +220,66 @@
 			post: {
 				type: Object,
 				required: true
+			},
+
+			index: {
+				type: Number
+			},
+
+			timestamped: {
+				type:  Boolean
 			}
 		},
 
 		computed: {
 			readtime() {
-				return "읽는데 3분";
+				return this.$t('readtime', {
+					time: calculateReadtime(this.htmlExcerpt, this.post)
+				});
 			},
 
 			datetime() {
-				return "2019-10-11";
+				return this.post.published_at;
 			},
 
 			datetext() {
-				return "월요일";
+				const current = moment();
+				const date = moment(this.post.published_at);
+
+				if(!current.isSame(date, 'week')) {
+					return date.format('LL');
+				}
+
+				if(!current.isSame(date, 'day')) {
+					return date.format('dddd');
+				}
+
+				return current.to(date);
+			},
+
+			timestamp() {
+				return moment(this.post.published_at).format('YYYY. MM. DD');
+			},
+
+			htmlExcerpt() {
+				return createExcerpt(this.post.html);
 			},
 
 			excerpt() {
 				if(this.post.custom_excerpt)
 					return this.post.custom_excerpt;
 
-				return createExcerpt(this.post.html);
+				return this.htmlExcerpt;
 			}
+		},
+
+		mounted() {
+			this.$el.style.animationDuration = ".5s";
+			this.$el.style.webkitAnimationDuration = ".5s";
+			this.$el.style.animationDelay = this.index / 2 + "s";
+			this.$el.style.webkitAnimationDelay = this.index / 2 + "s";
+			this.$el.style.animationName = "KdPost__flip";
+			this.$el.style.webkitAnimationName = "KdPost__flip";
 		},
 
 		components: {

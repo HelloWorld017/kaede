@@ -26,7 +26,8 @@
 						<kd-post class="KdPostList__post" v-for="post in column"
 							:post="posts[post]"
 							:key="posts[post].id"
-							:index="posts[post].index">
+							:index="posts[post].index"
+							:timestamped="isDesktop && index === 0">
 						</kd-post>
 					</div>
 				</div>
@@ -86,6 +87,7 @@
 		&__column {
 			flex: 1;
 			margin: 0 15px;
+			width: 0;
 		}
 
 		&__post {
@@ -102,6 +104,18 @@
 			margin-top: 30px;
 			padding-bottom: 60px;
 			user-select: none;
+		}
+
+		&__featured {
+			margin-bottom: 40px;
+		}
+	}
+
+	@media (min-width: 1500px) {
+		.KdPostList {
+			&__columns {
+				padding-left: 5rem;
+			}
 		}
 	}
 
@@ -187,7 +201,7 @@
 				posts: {},
 				featured: [],
 
-				isTablet: false,
+				innerWidth: window.innerWidth,
 				tabletColumn: [],
 				leftColumn: [],
 				leftHeight: 0,
@@ -207,6 +221,14 @@
 		},
 
 		computed: {
+			isTablet() {
+				return this.innerWidth < 1300;
+			},
+
+			isDesktop() {
+				return this.innerWidth >= 1500;
+			},
+
 			columns() {
 				if(this.isTablet)
 					return [this.tabletColumn];
@@ -256,7 +278,7 @@
 				}
 
 				posts.forEach((post, index) => {
-					post.index = post;
+					post.index = index;
 
 					const postHeight = calculateHeight(post, columnWidth);
 
@@ -278,7 +300,7 @@
 			},
 
 			updateIsTablet() {
-				this.isTablet = window.innerWidth < 1300;
+				this.innerWidth = window.innerWidth;
 			}
 		},
 
@@ -291,7 +313,7 @@
 		async mounted() {
 			this.updateIsTablet();
 			await this.loadFeatured();
-			await this.$refs.trigger.preload();
+			await this.$refs.trigger.init();
 		},
 
 		destroyed() {

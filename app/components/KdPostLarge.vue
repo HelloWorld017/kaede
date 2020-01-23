@@ -147,7 +147,7 @@
 			&__custom-excerpt {
 				margin-bottom: 20px;
 			}
-			
+
 			&__excerpt--has-custom {
 				display: none;
 			}
@@ -156,7 +156,7 @@
 </style>
 
 <script>
-	import createExcerpt from "@/src/excerpt";
+	import createExcerpt from "@/src/createExcerpt";
 
 	import KdContinue from "@/components/KdContinue";
 	import KdLink from "@/components/KdLink";

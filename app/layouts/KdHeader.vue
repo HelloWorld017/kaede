@@ -1,6 +1,6 @@
 <template>
 	<header class="KdHeader">
-		<div class="KdHeader__branding">
+		<kd-link class="KdHeader__branding" href="/">
 			<h1 class="KdHeader__branding__title">
 				{{title}}
 			</h1>
@@ -8,7 +8,7 @@
 			<span class="KdHeader__branding__desc">
 				{{description}}
 			</span>
-		</div>
+		</kd-link>
 
 		<kd-navigation class="KdHeader__navigation" />
 	</header>
@@ -29,6 +29,7 @@
 		&__branding {
 			display: block;
 			color: var(--grey-050);
+			text-decoration: none;
 
 			&__title {
 				font-family: var(--font-ui);
@@ -57,6 +58,7 @@
 </style>
 
 <script>
+	import KdLink from "@/components/KdLink";
 	import KdNavigation from "@/layouts/KdNavigation";
 
 	export default {
@@ -71,6 +73,7 @@
 		},
 
 		components: {
+			KdLink,
 			KdNavigation
 		}
 	};

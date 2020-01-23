@@ -1,10 +1,10 @@
 export default (post, columnWidth) => {
 	// Roughly calculating post height.
-	let height = 70;
+	let height = 250;
 	if(post.feature_image)
-		height += 300;
+		height += 200;
 
-	height += Math.max(7, Math.floor(post.excerpt.length * 16 / columnWidth)) * 16;
+	height += Math.min(7, Math.ceil(post.excerpt.length * 8 / columnWidth)) * 25;
 
 	return height;
 };

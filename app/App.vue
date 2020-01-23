@@ -22,27 +22,7 @@
 </i18n>
 
 <style lang="less">
-	:root {
-		--font-ui: 'Raleway', 'KoPubWorldDotum', sans-serif;
-		--font-title: 'NanumSquare', sans-serif;
-		--font-sans: 'KoPubWorldDotum', sans-serif;
-
-		--color-background: #efebdd;
-		--color-foreground: #35aba4;
-		--color-red: #eb5757;
-		--color-facebook: #039be5;
-		--color-twitter: #56ccf2;
-
-		--grey-050: #000000;
-		--grey-100: #202020;
-		--grey-200: #3b3b3b;
-		--grey-900: #ffffff;
-	}
-
-	body, html {
-		margin: 0;
-		padding: 0;
-	}
+	@import "./less/index.less";
 </style>
 
 <script>
