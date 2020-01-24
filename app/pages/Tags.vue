@@ -2,10 +2,13 @@
 	<div id="Tags">
 		<kd-topbar />
 		<kd-header />
-		<section class="Tags__masthead" :style="{ background }">
+		<section class="Tags__masthead"
+			:class="{'Tags__masthead--empty': !tag.name}"
+			:style="{ background }">
+
 			<div class="Tags__filter"></div>
 			<h2 class="Tags__title">
-				{{title}}
+				{{tag.name}}
 
 				<span class="Tags__count">
 					({{count}})
@@ -15,7 +18,7 @@
 				{{description}}
 			</span>
 		</section>
-		<kd-post-list class="Tags__list" :context="[`tag:${tagSlug}`]" />
+		<kd-post-list class="Tags__list" :context="[`tag:${tagSlug}`]" automatic />
 		<kd-footer />
 	</div>
 </template>
@@ -38,12 +41,18 @@
 			justify-content: center;
 			position: relative;
 			user-select: none;
+			opacity: 1;
+			transition: opacity .4s ease;
 
 			color: var(--grey-900);
 			font-family: var(--font-sans);
 
 			background-size: cover !important;
 			background-position: center !important;
+
+			&--empty {
+				opacity: 0;
+			}
 		}
 
 		&__filter {
@@ -111,10 +120,6 @@
 		computed: {
 			tagSlug() {
 				return this.$route.params.tag;
-			},
-
-			title() {
-				return this.tag.name;
 			},
 
 			description() {

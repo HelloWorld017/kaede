@@ -1,5 +1,7 @@
 import App from "@/App";
+import Author from "@/pages/Author";
 import Index from "@/pages/Index";
+import Post from "@/pages/Post";
 import Tags from "@/pages/Tags";
 import Vue from "vue";
 import Vuex from "vuex";
@@ -28,7 +30,9 @@ Vue.use(VueRouter);
 		routes: [
 			{ path: '/', component: Index },
 			{ path: '/page/:page', redirect: '/' },
-			{ path: '/tag/:tag', component: Tags }
+			{ path: '/author/:author', component: Author },
+			{ path: '/tag/:tag', component: Tags },
+			{ path: '/:post', component: Post }
 		],
 		mode: 'history'
 	});

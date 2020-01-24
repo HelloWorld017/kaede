@@ -1,6 +1,6 @@
 <template>
 	<button class="KdBookmarkBadge" @click="openBookmark">
-		<icon-bookmark class="KdBookmarkBadge__icon" />
+		<icon-bookmark-outline class="KdBookmarkBadge__icon" />
 		{{$t('bookmark')}}
 	</button>
 </template>
@@ -34,7 +34,7 @@
 </i18n>
 
 <script>
-	import IconBookmark from "@/images/IconBookmark?inline";
+	import IconBookmarkOutline from "@/images/IconBookmarkOutline?inline";
 
 	export default {
 		methods: {
@@ -44,7 +44,7 @@
 		},
 
 		components: {
-			IconBookmark
+			IconBookmarkOutline
 		}
 	};
 </script>

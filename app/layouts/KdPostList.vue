@@ -32,9 +32,14 @@
 					</div>
 				</div>
 
-				<kd-scroll-trigger :current="current" :max="max" :loadNext="loadMoreBound" ref="trigger" />
+				<kd-scroll-trigger :current="current" :max="max"
+					:loadNext="loadMoreBound" :automatic="automatic"
+					ref="trigger" />
+
 			</section>
 
+			<slot></slot>
+			
 			<div class="KdPostList__thank">{{$t('thank')}}</div>
 		</div>
 	</main>
@@ -217,6 +222,10 @@
 			context: {
 				type: Array,
 				required: true
+			},
+
+			automatic: {
+				type: Boolean
 			}
 		},
 

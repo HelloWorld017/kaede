@@ -138,6 +138,7 @@ module.exports = {
     devtool: '#eval-source-map',
     devServer: {
         index: '',
+        host: '0.0.0.0',
         disableHostCheck: true,
         proxy: {
             context: () => true,

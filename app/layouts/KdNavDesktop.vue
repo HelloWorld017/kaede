@@ -1,26 +1,28 @@
 <template>
-	<nav class="KdNavigation">
+	<nav class="KdNavDesktop" :class="{'KdNavDesktop--transparent': transparent}">
 		<template v-for="item in navigation">
-			<kd-link class="KdNavigation__item"
-				active-class="KdNavigation__item--active"
+			<kd-link class="KdNavDesktop__item"
+				active-class="KdNavDesktop__item--active"
 				:key="item.url" :href="item.url">
 
 				{{item.label}}
 			</kd-link>
 		</template>
 
-		<kd-bookmark-badge class="KdNavigation__item" />
+		<kd-bookmark-badge class="KdNavDesktop__item" />
 	</nav>
 </template>
 
 <style lang="less" scoped>
-	.KdNavigation {
+	.KdNavDesktop {
 		display: flex;
+		flex-wrap: wrap;
+		margin-left: 10px;
 
 		&__item {
 			cursor: pointer;
 			position: relative;
-			padding: 7px 14px;
+			padding: 10px 14px;
 			outline: none;
 
 			color: var(--grey-050);
@@ -29,6 +31,8 @@
 			font-weight: 600;
 			text-decoration: none;
 
+			fill: var(--grey-050);
+
 			&::after {
 				content: '';
 				display: inline-block;
@@ -36,7 +40,7 @@
 				position: absolute;
 				left: 0;
 				right: 0;
-				bottom: -3px;
+				bottom: 3px;
 
 				width: 100%;
 				height: 3px;
@@ -56,6 +60,17 @@
 				cursor: default;
 			}
 		}
+
+		&--transparent & {
+			&__item {
+				color: var(--grey-900);
+				fill: var(--grey-900);
+
+				&::after {
+					background: var(--grey-900);
+				}
+			}
+		}
 	}
 </style>
 
@@ -64,6 +79,12 @@
 	import KdLink from "@/components/KdLink";
 
 	export default {
+		props: {
+			transparent: {
+				type: Boolean
+			}
+		},
+
 		computed: {
 			navigation() {
 				return this.$store.state.config.navigation;

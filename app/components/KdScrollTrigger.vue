@@ -3,7 +3,7 @@
 		<div class="KdScrollTrigger__loading Loading" v-if="state === 'requested'">
 			<div class="Loading__circle"></div>
 		</div>
-		<button class="KdScrollTrigger__load LoadMore" v-else-if="current < max">
+		<button class="KdScrollTrigger__load LoadMore" @click="loadMore" v-else-if="current < max">
 			<icon-load class="LoadMore__icon" /> {{$t('load-more')}}
 		</button>
 	</div>
@@ -162,6 +162,10 @@
 			loadNext: {
 				type: Function,
 				required: true
+			},
+
+			automatic: {
+				type: Boolean
 			}
 		},
 
@@ -179,7 +183,7 @@
 			async preload() {
 				debugLog("Preload Requested");
 
-				if(this.state === 'requested')
+				if(this.state !== 'initial')
 					return;
 
 				this.state = 'requested';
@@ -199,8 +203,21 @@
 			},
 
 			async init() {
-				this.state = 'initial';
-				await this.preload();
+				if(!this.automatic) {
+					this.state = 'uninitialized';
+					await this.loadNext();
+				} else {
+					this.state = 'initial';
+					await this.preload();
+				}
+			},
+
+			loadMore() {
+				if(this.state === 'uninitialized') {
+					this.state = 'initial';
+				}
+
+				this.preload();
 			}
 		},
 

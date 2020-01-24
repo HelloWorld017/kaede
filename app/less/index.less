@@ -2,6 +2,10 @@
 	--font-ui: 'Raleway', 'KoPubWorldDotum', sans-serif;
 	--font-title: 'NanumSquare', sans-serif;
 	--font-sans: 'KoPubWorldDotum', sans-serif;
+	// --font-content: 'RIDIBatang', sans-serif;
+	--font-content: 'KoPubWorldDotum', sans-serif;
+	--font-content-title: 'KoPubWorldDotum', sans-serif;
+	--font-code: 'Iosevka', monospace;
 
 	--color-background: #efebdd;
 	--color-foreground: #35aba4;
@@ -18,6 +22,7 @@
 body, html {
 	margin: 0;
 	padding: 0;
+	background: var(--grey-900);
 }
 
 ::selection {
@@ -71,4 +76,14 @@ body, html {
 	scrollbar-3dlight-color: rgba(0, 0, 0, .5);
 	scrollbar-darkshadow-color: rgba(0, 0, 0, .5);
 	scrollbar-shadow-color: rgba(0, 0, 0, .35);
+}
+
+.Fade {
+	&-enter-active, &-leave-active {
+		transition: all .4s ease;
+	}
+
+	&-enter, &-leave-to {
+		opacity: 0;
+	}
 }
