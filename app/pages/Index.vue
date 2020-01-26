@@ -61,6 +61,7 @@
 			font-weight: 700;
 			text-decoration: none;
 			padding: 2px 8px;
+			margin: 5px;
 			border-radius: 5px;
 			transition: color .4s ease;
 

@@ -13,9 +13,11 @@ export default {
 
 	actions: {
 		async init({ commit }) {
-			const config = await api.settings.browse();
-			
-			commit('setConfig', config);
+			try {
+				const config = await api.settings.browse();
+
+				commit('setConfig', config);
+			} catch(err) {}
 		}
 	}
 };

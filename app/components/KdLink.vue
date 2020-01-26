@@ -1,7 +1,9 @@
 <template>
 	<a v-if="isExternal"
 		class="KdLink"
-		:href="href">
+		:rel="rel"
+		:href="hrefReplaceInternal"
+		:target="target">
 
 		<slot></slot>
 	</a>
@@ -9,7 +11,7 @@
 	<router-link v-else
 		class="KdLink"
 		:exact-active-class="activeClass"
-		:to="href">
+		:to="hrefReplaceInternal">
 
 		<slot></slot>
 	</router-link>
@@ -26,12 +28,43 @@
 			activeClass: {
 				type: String,
 				default: "KdLink--active"
+			},
+
+			newtab: {
+				type: Boolean
 			}
 		},
 
 		computed: {
+			hrefReplaceInternal() {
+				if(!this.checkIsExternal(this.href))
+					return this.href;
+
+				try {
+					const url = new URL(this.href);
+					if(url.host === location.host)
+						return `${url.pathname}${url.search}${url.hash}`;
+				} catch(err) {}
+
+				return this.href;
+			},
+
 			isExternal() {
-				return /^[a-z]+:/.test(this.href);
+				return this.checkIsExternal(this.hrefReplaceInternal);
+			},
+
+			target() {
+				return this.newtab ? `_blank` : '_self';
+			},
+
+			rel() {
+				return this.newtab ? 'noopener' : '';
+			}
+		},
+
+		methods: {
+			checkIsExternal(url) {
+				return /^[a-z]+:/.test(url);
 			}
 		}
 	};

@@ -1,5 +1,5 @@
 <template>
-	<kd-link class="KdTag" :href="tag.url">
+	<kd-link class="KdTag" :class="{ 'KdTag--monochrome': monochrome }" :href="tag.url">
 		{{tag.name}}
 	</kd-link>
 </template>
@@ -16,6 +16,10 @@
 		user-select: none;
 		text-transform: uppercase;
 		text-decoration: none;
+
+		&--monochrome {
+			background: var(--grey-200);
+		}
 	}
 </style>
 
@@ -27,6 +31,10 @@
 			tag: {
 				type: Object,
 				required: true
+			},
+
+			monochrome: {
+				type: Boolean
 			}
 		},
 
