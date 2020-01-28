@@ -96,6 +96,7 @@
 		&__metadata {
 			margin-top: 30px;
 			display: flex;
+			flex-wrap: wrap;
 			font-family: var(--font-sans);
 		}
 
@@ -111,6 +112,28 @@
 			height: 1rem;
 			margin-right: .3rem;
 			vertical-align: middle;
+		}
+	}
+
+	@media (max-width: 1100px) {
+		.KdAuthor {
+			flex-direction: column;
+
+			&__continue {
+				margin-top: 40px;
+			}
+		}
+	}
+
+	@media (max-width: 500px) {
+		.KdAuthor{
+			&__profile {
+				display: none;
+			}
+
+			&__metadata {
+				display: none;
+			}
 		}
 	}
 </style>

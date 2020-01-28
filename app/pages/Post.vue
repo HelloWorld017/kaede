@@ -65,13 +65,16 @@
 				</div>
 				<div class="Post__like-options" v-if="!isPage">
 					<button class="Post__button Post__button--large Post__button--toggle"
-						:class="{'Post__button--active': bookmarked}">
+						:class="{'Post__button--active': bookmarked}"
+						@click="toggleBookmark">
 
 						<icon-bookmark class="Post__button-icon" />
 						{{$t('bookmark')}}
 					</button>
 
-					<button class="Post__button Post__button--large" v-if="kaedeEnabled" @click="increaseLike">
+					<button class="Post__button Post__button--large Post__button--like"
+						v-if="kaedeEnabled" @click="increaseLike">
+
 						<icon-heart class="Post__button-icon" />
 						{{ likeCounts }}
 					</button>
@@ -85,6 +88,22 @@
 							{{$t('category')}}
 						</h3>
 						<div class="Post__footer-decorator"></div>
+						<div class="Post__category-items">
+							<kd-link :href="post.url" class="Post__category-item"
+								:key="post.id" v-for="post in categoryPosts">
+								
+								<span class="Post__category-title">{{post.title}}</span>
+								<icon-right-arrow class="Post__category-icon" />
+							</kd-link>
+						</div>
+					</div>
+
+					<div class="Post__comments">
+						<h3 class="Post__footer-title">
+							{{$t('comments')}}
+						</h3>
+						<div class="Post__footer-decorator"></div>
+						<kd-comment-list :id="post.id" />
 					</div>
 				</div>
 			</section>
@@ -100,21 +119,25 @@
 <i18n>
 {
 	"ko": {
+		"readtime": "읽는데 {time}",
 		"tags": "Tags",
 		"authors": "Authors",
 		"if-you-like": "If you like this post",
 		"bookmark": "Bookmark",
 		"share": "Share",
-		"category": "카테고리의 다른 글"
+		"category": "카테고리의 다른 글",
+		"comments": "댓글"
 	},
 
 	"en": {
+		"readtime": "{time} to read",
 		"tags": "Tags",
 		"authors": "Authors",
 		"if-you-like": "If you like this post",
 		"bookmark": "Bookmark",
 		"share": "Share",
-		"category": "Related posts"
+		"category": "Related posts",
+		"comments": "Comments"
 	}
 }
 </i18n>
@@ -248,9 +271,10 @@
 		&__like-options {
 			display: flex;
 			justify-content: center;
+			flex-wrap: wrap;
 		}
 
-		&__share-options {
+		&__like-options {
 			margin-top: 10px;
 		}
 
@@ -261,7 +285,7 @@
 			border: none;
 			border-radius: 5px;
 			padding: 5px 13px;
-			margin: 0 5px;
+			margin: 5px;
 			background: var(--grey-200);
 
 			display: inline-flex;
@@ -290,9 +314,24 @@
 				background: var(--color-red);
 				font-size: 1.2rem;
 				padding: 10px 20px;
-				margin: 0 10px;
+				margin: 10px;
+				transition: all .4s ease;
 
-				.KdPost__button-icon {
+				&:hover {
+					box-shadow: 0 2px 8px 1px rgba(0, 0, 0, .3);
+				}
+			}
+
+			&--like {
+				font-family: var(--font-title);
+
+				&:hover .Post__button-icon {
+					transform: scale(1.2);
+				}
+
+				.Post__button-icon {
+					transition: transform .4s ease;
+					transform: scale(1.0);
 					height: 1.2rem;
 				}
 			}
@@ -316,6 +355,15 @@
 			display: flex;
 		}
 
+		&__footer-contents {
+			display: flex;
+			width: 100%;
+
+			& > * {
+				margin-bottom: 20px;
+			}
+		}
+
 		&__footer-title {
 			color: var(--grey-100);
 			font-family: var(--font-sans);
@@ -326,6 +374,49 @@
 			width: 45px;
 			height: 7px;
 			background: var(--grey-100);
+		}
+
+		&__category {
+			width: 25%;
+			margin-right: 40px;
+		}
+
+		&__category-items {
+			margin-top: 15px;
+		}
+
+		&__category-item {
+			color: var(--grey-100);
+			font-size: 1.1rem;
+			font-family: var(--font-sans);
+			text-decoration: none;
+			display: flex;
+			justify-content: space-between;
+			margin: 5px 0;
+			margin-left: 10px;
+
+			&:hover .Post__category-icon {
+				transform: translate(5px, 0);
+			}
+		}
+
+		&__category-title {
+			flex: 1;
+			width: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-right: 5px;
+		}
+
+		&__category-icon {
+			stroke: var(--grey-100);
+			height: 1.1rem;
+			transition: all .4s ease;
+		}
+
+		&__comments {
+			flex: 1;
 		}
 	}
 
@@ -341,6 +432,15 @@
 		.Post {
 			&__outline-wrapper {
 				display: none;
+			}
+
+			&__footer-contents {
+				flex-direction: column;
+			}
+
+			&__category {
+				width: 100%;
+				margin: 0;
 			}
 		}
 	}
@@ -374,18 +474,6 @@
 @import "../less/posting.less";
 </style>
 
-<i18n>
-{
-	"ko": {
-		"readtime": "읽는데 {time}"
-	},
-
-	"en": {
-		"readtime": "{time} to read"
-	}
-}
-</i18n>
-
 <script>
 	import api from "@/src/api";
 	import calculateReadtime from "@/src/calculateReadtime";
@@ -398,9 +486,11 @@
 	import IconFacebook from "@/images/IconFacebook?inline";
 	import IconHeart from "@/images/IconHeart?inline";
 	import IconReadtime from "@/images/IconReadtime?inline";
+	import IconRightArrow from "@/images/IconRightArrow?inline";
 	import IconTimestamp from "@/images/IconTimestamp?inline";
 	import IconTwitter from "@/images/IconTwitter?inline";
 	import KdAuthor from "@/components/KdAuthor";
+	import KdCommentList from "@/layouts/KdCommentList";
 	import KdFooter from "@/layouts/KdFooter";
 	import KdHeader from "@/layouts/KdHeader";
 	import KdLink from "@/components/KdLink";
@@ -418,7 +508,8 @@
 				activeOutline: null,
 				bookmarked: false,
 				kaedeEnabled: !!kaedeApi,
-				likeCounts: 0
+				likeCounts: 0,
+				categoryPosts: []
 			};
 		},
 
@@ -476,13 +567,21 @@
 			},
 
 			async updateLike() {
-				const { likes } = await kaedeApi.get(`/${this.post.id}/likes`);
+				const { likes } = (await kaedeApi.get(`/${this.post.id}/likes`)).data;
 				this.likeCounts = likes;
 			},
 
 			async increaseLike() {
-				const { likes } = await kaedeApi.post(`/${this.post.id}/likes`);
+				const { likes } = (await kaedeApi.post(`/${this.post.id}/likes`)).data;
 				this.likeCounts = likes;
+			},
+
+			toggleBookmark() {
+				if(this.bookmarked) {
+					this.bookmarked = false;
+				} else {
+					this.bookmarked = true;
+				}
 			}
 		},
 
@@ -543,7 +642,38 @@
 				return true;
 			});
 
-			await this.updateLike();
+			const images = this.$refs.content.querySelectorAll('.kg-gallery-image img');
+			images.forEach(image => {
+				const container = image.closest('.kg-gallery-image');
+
+				const width = image.attributes.width.value;
+				const height = image.attributes.height.value;
+				const ratio = width / height;
+
+				const parent = container.parentNode;
+				parent.removeChild(container);
+
+				const newContainer = document.createElement('a');
+				newContainer.href = image.src;
+				newContainer.target = '_blank';
+				newContainer.rel = 'noopener';
+				newContainer.className = container.classList.value;
+				newContainer.style.flex = ratio + ' 1 0%';
+				newContainer.appendChild(image);
+
+				parent.appendChild(newContainer);
+			});
+
+			try {
+				await this.updateLike();
+			} catch(e) {}
+
+			if(this.post.primary_tag) {
+				this.categoryPosts = await api.posts.browse({
+					filter: `tags:${this.post.primary_tag.slug}`,
+					limit: 5
+				});
+			}
 		},
 
 		components: {
@@ -551,9 +681,11 @@
 			IconFacebook,
 			IconHeart,
 			IconReadtime,
+			IconRightArrow,
 			IconTimestamp,
 			IconTwitter,
 			KdAuthor,
+			KdCommentList,
 			KdFooter,
 			KdHeader,
 			KdLink,
