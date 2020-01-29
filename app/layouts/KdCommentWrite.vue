@@ -1,5 +1,5 @@
 <template>
-	<form class="KdCommentWrite" @submit.prevent="submit">
+	<form class="KdCommentWrite" :class="{'KdCommentWrite--small': small}" @submit.prevent="submit">
 		<textarea class="KdCommentWrite__text" v-model="text"
 			:maxlength="maxContent" :placeholder="$t('content')" required>
 		</textarea>
@@ -18,6 +18,10 @@
 						:placeholder="$t('password')" required>
 				</div>
 			</div>
+
+			<span class="KdCommentWrite__error" v-if="errorReason">
+				{{$t(errorReason)}}
+			</span>
 
 			<button class="KdCommentWrite__submit" type="submit">
 				<icon-submit class="KdCommentWrite__submit-icon" />
@@ -41,12 +45,24 @@
 			color: var(--grey-100);
 			font-family: var(--font-sans);
 			font-size: 1rem;
+
+			&::selection {
+				background: var(--grey-100);
+				color: var(--grey-900);
+			}
 		}
 
 		&__row {
 			display: flex;
+			align-items: center;
 			justify-content: space-between;
 			margin-top: 10px;
+		}
+
+		&__error {
+			color: var(--red-400);
+			font-size: .8rem;
+			font-family: var(--font-sans);
 		}
 
 		&__input-wrapper {
@@ -92,6 +108,44 @@
 				transform: translate(5px, 0);
 			}
 		}
+
+		&--small & {
+			&__text {
+				height: 80px;
+			}
+
+			&__submit-icon {
+				height: 30px;
+			}
+
+			&__input-wrapper {
+				padding: 5px;
+			}
+
+			&__input {
+				font-size: .8rem;
+			}
+		}
+	}
+
+	@media (max-width: 600px) {
+		.KdCommentWrite {
+			&__input-wrapper {
+				margin: 5px;
+
+				&:first-child {
+					margin-left: 5px;
+				}
+
+				&:last-child {
+					margin-right: 5px;
+				}
+			}
+
+			&__submit-icon {
+				width: 1.5rem;
+			}
+		}
 	}
 </style>
 
@@ -100,13 +154,27 @@
 	"ko": {
 		"username": "이름",
 		"password": "비밀번호",
-		"content": "여기에 입력하세요"
+		"content": "여기에 입력하세요",
+		"invalid-postid": "새로고침 후 다시 시도해주세요!",
+		"no-such-post": "포스트가 삭제된 듯 합니다.",
+		"invalid-body": "새로고침 후 다시 시도해주세요!",
+		"too-many-comments": "이미 너무 많은 댓글이 달려있습니다!",
+		"invalid-content": "내용을 입력해주세요.",
+		"invalid-author": "사용자명을 입력해주세요.",
+		"invalid-password": "비밀번호를 입력해주세요."
 	},
 
 	"en": {
 		"username": "Username",
 		"password": "Password",
-		"content": "Input here"
+		"content": "Input here",
+		"invalid-postid": "Please retry after refresh!",
+		"no-such-post": "This post seems to be deleted.",
+		"invalid-body": "Please retry after refresh!",
+		"too-many-comments": "There are too many comments already.",
+		"invalid-content": "Please enter the contents.",
+		"invalid-author": "Please enter the username.",
+		"invalid-password": "Please enter the password."
 	}
 }
 </i18n>
@@ -136,6 +204,10 @@
 			replyTo: {
 				type: Number,
 				default: 0
+			},
+
+			small: {
+				type: Boolean
 			}
 		},
 
@@ -161,7 +233,9 @@
 				if(this.replyTo)
 					targetComment.replyTo = this.replyTo;
 
-				const { ok, comment, reason } = await kaedeApi.post(`/${this.id}/comments`, targetComment);
+				const { data } = await kaedeApi.post(`/${this.id}/comments`, targetComment);
+				const { ok, comment, reason } = data;
+
 				if(!ok) {
 					this.errorReason = reason;
 					setTimeout(() => this.errorReason = '', 3000);
@@ -169,6 +243,10 @@
 				}
 
 				this.$emit('add', comment);
+				this.text = '';
+				this.username = '';
+				this.password = '';
+				this.errorReason = '';
 			}
 		},
 

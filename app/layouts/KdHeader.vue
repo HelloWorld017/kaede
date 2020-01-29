@@ -41,6 +41,10 @@
 			&__branding {
 				color: var(--grey-900);
 			}
+
+			&__mobile-icon {
+				fill: var(--grey-900);
+			}
 		}
 
 		&__branding {
@@ -73,6 +77,10 @@
 			border: none;
 			outline: none;
 			padding: 6px;
+		}
+
+		&__mobile-icon {
+			fill: var(--grey-050);
 		}
 	}
 

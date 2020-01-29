@@ -39,7 +39,7 @@
 			</section>
 
 			<slot></slot>
-			
+
 			<div class="KdPostList__thank">{{$t('thank')}}</div>
 		</div>
 	</main>
@@ -64,7 +64,7 @@
 <style lang="less" scoped>
 	.KdPostList {
 		flex-grow: 1;
-		background: var(--color-background);
+		background: var(--background-400);
 
 		&__content {
 			width: 100%;

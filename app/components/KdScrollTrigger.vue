@@ -202,13 +202,15 @@
 				debugLog("Preloaded. CurrentState:", this.state, this.loadFulfilled);
 			},
 
-			async init() {
+			async init(preload = true) {
 				if(!this.automatic) {
 					this.state = 'uninitialized';
-					await this.loadNext();
+
+					if(preload) await this.loadNext();
 				} else {
 					this.state = 'initial';
-					await this.preload();
+
+					if(preload) await this.preload();
 				}
 			},
 

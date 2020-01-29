@@ -27,8 +27,8 @@
 		align-self: flex-start;
 		padding: 5px 13px;
 
-		color: var(--color-foreground);
-		border: 3px solid var(--color-foreground);
+		color: var(--foreground-400);
+		border: 3px solid var(--foreground-400);
 
 		font-family: var(--font-ui);
 		font-weight: 700;
@@ -38,7 +38,7 @@
 		user-select: none;
 
 		&:hover {
-			background: var(--color-foreground);
+			background: var(--foreground-400);
 			color: var(--grey-900);
 		}
 
@@ -49,7 +49,7 @@
 		&__icon {
 			margin-left: 7px;
 			height: 1rem;
-			stroke: var(--color-foreground);
+			stroke: var(--foreground-400);
 			transition: all .4s ease;
 		}
 	}

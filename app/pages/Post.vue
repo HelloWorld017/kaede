@@ -37,7 +37,7 @@
 					</div>
 				</div>
 
-				<section class="Post__content Posting" v-html="post.html" ref="content"></section>
+				<article class="Post__content Posting" v-html="post.html" ref="content"></article>
 
 				<h2 class="Post__meta-title" v-if="post.tags.length > 0">{{$t('tags')}}</h2>
 				<div class="Post__tags">
@@ -91,7 +91,7 @@
 						<div class="Post__category-items">
 							<kd-link :href="post.url" class="Post__category-item"
 								:key="post.id" v-for="post in categoryPosts">
-								
+
 								<span class="Post__category-title">{{post.title}}</span>
 								<icon-right-arrow class="Post__category-icon" />
 							</kd-link>
@@ -144,7 +144,7 @@
 
 <style lang="less" scoped>
 	#Post {
-		background: var(--color-background);
+		background: var(--background-400);
 		min-height: 100vh;
 	}
 
@@ -311,7 +311,7 @@
 			}
 
 			&--large {
-				background: var(--color-red);
+				background: var(--red-400);
 				font-size: 1.2rem;
 				padding: 10px 20px;
 				margin: 10px;

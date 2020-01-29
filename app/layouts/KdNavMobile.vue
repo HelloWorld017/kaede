@@ -3,7 +3,7 @@
 		<div class="KdNavMobile" v-if="opened" @click.self="close">
 			<div class="KdNavMobile__items">
 				<button @click="close" class="KdNavMobile__item" style="animation-delay: 200ms">
-					Close
+					<icon-times class="KdNavMobile__close" />
 				</button>
 
 				<template v-for="(item, index) in navigation">
@@ -67,6 +67,11 @@
 			animation-fill-mode: forwards;
 			opacity: 0;
 		}
+
+		&__close {
+			vertical-align: middle;
+			stroke: var(--grey-200);
+		}
 	}
 
 	.MobileNav {
@@ -129,6 +134,7 @@
 </style>
 
 <script>
+	import IconTimes from "@/images/IconTimes?inline";
 	import KdBookmarkBadge from "@/components/KdBookmarkBadge";
 	import KdLink from "@/components/KdLink";
 
@@ -160,6 +166,7 @@
 		},
 
 		components: {
+			IconTimes,
 			KdBookmarkBadge,
 			KdLink
 		}

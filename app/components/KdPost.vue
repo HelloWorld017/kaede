@@ -1,5 +1,5 @@
 <template>
-	<div class="KdPost">
+	<div class="KdPost" :class="{'KdPost--flipped':  flipped}">
 		<div class="KdPost__timestamp Timestamp" v-if="timestamped">
 			{{timestamp}}
 			<div class="Timestamp__dot"></div>
@@ -40,11 +40,16 @@
 	@import "../less/utils.less";
 
 	.KdPost {
-		animation-fill-mode: forwards;
+		background: var(--grey-900);
+		transition: all .5s ease;
 		transform-origin: top center;
 		transform: rotateX(-90deg);
 		opacity: 0;
-		background: var(--grey-900);
+
+		&--flipped {
+			transform: rotateX(0deg);
+			opacity: 1;
+		}
 
 		&__header {
 			display: flex;
@@ -178,22 +183,6 @@
 	}
 </style>
 
-<style lang="less">
-	@keyframes KdPost__flip {
-		from {
-			-webkit-transform: rotateX(-90deg);
-			transform: rotateX(-90deg);
-			opacity: 0;
-		}
-
-		to {
-			-webkit-transform: rotateX(0deg);
-			transform: rotateX(0deg);
-			opacity: 1;
-		}
-	}
-</style>
-
 <i18n>
 {
 	"ko": {
@@ -216,6 +205,12 @@
 	import KdTag from "@/components/KdTag";
 
 	export default {
+		data() {
+			return {
+				flipped: false
+			};
+		},
+
 		props: {
 			post: {
 				type: Object,
@@ -274,12 +269,7 @@
 		},
 
 		mounted() {
-			this.$el.style.animationDuration = ".5s";
-			this.$el.style.webkitAnimationDuration = ".5s";
-			this.$el.style.animationDelay = this.index / 2 + "s";
-			this.$el.style.webkitAnimationDelay = this.index / 2 + "s";
-			this.$el.style.animationName = "KdPost__flip";
-			this.$el.style.webkitAnimationName = "KdPost__flip";
+			setTimeout(() => { this.flipped = true }, this.index / 2 * 500);
 		},
 
 		components: {

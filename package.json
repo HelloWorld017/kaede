@@ -7,6 +7,7 @@
     "ghost-api": "v3"
   },
   "scripts": {
+    "analyze": "cross-env NODE_ENV=production webpack --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack-dev-server --hot --inline",
     "watch": "webpack --watch"
@@ -66,6 +67,7 @@
     "vue-svg-loader": "^0.15.0",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.41.5",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   }

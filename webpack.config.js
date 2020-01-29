@@ -131,6 +131,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': `"${nodeEnv}"`
         }),
+        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ko|en/),
         new MiniCssExtractPlugin({filename: '[name].bundle.css'}),
         new VueLoaderPlugin()
     ],
