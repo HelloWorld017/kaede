@@ -1,5 +1,6 @@
+import dateLocale from "@/src/dateLocale";
+import { formatDistance } from "date-fns";
 import { Parser } from "htmlparser2";
-import moment from "moment";
 
 const wps = 275 / 60;
 
@@ -24,5 +25,7 @@ export default (excerpt, post) => {
 		seconds += Math.max(3, 12 - i);
 	}
 
-	return moment.duration(seconds, "seconds").humanize();
+	const now = Date.now();
+
+	return formatDistance(new Date(now), new Date(now + seconds * 1000), dateLocale());
 };

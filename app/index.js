@@ -8,7 +8,7 @@ import Vuex from "vuex";
 import VueI18n from "vue-i18n";
 import VueRouter from "vue-router";
 
-import moment from "moment";
+import { setLocale } from "@/src/dateLocale";
 import storeDescriptor from "@/src/store";
 
 Vue.use(Vuex);
@@ -19,7 +19,10 @@ Vue.use(VueRouter);
 	const store = new Vuex.Store(storeDescriptor);
 	await store.dispatch('init');
 
-	moment.locale(store.state.config.lang);
+	setLocale({
+		locale: store.state.config.lang,
+		fallbackLocale: 'en'
+	});
 
 	const i18n = new VueI18n({
 		locale: store.state.config.lang,

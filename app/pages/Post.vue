@@ -478,9 +478,10 @@
 	import api from "@/src/api";
 	import calculateReadtime from "@/src/calculateReadtime";
 	import createExcerpt from "@/src/createExcerpt";
+	import dateLocale from "@/src/dateLocale";
+	import { format } from "date-fns";
 	import kaedeApi from "@/src/kaedeApi";
 	import generateOutline from "@/src/generateOutline";
-	import moment from "moment";
 
 	import IconBookmark from "@/images/IconBookmark?inline";
 	import IconFacebook from "@/images/IconFacebook?inline";
@@ -531,7 +532,7 @@
 			},
 
 			timestamp() {
-				return moment(this.post.published_at).format("YYYY. MM. DD");
+				return format(new Date(this.post.published_at), "yyyy. MM. dd", dateLocale());
 			},
 
 			facebookShare() {

@@ -198,7 +198,8 @@
 <script>
 	import calculateReadtime from "@/src/calculateReadtime";
 	import createExcerpt from "@/src/createExcerpt";
-	import moment from "moment";
+	import dateLocale, { getLocale } from "@/src/dateLocale";
+	import { format, formatDistanceToNow, isSameWeek, isToday } from "date-fns";
 
 	import KdContinue from "@/components/KdContinue";
 	import KdLink from "@/components/KdLink";
@@ -238,22 +239,22 @@
 			},
 
 			datetext() {
-				const current = moment();
-				const date = moment(this.post.published_at);
+				const current = new Date();
+				const date = new Date(this.post.published_at);
 
-				if(!current.isSame(date, 'week')) {
-					return date.format('LL');
+				if(!isSameWeek(current, date)) {
+					return format(date, 'PPP', dateLocale());
 				}
 
-				if(!current.isSame(date, 'day')) {
-					return date.format('dddd');
+				if(!isToday(date)) {
+					return format(date, 'EEEE', dateLocale());
 				}
 
-				return current.to(date);
+				return formatDistanceToNow(date, { addSuffix: true, locale: getLocale() });
 			},
 
 			timestamp() {
-				return moment(this.post.published_at).format('YYYY. MM. DD');
+				return format(new Date(this.post.published_at), 'yyyy. MM. dd', dateLocale());
 			},
 
 			htmlExcerpt() {

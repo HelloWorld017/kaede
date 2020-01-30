@@ -329,9 +329,10 @@
 </style>
 
 <script>
+	import dateLocale from "@/src/dateLocale";
+	import { format } from "date-fns";
 	import hash from "hash.js";
 	import kaedeApi from "@/src/kaedeApi";
-	import moment from "moment";
 
 	import IconReplied from "@/images/IconReplied?inline";
 	import IconReply from "@/images/IconReply?inline";
@@ -381,13 +382,11 @@
 			},
 
 			date() {
-				return moment(this.comment.date)
-					.format('LL');
+				return format(new Date(this.comment.date), 'PPP', dateLocale());
 			},
 
 			time() {
-				return moment(this.comment.date)
-					.format('HH:mm:ss');
+				return format(new Date(this.comment.date), 'HH:mm:ss', dateLocale());
 			}
 		},
 
