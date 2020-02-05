@@ -2,7 +2,7 @@
 	<div class="KdAuthor">
 		<div class="KdAuthor__user">
 			<div class="KdAuthor__content">
-				<img class="KdAuthor__profile" :src="author.profile_image">
+				<img class="KdAuthor__profile" :src="author.profile_image" v-if="author.profile_image">
 
 				<div class="KdAuthor__text">
 					<h2 class="KdAuthor__name">

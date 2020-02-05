@@ -3,7 +3,7 @@
 		<div id="Post" v-if="post">
 			<header class="Post__masthead" :style="{ background }">
 				<div class="Post__masthead-filter"></div>
-				<kd-header class="Post__nav" transparent />
+				<kd-header class="Post__nav" transparent scroll-view/>
 			</header>
 
 			<main class="Post__body">
@@ -218,7 +218,8 @@
 		&__outline {
 			position: sticky;
 			margin-top: 50px;
-			top: 50px;
+			margin-bottom: 30px;
+			top: 100px;
 			width: 180px;
 			font-family: var(--font-sans);
 			user-select: none;
@@ -471,17 +472,62 @@
 </style>
 
 <style lang="less">
-@import "../less/posting.less";
+	@import "../less/posting.less";
+	div.code-toolbar > .toolbar {
+		display: flex;
+
+		.toolbar-item {
+			display: inline-flex !important;
+		}
+
+		.toolbar-item button {
+			border-radius: 0;
+			transition: all .4s ease;
+
+			&:hover {
+				color: var(--grey-900);
+			}
+		}
+	}
+
+	pre[class*="language-"] {
+		border-radius: 0;
+		padding-top: 3.6rem;
+		position: relative;
+
+		&::before {
+			content: attr(data-lang);
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			color: var(--grey-700);
+			font-family: var(--font-sans);
+		}
+
+		.line-numbers .line-numbers-rows {
+			border: none;
+		}
+
+		&::selection, *::selection {
+			background: var(--grey-900);
+			color: var(--grey-050) !important;
+		}
+	}
+
+	.katex .hangul_fallback, .katex .hangul-fallback,
+	.katex .cjk_fallback, .katex .cjk-fallback {
+		font-family: var(--font-code);
+	}
 </style>
 
 <script>
 	import api from "@/src/api";
 	import calculateReadtime from "@/src/calculateReadtime";
-	import createExcerpt from "@/src/createExcerpt";
 	import dateLocale from "@/src/dateLocale";
 	import { format } from "date-fns";
 	import kaedeApi from "@/src/kaedeApi";
-	import generateOutline from "@/src/generateOutline";
+	import katex from "@/src/katex";
+	import prism from "@/src/prism";
 
 	import IconBookmark from "@/images/IconBookmark?inline";
 	import IconFacebook from "@/images/IconFacebook?inline";
@@ -497,7 +543,6 @@
 	import KdLink from "@/components/KdLink";
 	import KdPostList from "@/layouts/KdPostList";
 	import KdTag from "@/components/KdTag";
-	import KdTopbar from "@/layouts/KdTopbar";
 
 	export default {
 		data() {
@@ -527,7 +572,7 @@
 
 			readtime() {
 				return this.$t('readtime', {
-					time: calculateReadtime(createExcerpt(this.post.html), this.post)
+					time: calculateReadtime(this.post)
 				});
 			},
 
@@ -607,6 +652,7 @@
 			await this._postPromise;
 			await new Promise(resolve => this.$nextTick(resolve));
 
+			// Create Outline
 			this.observer = new IntersectionObserver(
 				this.updateIntersection.bind(this)
 			);
@@ -643,6 +689,7 @@
 				return true;
 			});
 
+			// Generate Gallery
 			const images = this.$refs.content.querySelectorAll('.kg-gallery-image img');
 			images.forEach(image => {
 				const container = image.closest('.kg-gallery-image');
@@ -665,16 +712,24 @@
 				parent.appendChild(newContainer);
 			});
 
-			try {
-				await this.updateLike();
-			} catch(e) {}
+			// Syntax Highlighting
+			prism(this.$refs.content);
 
+			// KaTeX
+			katex(this.$refs.content);
+
+			// Similar posts
 			if(this.post.primary_tag) {
 				this.categoryPosts = await api.posts.browse({
 					filter: `tags:${this.post.primary_tag.slug}`,
 					limit: 5
 				});
 			}
+
+			// Like Count
+			try {
+				await this.updateLike();
+			} catch(e) {}
 		},
 
 		components: {
@@ -691,8 +746,7 @@
 			KdHeader,
 			KdLink,
 			KdPostList,
-			KdTag,
-			KdTopbar
+			KdTag
 		}
 	};
 </script>

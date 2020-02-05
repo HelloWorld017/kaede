@@ -66,7 +66,7 @@
 			margin: 0;
 			color: var(--grey-050);
 			font-family: var(--font-sans);
-			font-weight: 800;
+			font-weight: 700;
 			font-size: 1.6rem;
 			white-space: nowrap;
 			overflow: hidden;
@@ -230,7 +230,7 @@
 		computed: {
 			readtime() {
 				return this.$t('readtime', {
-					time: calculateReadtime(this.htmlExcerpt, this.post)
+					time: calculateReadtime(this.post)
 				});
 			},
 

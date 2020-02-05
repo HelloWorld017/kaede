@@ -17,7 +17,8 @@
 				</template>
 
 				<kd-bookmark-badge class="KdNavMobile__item"
-					:style="{'animation-delay': `${(navigation.length + 1) * 100 + 200}ms`}" />
+					:style="{'animation-delay': `${(navigation.length + 1) * 100 + 200}ms`}"
+					@bookmark="$emit('bookmark')" />
 			</div>
 		</div>
 	</transition>

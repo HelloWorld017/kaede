@@ -9,7 +9,7 @@
 			</kd-link>
 		</template>
 
-		<kd-bookmark-badge class="KdNavDesktop__item" />
+		<kd-bookmark-badge class="KdNavDesktop__item" @bookmark="$emit('bookmark')" />
 	</nav>
 </template>
 

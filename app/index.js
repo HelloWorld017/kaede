@@ -1,7 +1,6 @@
 import App from "@/App";
 import Author from "@/pages/Author";
 import Index from "@/pages/Index";
-import Post from "@/pages/Post";
 import Tags from "@/pages/Tags";
 import Vue from "vue";
 import Vuex from "vuex";
@@ -29,13 +28,14 @@ Vue.use(VueRouter);
 		fallbackLocale: 'en'
 	});
 
+	const postPromise = import("@/pages/Post");
 	const router = new VueRouter({
 		routes: [
 			{ path: '/', component: Index },
 			{ path: '/page/:page', redirect: '/' },
 			{ path: '/author/:author', component: Author },
 			{ path: '/tag/:tag', component: Tags },
-			{ path: '/:post', component: Post }
+			{ path: '/:post', component: () => postPromise }
 		],
 		mode: 'history'
 	});

@@ -1,6 +1,5 @@
 <template>
 	<div id="Tags">
-		<kd-topbar />
 		<kd-header />
 		<section class="Tags__masthead"
 			:class="{'Tags__masthead--empty': !tag.name}"
@@ -108,7 +107,6 @@
 	import KdFooter from "@/layouts/KdFooter";
 	import KdHeader from "@/layouts/KdHeader";
 	import KdPostList from "@/layouts/KdPostList";
-	import KdTopbar from "@/layouts/KdTopbar";
 
 	export default {
 		data() {
@@ -155,8 +153,7 @@
 		components: {
 			KdFooter,
 			KdHeader,
-			KdPostList,
-			KdTopbar
+			KdPostList
 		}
 	};
 </script>

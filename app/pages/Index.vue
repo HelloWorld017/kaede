@@ -1,6 +1,5 @@
 <template>
 	<div id="Index">
-		<kd-topbar />
 		<kd-header />
 		<kd-post-list :context="[]">
 			<div class="Index__tags Tags">
@@ -79,7 +78,6 @@
 	import KdHeader from "@/layouts/KdHeader";
 	import KdLink from "@/components/KdLink";
 	import KdPostList from "@/layouts/KdPostList";
-	import KdTopbar from "@/layouts/KdTopbar";
 
 	export default {
 		data() {
@@ -92,8 +90,7 @@
 			KdFooter,
 			KdHeader,
 			KdLink,
-			KdPostList,
-			KdTopbar
+			KdPostList
 		},
 
 		async created() {

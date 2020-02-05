@@ -149,7 +149,4 @@ module.exports = {
 
 if(nodeEnv === 'production') {
     module.exports.devtool = '#source-map';
-    module.exports.optimization = {
-        minimize: true
-    };
 }
