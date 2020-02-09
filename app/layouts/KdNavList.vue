@@ -1,14 +1,14 @@
 <template>
-	<transition name="MobileNav">
-		<div class="KdNavMobile" v-if="opened" @click.self="close">
-			<div class="KdNavMobile__items">
-				<button @click="close" class="KdNavMobile__item" style="animation-delay: 200ms">
-					<icon-times class="KdNavMobile__close" />
+	<transition name="ListNav">
+		<div class="KdNavList" v-if="opened" @click.self="close">
+			<div class="KdNavList__items">
+				<button @click="close" class="KdNavList__item" style="animation-delay: 200ms">
+					<icon-times class="KdNavList__close" />
 				</button>
 
 				<template v-for="(item, index) in navigation">
-					<kd-link class="KdNavMobile__item"
-						active-class="KdNavMobile__item--active"
+					<kd-link class="KdNavList__item"
+						active-class="KdNavList__item--active"
 						:key="item.url" :href="item.url"
 						:style="{'animation-delay': `${(index + 1) * 100 + 200}ms`}">
 
@@ -16,7 +16,7 @@
 					</kd-link>
 				</template>
 
-				<kd-bookmark-badge class="KdNavMobile__item"
+				<kd-bookmark-badge class="KdNavList__item" v-if="bookmarkEnabled"
 					:style="{'animation-delay': `${(navigation.length + 1) * 100 + 200}ms`}"
 					@bookmark="$emit('bookmark')" />
 			</div>
@@ -25,7 +25,7 @@
 </template>
 
 <style lang="less" scoped>
-	.KdNavMobile {
+	.KdNavList {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -75,7 +75,7 @@
 		}
 	}
 
-	.MobileNav {
+	.ListNav {
 		&-enter-active {
 			animation-name: backdrop;
 			animation-duration: .4s;
@@ -90,7 +90,7 @@
 			animation-timing-function: linear;
 			animation-direction: reverse;
 
-			.KdNavMobile__item {
+			.KdNavList__item {
 				animation-name: fadeout;
 				animation-duration: .4s;
 				animation-delay: 0s !important;
@@ -135,6 +135,8 @@
 </style>
 
 <script>
+	import createNavigation, { importNav } from "@/src/createNavigation";
+
 	import IconTimes from "@/images/IconTimes?inline";
 	import KdBookmarkBadge from "@/components/KdBookmarkBadge";
 	import KdLink from "@/components/KdLink";
@@ -142,13 +144,14 @@
 	export default {
 		data() {
 			return {
+				navigation: [],
 				opened: false
 			};
 		},
 
 		computed: {
-			navigation() {
-				return this.$store.state.config.navigation;
+			bookmarkEnabled() {
+				return window.$KaedeBookmarkEnabled;
 			}
 		},
 
@@ -163,6 +166,15 @@
 
 			toggle() {
 				this.opened = !this.opened;
+			}
+		},
+
+		async created() {
+			try {
+				const page = await api.pages.read({ slug: window.$KaedeNavigationPage });
+				this.navigation = createNavigation(page.html);
+			} catch(err) {
+				this.navigation = importNav(this.$store.state.config.navigation);
 			}
 		},
 

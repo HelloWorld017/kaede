@@ -10,20 +10,20 @@
 			</span>
 		</kd-link>
 
-		<kd-nav-desktop class="KdHeader__navigation" :transparent="transparent" @bookmark="openBookmark" />
-		<kd-nav-mobile class="KdHeader__navigation-mobile" ref="mobileNav"
+		<kd-nav class="KdHeader__navigation" :transparent="transparent" @bookmark="openBookmark" />
+		<kd-nav-list class="KdHeader__navigation-list" ref="listNav"
 			@bookmark="openBookmark"
 			v-if="!minimalized" />
 
 		<kd-bookmark class="KdHeader__bookmark" ref="bookmark" />
 
-		<button @click="openMobileNav" class="KdHeader__mobile">
-			<icon-menu class="KdHeader__mobile-icon" />
+		<button @click="openListNav" class="KdHeader__list-nav">
+			<icon-menu class="KdHeader__list-nav-icon" />
 		</button>
 
 		<transition name="TopbarShow">
 			<div class="KdHeader__topbar Topbar" v-if="!minimalized && topbarShown">
-				<kd-header class="Topbar__header" @open="openMobileNav" minimalized />
+				<kd-header class="Topbar__header" @open="openListNav" @bookmark="openBookmark" minimalized />
 				<div class="Topbar__scroll-view" :style="{'width': scrollPercent}" v-if="scrollView"></div>
 			</div>
 		</transition>
@@ -57,7 +57,7 @@
 				color: var(--grey-900);
 			}
 
-			&__mobile .KdHeader__mobile-icon {
+			&__list-nav .KdHeader__list-nav-icon {
 				fill: var(--grey-900);
 			}
 		}
@@ -85,16 +85,16 @@
 			}
 		}
 
-		&__mobile {
+		&__list-nav {
 			cursor: pointer;
-			display: none;
+			display: inline-block;
 			background: transparent;
 			border: none;
 			outline: none;
 			padding: 6px;
 		}
 
-		&__mobile-icon {
+		&__list-nav-icon {
 			fill: var(--grey-050);
 		}
 	}
@@ -147,7 +147,7 @@
 				display: none;
 			}
 
-			&__mobile {
+			&__list {
 				display: inline-block;
 			}
 		}
@@ -160,8 +160,8 @@
 	import IconMenu from "@/images/IconMenu?inline";
 	import KdBookmark from "@/layouts/KdBookmark";
 	import KdLink from "@/components/KdLink";
-	import KdNavDesktop from "@/layouts/KdNavDesktop";
-	import KdNavMobile from "@/layouts/KdNavMobile";
+	import KdNav from "@/layouts/KdNav";
+	import KdNavList from "@/layouts/KdNavList";
 
 	export default {
 		name: 'kd-header',
@@ -210,13 +210,13 @@
 		},
 
 		methods: {
-			openMobileNav() {
+			openListNav() {
 				if(this.minimalized) {
 					this.$emit('open');
 					return;
 				}
 
-				this.$refs.mobileNav.open();
+				this.$refs.listNav.open();
 			},
 
 			openBookmark() {
@@ -258,8 +258,8 @@
 			IconMenu,
 			KdBookmark,
 			KdLink,
-			KdNavDesktop,
-			KdNavMobile
+			KdNav,
+			KdNavList
 		}
 	};
 </script>

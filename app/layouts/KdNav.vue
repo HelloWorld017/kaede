@@ -1,20 +1,20 @@
 <template>
-	<nav class="KdNavDesktop" :class="{'KdNavDesktop--transparent': transparent}">
+	<nav class="KdNav" :class="{'KdNav--transparent': transparent}">
 		<template v-for="item in navigation">
-			<kd-link class="KdNavDesktop__item"
-				active-class="KdNavDesktop__item--active"
+			<kd-link class="KdNav__item"
+				active-class="KdNav__item--active"
 				:key="item.url" :href="item.url">
 
 				{{item.label}}
 			</kd-link>
 		</template>
 
-		<kd-bookmark-badge class="KdNavDesktop__item" @bookmark="$emit('bookmark')" />
+		<kd-bookmark-badge v-if="bookmarkEnabled" class="KdNav__item" @bookmark="$emit('bookmark')" />
 	</nav>
 </template>
 
 <style lang="less" scoped>
-	.KdNavDesktop {
+	.KdNav {
 		display: flex;
 		flex-wrap: wrap;
 		margin-left: 10px;
@@ -88,6 +88,10 @@
 		computed: {
 			navigation() {
 				return this.$store.state.config.navigation;
+			},
+
+			bookmarkEnabled() {
+				return window.$KaedeBookmarkEnabled;
 			}
 		},
 

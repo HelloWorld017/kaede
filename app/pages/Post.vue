@@ -51,9 +51,7 @@
 
 				<h2 class="Post__meta-title" v-if="!isPage">{{$t('if-you-like')}}</h2>
 				<div class="Post__share-options" v-if="!isPage">
-					<kd-link :href="facebookShare" class="Post__button Post__button--facebook"
-						:class="{'Post__button--active': bookmarked}" newtab>
-
+					<kd-link :href="facebookShare" class="Post__button Post__button--facebook" newtab>
 						<icon-facebook class="Post__button-icon" />
 						{{$t('share')}}
 					</kd-link>
@@ -66,7 +64,7 @@
 				<div class="Post__like-options" v-if="!isPage">
 					<button class="Post__button Post__button--large Post__button--toggle"
 						:class="{'Post__button--active': bookmarked}"
-						@click="toggleBookmark">
+						@click="toggleBookmark" v-if="bookmarkEnabled">
 
 						<icon-bookmark class="Post__button-icon" />
 						{{$t('bookmark')}}
@@ -586,6 +584,10 @@
 
 			twitterShare() {
 				return `https://twitter.com/share?url=${encodeURIComponent(this.post.url)}`;
+			},
+
+			bookmarkEnabled() {
+				return window.$KaedeBookmarkEnabled;
 			}
 		},
 
