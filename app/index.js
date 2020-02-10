@@ -18,13 +18,15 @@ Vue.use(VueRouter);
 	const store = new Vuex.Store(storeDescriptor);
 	await store.dispatch('init');
 
+	const lang = store.state.config ? store.state.config.lang : 'en';
+
 	setLocale({
-		locale: store.state.config.lang,
+		locale: lang,
 		fallbackLocale: 'en'
 	});
 
 	const i18n = new VueI18n({
-		locale: store.state.config.lang,
+		locale: lang,
 		fallbackLocale: 'en'
 	});
 
