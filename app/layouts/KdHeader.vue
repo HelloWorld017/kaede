@@ -1,5 +1,8 @@
 <template>
-	<header class="KdHeader" :class="{'KdHeader--minimalized': minimalized, 'KdHeader--transparent': transparent}">
+	<header class="KdHeader" :class="{
+		'KdHeader--minimalized': minimalized, 'KdHeader--transparent': transparent,
+		'KdHeader--top': top, 'KdHeader__opened': opened
+	}">
 		<kd-link class="KdHeader__branding" href="/">
 			<h1 class="KdHeader__branding__title">
 				{{title}}
@@ -10,20 +13,23 @@
 			</span>
 		</kd-link>
 
-		<kd-nav class="KdHeader__navigation" :transparent="transparent" @bookmark="openBookmark" />
+		<kd-nav class="KdHeader__navigation" :transparent="transparent" />
 		<kd-nav-list class="KdHeader__navigation-list" ref="listNav"
 			@bookmark="openBookmark"
-			v-if="!minimalized" />
+			v-if="!minimalized"
+			v-model="_opened" />
 
 		<kd-bookmark class="KdHeader__bookmark" ref="bookmark" />
 
-		<button @click="openListNav" class="KdHeader__list-nav">
+		<button @click="openListNav" class="KdHeader__list-nav"
+			:class="{'KdHeader__list-nav--enabled': listNavEnabled}">
+
 			<icon-menu class="KdHeader__list-nav-icon" />
 		</button>
 
 		<transition name="TopbarShow">
 			<div class="KdHeader__topbar Topbar" v-if="!minimalized && topbarShown">
-				<kd-header class="Topbar__header" @open="openListNav" @bookmark="openBookmark" minimalized />
+				<kd-header class="Topbar__header" @open="openListNav" minimalized />
 				<div class="Topbar__scroll-view" :style="{'width': scrollPercent}" v-if="scrollView"></div>
 			</div>
 		</transition>
@@ -44,6 +50,7 @@
 		background: var(--grey-900);
 		user-select: none;
 
+
 		&--minimalized {
 			padding: 10px 0;
 		}
@@ -58,7 +65,13 @@
 			}
 
 			&__list-nav .KdHeader__list-nav-icon {
-				fill: var(--grey-900);
+				stroke: var(--grey-900);
+			}
+		}
+
+		&--top > & {
+			&__branding {
+				position: relative;
 			}
 		}
 
@@ -87,15 +100,26 @@
 
 		&__list-nav {
 			cursor: pointer;
-			display: inline-block;
+			display: none;
 			background: transparent;
 			border: none;
 			outline: none;
 			padding: 6px;
+
+			position: absolute;
+			right: 30px;
+
+			&--enabled {
+				display: inline-block;
+			}
 		}
 
 		&__list-nav-icon {
-			fill: var(--grey-050);
+			stroke: var(--grey-050);
+		}
+
+		&--opened &__list-nav{
+			right: 42px;
 		}
 	}
 
@@ -147,8 +171,10 @@
 				display: none;
 			}
 
-			&__list {
+			&__list-nav {
 				display: inline-block;
+				position: relative;
+				right: 0 !important;
 			}
 		}
 	}
@@ -169,7 +195,8 @@
 			return {
 				scroll: 0,
 				scrollHeight: document.documentElement.scrollHeight,
-				innerHeight: window.innerHeight
+				innerHeight: window.innerHeight,
+				opened: false
 			};
 		},
 
@@ -184,10 +211,30 @@
 
 			scrollView: {
 				type: Boolean
+			},
+
+			top: {
+				type: Boolean
 			}
 		},
 
 		computed: {
+			_opened: {
+				get() {
+					return this.opened;
+				},
+
+				set(value) {
+					if(value) {
+						document.body.className += " Body--opened";
+					} else {
+						document.body.className = document.body.className.replace(/\s*Body--opened/, '');
+					}
+
+					this.opened = value;
+				}
+			},
+
 			title() {
 				return this.$store.state.config.title;
 			},
@@ -206,6 +253,10 @@
 
 				const percentage = this.scroll / (this.scrollHeight - this.innerHeight) * 100;
 				return `${Math.max(0, Math.min(percentage, 100))}%`;
+			},
+
+			listNavEnabled() {
+				return window.$KaedeFullNavigation;
 			}
 		},
 
@@ -220,11 +271,6 @@
 			},
 
 			openBookmark() {
-				if(this.minimalized) {
-					this.$emit('bookmark');
-					return;
-				}
-
 				this.$refs.bookmark.open();
 			},
 

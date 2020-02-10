@@ -8,5 +8,5 @@ Yet another neat ghost theme
 | $KaedeBookmarkEnabled    |
 | $KaedeCommentsMaxAuthor  |
 | $KaedeCommentsMaxContent |
+| $KaedeFullNavigation     |
 | $KaedeGhostApiKey        |
-| $KaedeNavigationPage     |

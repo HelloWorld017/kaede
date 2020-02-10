@@ -3,7 +3,7 @@
 		<div id="Post" v-if="post">
 			<header class="Post__masthead" :style="{ background }">
 				<div class="Post__masthead-filter"></div>
-				<kd-header class="Post__nav" transparent scroll-view/>
+				<kd-header class="Post__nav" transparent scroll-view top />
 			</header>
 
 			<main class="Post__body">
@@ -81,7 +81,7 @@
 
 			<section class="Post__footer" v-if="!isPage">
 				<div class="Post__footer-contents Post__body">
-					<div class="Post__category">
+					<div class="Post__category" v-if="categoryPosts && categoryPosts.length > 0">
 						<h3 class="Post__footer-title">
 							{{$t('category')}}
 						</h3>
@@ -161,10 +161,6 @@
 			width: 100%;
 			height: 100%;
 			background: rgba(32, 32, 32, .5);
-		}
-
-		&__nav {
-			position: relative;
 		}
 
 		&__body {
@@ -550,7 +546,6 @@
 				outline: [],
 				activeOutlines: Object.create(null),
 				activeOutline: null,
-				bookmarked: false,
 				kaedeEnabled: !!kaedeApi,
 				likeCounts: 0,
 				categoryPosts: []
@@ -587,7 +582,13 @@
 			},
 
 			bookmarkEnabled() {
-				return window.$KaedeBookmarkEnabled;
+				return this.$store.state.bookmarks.enabled;
+			},
+
+			bookmarked() {
+				return this.$store.state.bookmarks.bookmarks.findIndex(
+					bookmark => bookmark.id === this.post.id
+				) >= 0;
 			}
 		},
 
@@ -626,9 +627,9 @@
 
 			toggleBookmark() {
 				if(this.bookmarked) {
-					this.bookmarked = false;
+					this.$store.dispatch('bookmarks/removeBookmark', this.post.id);
 				} else {
-					this.bookmarked = true;
+					this.$store.dispatch('bookmarks/addBookmark', this.post);
 				}
 			}
 		},

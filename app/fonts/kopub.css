@@ -1,0 +1,41 @@
+/* Unfortunately, KoPub has disallowed their fonts to be uploaded to the server when I have asked. */
+
+@font-face {
+	font-family: 'KoPubWorldDotum';
+	font-style: normal;
+	font-weight: 300;
+	src: local('KoPubWorldDotum Light'),
+		local('KoPubWorld Dotum Light'),
+		local('KoPubWorld돋움체 Light'),
+		local('KoPubWorld 돋움체 Light');
+}
+
+@font-face {
+	font-family: 'KoPubWorldDotum';
+	font-style: normal;
+	font-weight: 400;
+	src: local('KoPubWorldDotum Medium'),
+		local('KoPubWorld Dotum Medium'),
+		local('KoPubWorld돋움체 Medium'),
+		local('KoPubWorld 돋움체 Medium');
+}
+
+@font-face {
+	font-family: 'KoPubWorldDotum';
+	font-style: normal;
+	font-weight: 500;
+	src: local('KoPubWorldDotum Bold'),
+		local('KoPubWorld Dotum Bold'),
+		local('KoPubWorld돋움체 Bold'),
+		local('KoPubWorld 돋움체 Bold');
+}
+
+@font-face {
+	font-family: 'KoPubWorldDotum';
+	font-style: normal;
+	font-weight: 700;
+	src: local('KoPubWorldDotum Bold'),
+		local('KoPubWorld Dotum Bold'),
+		local('KoPubWorld돋움체 Bold'),
+		local('KoPubWorld 돋움체 Bold');
+}

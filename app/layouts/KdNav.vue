@@ -8,8 +8,6 @@
 				{{item.label}}
 			</kd-link>
 		</template>
-
-		<kd-bookmark-badge v-if="bookmarkEnabled" class="KdNav__item" @bookmark="$emit('bookmark')" />
 	</nav>
 </template>
 
@@ -28,7 +26,7 @@
 			color: var(--grey-050);
 			font-family: var(--font-sans);
 			font-size: 1.1rem;
-			font-weight: 600;
+			font-weight: 500;
 			text-decoration: none;
 
 			fill: var(--grey-050);
@@ -75,7 +73,6 @@
 </style>
 
 <script>
-	import KdBookmarkBadge from "@/components/KdBookmarkBadge";
 	import KdLink from "@/components/KdLink";
 
 	export default {
@@ -88,15 +85,10 @@
 		computed: {
 			navigation() {
 				return this.$store.state.config.navigation;
-			},
-
-			bookmarkEnabled() {
-				return window.$KaedeBookmarkEnabled;
 			}
 		},
 
 		components: {
-			KdBookmarkBadge,
 			KdLink
 		}
 	};

@@ -86,7 +86,7 @@
 			text-align: justify;
 			overflow: hidden;
 			font-family: var(--font-sans);
-			font-weight: 600;
+			font-weight: 500;
 		}
 
 		&__custom-excerpt {

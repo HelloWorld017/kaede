@@ -1,6 +1,6 @@
 <template>
 	<div id="App" v-if="apiKeyInitialized">
-		<transition name="Fade">
+		<transition name="Fade" mode="out-in">
 			<router-view />
 		</transition>
 	</div>

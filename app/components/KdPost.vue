@@ -64,6 +64,7 @@
 
 		&__title {
 			margin: 0;
+			margin-right: 10px;
 			color: var(--grey-050);
 			font-family: var(--font-sans);
 			font-weight: 700;

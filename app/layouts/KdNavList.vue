@@ -1,24 +1,18 @@
 <template>
 	<transition name="ListNav">
 		<div class="KdNavList" v-if="opened" @click.self="close">
-			<div class="KdNavList__items">
-				<button @click="close" class="KdNavList__item" style="animation-delay: 200ms">
-					<icon-times class="KdNavList__close" />
+			<div class="KdNavList__items" @click.self="close">
+				<button @click="close" class="KdNavList__item KdNavList__button" style="animation-delay: 200ms">
+					<icon-menu class="KdNavList__close" :class="{ 'MenuClose--active': opened }" />
 				</button>
 
 				<template v-for="(item, index) in navigation">
-					<kd-link class="KdNavList__item"
-						active-class="KdNavList__item--active"
-						:key="item.url" :href="item.url"
-						:style="{'animation-delay': `${(index + 1) * 100 + 200}ms`}">
-
-						{{item.label}}
-					</kd-link>
+					<kd-nav-item class="KdNavList__item" :item="item"
+						:style="{'animation-delay': `${(index + 1) * 75 + 200}ms`}" root />
 				</template>
 
-				<kd-bookmark-badge class="KdNavList__item" v-if="bookmarkEnabled"
-					:style="{'animation-delay': `${(navigation.length + 1) * 100 + 200}ms`}"
-					@bookmark="$emit('bookmark')" />
+				<kd-nav-bookmark v-if="bookmarkEnabled" class="KdNavList__item"
+					:style="{'animation-delay': `${(navigation.length + 1) * 75 + 200}ms`}" />
 			</div>
 		</div>
 	</transition>
@@ -31,6 +25,7 @@
 		left: 0;
 		width: 100vw;
 		height: 100vh;
+		overflow: auto;
 		backdrop-filter: blur(4px);
 		background: rgba(0, 0, 0, .6);
 		will-change: backdrop-filter;
@@ -40,8 +35,10 @@
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
-			padding: 30px;
+			padding: 0 28px;
+			padding-top: 16px;
 			margin-top: 1.3rem;
+			padding-bottom: 28px;
 
 			& > *:first-child {
 				margin-top: 0;
@@ -49,24 +46,27 @@
 		}
 
 		&__item {
+			animation-name: item;
+			animation-duration: .4s;
+			animation-fill-mode: forwards;
+			opacity: 0;
+		}
+
+		&__button {
 			position: relative;
 			cursor: pointer;
 			border: none;
 			outline: none;
 			background: var(--grey-900);
 			padding: 10px 20px;
-			margin: 5px 0;
+			margin: 0;
+			margin-bottom: 10px;
 
 			color: var(--grey-050);
 			font-family: var(--font-sans);
 			font-size: 1.2rem;
 			font-weight: 600;
 			text-decoration: none;
-
-			animation-name: item;
-			animation-duration: .4s;
-			animation-fill-mode: forwards;
-			opacity: 0;
 		}
 
 		&__close {
@@ -96,6 +96,51 @@
 				animation-delay: 0s !important;
 				animation-fill-mode: forwards;
 			}
+		}
+
+		&-enter, &-leave-to {
+			.MenuClose__item {
+				&--top {
+					transform: scaleX(1) translate(0);
+					opacity: 1;
+				}
+
+				&--bottom {
+					transform: scaleX(1) translate(0);
+					opacity: 1;
+				}
+
+				&--middle-1 {
+					transform: rotate(0deg);
+				}
+
+				&--middle-2 {
+					transform: rotate(0deg);
+				}
+			}
+		}
+	}
+
+	.MenuClose__item {
+		transition: all .4s ease;
+		transform-origin: center;
+
+		&--top {
+			transform: scaleX(0.5) translate(-8px);
+			opacity: 0;
+		}
+
+		&--bottom {
+			transform: scaleX(0.5) translate(8px);
+			opacity: 0;
+		}
+
+		&--middle-1 {
+			transform: rotate(135deg);
+		}
+
+		&--middle-2 {
+			transform: rotate(225deg);
 		}
 	}
 
@@ -135,53 +180,58 @@
 </style>
 
 <script>
-	import createNavigation, { importNav } from "@/src/createNavigation";
-
-	import IconTimes from "@/images/IconTimes?inline";
-	import KdBookmarkBadge from "@/components/KdBookmarkBadge";
-	import KdLink from "@/components/KdLink";
+	import IconMenu from "@/images/IconMenu?inline";
+	import KdNavBookmark from "@/layouts/KdNavBookmark";
+	import KdNavItem from "@/components/KdNavItem";
 
 	export default {
-		data() {
-			return {
-				navigation: [],
-				opened: false
-			};
+		props: {
+			opened: Boolean
+		},
+
+		model: {
+			prop: 'opened',
+			event: 'opened'
 		},
 
 		computed: {
 			bookmarkEnabled() {
-				return window.$KaedeBookmarkEnabled;
+				return this.$store.state.bookmarks.enabled;
+			},
+
+			navigation() {
+				if(window.$KaedeFullNavigation)
+					return window.$KaedeFullNavigation;
+
+				return this.$store.state.config.navigation;
 			}
 		},
 
 		methods: {
 			open() {
-				this.opened = true;
+				this.$emit('opened', true);
 			},
 
 			close() {
-				this.opened = false;
+				this.$emit('opened', false);
 			},
 
 			toggle() {
-				this.opened = !this.opened;
-			}
-		},
+				this.$emit('opened', !this.opened);
+			},
 
-		async created() {
-			try {
-				const page = await api.pages.read({ slug: window.$KaedeNavigationPage });
-				this.navigation = createNavigation(page.html);
-			} catch(err) {
-				this.navigation = importNav(this.$store.state.config.navigation);
+			openBookmark() {
+				setTimeout(() => {
+					this.$emit('bookmark');
+				}, 1000);
+				this.opened = false;
 			}
 		},
 
 		components: {
-			IconTimes,
-			KdBookmarkBadge,
-			KdLink
+			IconMenu,
+			KdNavBookmark,
+			KdNavItem
 		}
 	};
 </script>
