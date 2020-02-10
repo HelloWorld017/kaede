@@ -42,7 +42,7 @@ const lessLoader = [
 
 module.exports = {
 	entry: {
-		kaede: path.resolve(__dirname, 'app', 'index.js')
+		kaede: path.resolve(__dirname, 'app', 'init.js')
 	},
 
 	output: {
