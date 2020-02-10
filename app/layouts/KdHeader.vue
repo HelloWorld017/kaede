@@ -228,7 +228,7 @@
 					if(value) {
 						document.body.className += " Body--opened";
 					} else {
-						document.body.className = document.body.className.replace(/\s*Body--opened/, '');
+						document.body.className = document.body.className.replace(/\s*Body--opened/g, '');
 					}
 
 					this.opened = value;

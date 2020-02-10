@@ -22,7 +22,7 @@
 				<kd-continue class="KdPostLarge__continue" :href="post.url" />
 
 				<div class="KdPostLarge__tags">
-					<kd-tag v-for="tag in post.tags" :key="tag.id" :tag="tag" />
+					<kd-tag v-if="post.primary_tag" :tag="post.primary_tag" />
 				</div>
 			</div>
 		</div>
@@ -35,7 +35,7 @@
 	.KdPostLarge {
 		display: flex;
 		background: var(--grey-900);
-		min-height: 500px;
+		min-height: 450px;
 		flex-basis: 0;
 
 		&__image {
@@ -81,17 +81,18 @@
 
 		&__custom-excerpt, &__excerpt {
 			position: relative;
-			max-height: 12.8rem;
+			max-height: 8rem;
 			line-height: 1.6rem;
 			text-align: justify;
 			overflow: hidden;
 			font-family: var(--font-sans);
 			font-weight: 500;
+			word-break: break-all;
 		}
 
 		&__custom-excerpt {
 			font-weight: 400;
-			margin-bottom: 0;
+			margin-bottom: 20px;
 		}
 
 		&__excerpt {

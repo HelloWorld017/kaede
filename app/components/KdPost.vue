@@ -12,7 +12,7 @@
 				</h3>
 				<span class="KdPost__readtime">{{readtime}}</span>
 				<div class="KdPost__tags">
-					<kd-tag v-for="tag in post.tags" :key="tag.id" :tag="tag" />
+					<kd-tag v-if="post.primary_tag" :tag="post.primary_tag" />
 				</div>
 			</div>
 
@@ -120,10 +120,11 @@
 		&__excerpt {
 			position: relative;
 			margin: 0;
-			max-height: 12.8rem;
+			max-height: 8rem;
 			line-height: 1.6rem;
 			text-align: justify;
 			overflow: hidden;
+			word-break: break-all;
 			font-family: var(--font-sans);
 
 			&--noncustom::after {
@@ -140,7 +141,7 @@
 
 	.Timestamp {
 		position: sticky;
-		top: 10px;
+		top: 100px;
 		height: 0;
 		transform: translate(-10rem, 30px);
 		color: var(--grey-100);

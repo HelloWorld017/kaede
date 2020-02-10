@@ -9,6 +9,7 @@
 		cursor: pointer;
 		background: var(--foreground-400);
 		padding: 8px 16px;
+		margin: 0 5px;
 		color: var(--grey-900);
 		font-family: var(--font-ui);
 		font-size: 1rem;
@@ -16,6 +17,14 @@
 		user-select: none;
 		text-transform: uppercase;
 		text-decoration: none;
+
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
 
 		&--monochrome {
 			background: var(--grey-200);
