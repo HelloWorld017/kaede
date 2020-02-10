@@ -192,6 +192,10 @@
 
 	"en": {
 		"readtime": "{time} to read"
+	},
+
+	"ja": {
+		"readtime": "{time}て読める"
 	}
 }
 </i18n>

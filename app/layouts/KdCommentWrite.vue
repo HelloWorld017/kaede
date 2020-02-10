@@ -175,6 +175,19 @@
 		"invalid-content": "Please enter the contents.",
 		"invalid-author": "Please enter the username.",
 		"invalid-password": "Please enter the password."
+	},
+
+	"ja": {
+		"username": "名前",
+		"password": "パスワード",
+		"content": "ここに入力してください",
+		"invalid-postid": "再読み込みした後でやり直してください。",
+		"no-such-post": "この記事は削除されましたのようです。",
+		"invalid-body": "再読み込みした後でやり直してください。",
+		"too-many-comments": "もうすでにコメントが多すぎます。",
+		"invalid-content": "内容を入力してください。",
+		"invalid-author": "名前を入力してください。",
+		"invalid-password": "パスワードを入力してください。"
 	}
 }
 </i18n>

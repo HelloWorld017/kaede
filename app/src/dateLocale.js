@@ -1,7 +1,7 @@
-import { enUS, ko } from "date-fns/locale";
+import { enUS, ko, ja } from "date-fns/locale";
 
 let locale = 'en';
-const supportedLocales = { en: enUS, ko };
+const supportedLocales = { en: enUS, ko, ja };
 
 export const setLocale = ({ locale: newLocale, fallbackLocale }) => {
 	const newLocaleName = newLocale.split('-').shift();

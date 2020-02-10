@@ -97,6 +97,10 @@
 
 	"en": {
 		"tag-description": "A collection of one post. | A collection of {count} posts."
+	},
+
+	"ja": {
+		"tag-description": "{count}本の記事"
 	}
 }
 </i18n>

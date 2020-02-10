@@ -57,6 +57,10 @@
 		"featured": "Featured",
 		"archives": "Archives",
 		"thank": "Thank you for reading!"
+	},
+
+	"ja": {
+		"thank": "読んでくださりありがとうございます！"
 	}
 }
 </i18n>

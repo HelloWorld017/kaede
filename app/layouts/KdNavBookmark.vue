@@ -47,6 +47,10 @@
 
 	"en": {
 		"bookmark": "Bookmark"
+	},
+
+	"ja": {
+		"bookmark": "ブックマーク"
 	}
 }
 </i18n>

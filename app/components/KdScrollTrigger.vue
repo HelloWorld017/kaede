@@ -124,6 +124,10 @@
 
 	"en": {
 		"load-more": "Load More"
+	},
+
+	"ja": {
+		"load-more": "もっと読み込む"
 	}
 }
 </i18n>

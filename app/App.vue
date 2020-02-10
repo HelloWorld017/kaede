@@ -17,6 +17,10 @@
 
 	"en": {
 		"no-api-given": "The API Key has not been configured. Please refer to installation manual!"
+	},
+
+	"ja": {
+		"no-api-given": "APIキーがありません。インストールマニュアルを参考してください。"
 	}
 }
 </i18n>

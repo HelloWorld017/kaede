@@ -136,6 +136,12 @@
 		"share": "Share",
 		"category": "Related posts",
 		"comments": "Comments"
+	},
+
+	"ja": {
+		"readtime": "読めるのに{time}かかります。",
+		"category": "カテゴリーの他の記事",
+		"comments": "コメント"
 	}
 }
 </i18n>

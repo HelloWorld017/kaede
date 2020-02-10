@@ -93,6 +93,16 @@
 		"delete-failed": "Failed to delete comments. Please check your password and retry.",
 		"deleted-author": "User",
 		"deleted-content": "This comment is deleted."
+	},
+
+	"ja": {
+		"admin": "管理者",
+		"password": "パスワード",
+		"cancel": "キャンセル",
+		"delete": "削除",
+		"delete-failed": "パスワードが異なります。",
+		"deleted-content": "このコメントは削除されました。",
+		"deleted-author": "ユーザー"
 	}
 }
 </i18n>
