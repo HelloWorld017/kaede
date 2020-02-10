@@ -1,0 +1,10 @@
+@font-face {
+	font-family: "NanumSquare Light";
+	src: url('./nanum-square_0.eot?#iefix') format('embedded-opentype'),
+		url('./nanum-square_0.woff') format('woff'),
+		url('./nanum-square_0.woff2') format('woff2'),
+		url('./nanum-square_0.svg') format('svg'),
+		url('./nanum-square_0.ttf') format('truetype');
+
+	unicode-range: U+21-ffff;
+}

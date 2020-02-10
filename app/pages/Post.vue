@@ -467,51 +467,6 @@
 
 <style lang="less">
 	@import "../less/posting.less";
-	div.code-toolbar > .toolbar {
-		display: flex;
-
-		.toolbar-item {
-			display: inline-flex !important;
-		}
-
-		.toolbar-item button {
-			border-radius: 0;
-			transition: all .4s ease;
-
-			&:hover {
-				color: var(--grey-900);
-			}
-		}
-	}
-
-	pre[class*="language-"] {
-		border-radius: 0;
-		padding-top: 3.6rem;
-		position: relative;
-
-		&::before {
-			content: attr(data-lang);
-			position: absolute;
-			top: 10px;
-			left: 10px;
-			color: var(--grey-700);
-			font-family: var(--font-sans);
-		}
-
-		.line-numbers .line-numbers-rows {
-			border: none;
-		}
-
-		&::selection, *::selection {
-			background: var(--grey-900);
-			color: var(--grey-050) !important;
-		}
-	}
-
-	.katex .hangul_fallback, .katex .hangul-fallback,
-	.katex .cjk_fallback, .katex .cjk-fallback {
-		font-family: var(--font-code);
-	}
 </style>
 
 <script>

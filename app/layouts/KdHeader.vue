@@ -83,7 +83,7 @@
 			&__title {
 				font-family: var(--font-ui);
 				font-size: 2rem;
-				font-weight: 800;
+				font-weight: 700;
 				margin: 0;
 			}
 

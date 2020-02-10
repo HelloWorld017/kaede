@@ -58,14 +58,9 @@
 			border: none;
 			outline: none;
 			background: var(--grey-900);
-			padding: 10px 20px;
+			padding: 15px 20px;
 			margin: 0;
 			margin-bottom: 10px;
-
-			color: var(--grey-050);
-			font-family: var(--font-sans);
-			font-size: 1.2rem;
-			font-weight: 600;
 			text-decoration: none;
 		}
 
