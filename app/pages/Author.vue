@@ -8,7 +8,7 @@
 			<div class="Author__filter"></div>
 
 			<div class="Author__content">
-				<img class="Author__profile" :src="author.profile_image">
+				<img class="Author__profile" :src="author.profile_image" v-if="author.profile_image">
 
 				<div class="Author__text">
 					<h2 class="Author__name">
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</section>
-		<kd-post-list class="Author__list" :context="[`author:${authorSlug}`]" automatic />
+		<kd-post-list class="Author__list" :context="[context]" :key="context" automatic />
 		<kd-footer />
 	</div>
 </template>
@@ -176,6 +176,10 @@
 				return this.$route.params.author;
 			},
 
+			context() {
+				return `author:${this.authorSlug}`;
+			},
+
 			background() {
 				return this.author.cover_image ?
 					`url(${this.author.cover_image})` :
@@ -207,10 +211,29 @@
 			}
 		},
 
+		methods: {
+			async loadAuthor() {
+				if(this.$route.name !== 'Author')
+					return;
+
+				try {
+					this.author = await api.authors.read({
+						slug: this.authorSlug
+					});
+				} catch(err) {
+					location.replace('/404');
+				}
+			}
+		},
+
 		async created() {
-			this.author = await api.authors.read({
-				slug: this.authorSlug
-			});
+			await this.loadAuthor();
+		},
+
+		watch: {
+			async authorSlug() {
+				await this.loadAuthor();
+			}
 		},
 
 		components: {

@@ -17,7 +17,7 @@
 				{{description}}
 			</span>
 		</section>
-		<kd-post-list class="Tags__list" :context="[`tag:${tagSlug}`]" automatic />
+		<kd-post-list class="Tags__list" :context="[context]" :key="context" automatic />
 		<kd-footer />
 	</div>
 </template>
@@ -144,14 +144,37 @@
 
 			count() {
 				return this.tag.count ? this.tag.count.posts : 0;
+			},
+
+			context() {
+				return `tag:${this.tagSlug}`;
+			}
+		},
+
+		methods: {
+			async loadTag() {
+				if(this.$route.name !== 'Tags')
+					return;
+
+				try {
+					this.tag = await api.tags.read({
+						slug: this.tagSlug,
+						include: 'count.posts'
+					});
+				} catch(err) {
+					location.replace('/404');
+				}
 			}
 		},
 
 		async created() {
-			this.tag = await api.tags.read({
-				slug: this.tagSlug,
-				include: 'count.posts'
-			});
+			await this.loadTag();
+		},
+
+		watch: {
+			async tagSlug() {
+				await this.loadTag();
+			}
 		},
 
 		components: {

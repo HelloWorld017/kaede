@@ -73,22 +73,22 @@ The list navigation of the screenshot is from this code:
 window.$KaedeFullNavigation = [
 	{ label: "홈", url: "/" },
 	{ label: "네누 개발생활" },
-	{ label: "개발", url: "/tags/development", children: [
-		{ label: "웹", url: "/tags/web" },
-		{ label: "작업", url: "/tags/works" }
+	{ label: "개발", url: "/tag/development", children: [
+		{ label: "웹", url: "/tag/web" },
+		{ label: "작업", url: "/tag/works" }
 	] },
 	{ label: "네누 개인생활" },
-	{ label: "일상", url: "/tags/nichijou", children: [
-		{ label: "여행", url: "/tags/travel", children: [
-			{ label: "일본 여행", url: "/tags/travel-to-japan" }
+	{ label: "일상", url: "/tag/nichijou", children: [
+		{ label: "여행", url: "/tag/travel", children: [
+			{ label: "일본 여행", url: "/tag/travel-to-japan" }
 		] },
 		{ label: "취미", children: [
-			{ label: "애니", url: "/tags/anime" },
-			{ label: "우타이테", url: "/tags/utaite" }
+			{ label: "애니", url: "/tag/anime" },
+			{ label: "우타이테", url: "/tag/utaite" }
 		] }
 	] },
 	{ label: "게임", children: [
-		{ label: "마인크래프트", url: "/tags/minecraft" }
+		{ label: "마인크래프트", url: "/tag/minecraft" }
 	] }
 ];
 ```

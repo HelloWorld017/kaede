@@ -501,6 +501,7 @@
 	import KdTag from "@/components/KdTag";
 
 	export default {
+		name: 'Post',
 		data() {
 			return {
 				isPage: false,
@@ -607,7 +608,7 @@
 					{ include: 'authors,tags' }
 				);
 			}).catch(err => {
-				location.href = '/404';
+				location.replace('/404');
 			}).then(post => {
 				this.post = post;
 			});

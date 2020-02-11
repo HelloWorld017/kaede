@@ -14,6 +14,8 @@ Vue.use(Vuex);
 Vue.use(VueI18n);
 Vue.use(VueRouter);
 
+const devmode = (process.env.NODE_ENV || 'development').trim() === 'development';
+
 (async () => {
 	const store = new Vuex.Store(storeDescriptor);
 	await store.dispatch('init');
@@ -32,22 +34,23 @@ Vue.use(VueRouter);
 	const i18n = new VueI18n({
 		locale: lang.split('-').shift(),
 		fallbackLocale: 'en',
-		silentTranslationWarn: (process.env.NODE_ENV || 'development').trim() !== 'development'
+		silentTranslationWarn: !devmode
 	});
 
 	const postPromise = import("@/pages/Post");
 	const router = new VueRouter({
 		routes: [
-			{ path: '/', component: Index },
-			{ path: '/page/:page', redirect: '/' },
-			{ path: '/author/:author', component: Author },
-			{ path: '/tag/:tag', component: Tags },
-			{ path: '/:post', component: () => postPromise }
+			{ name: 'Index', path: '/', component: Index },
+			{ name: 'IndexRedirect', path: '/page/:page', redirect: '/' },
+			{ name: 'Author', path: '/author/:author', component: Author },
+			{ name: 'Tags', path: '/tag/:tag', component: Tags },
+			{ name: 'Post', path: '/:post', component: () => postPromise },
+			{ name: '404', path: '*', redirect: '/404' }
 		],
 		mode: 'history'
 	});
 
-	new Vue({
+	const vm = new Vue({
 		el: '#App',
 		i18n,
 		router,
@@ -56,4 +59,10 @@ Vue.use(VueRouter);
 			return h(App);
 		}
 	});
+
+	if(devmode) {
+		window.$Kaede = {
+			store, i18n, router, vm
+		};
+	}
 })();
