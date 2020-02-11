@@ -1,7 +1,7 @@
 <template>
 	<div class="KdNavItem" :class="[`KdNavItem--${type}`, { 'KdNavItem--border': border, 'KdNavItem--root': root }]">
 		<div class="KdNavItem__row">
-			<kd-link :href="item.url" v-if="item.url"
+			<kd-link :href="item.url" v-if="item.url" @click="$emit('close')"
 				class="KdNavItem__item KdNavItem__item--link" active-class="KdNavItem__item--active">
 
 				<slot name="icon"></slot>
@@ -24,7 +24,7 @@
 			@before-appear="beforeEnter" @before-enter="beforeEnter" @after-enter="afterEnter" @before-leave="beforeLeave">
 
 			<div class="KdNavItem__submenu" v-if="item.children && opened">
-				<kd-nav-item v-for="subitem in item.children" ref="subNavItem"
+				<kd-nav-item v-for="subitem in item.children" ref="subNavItem" @close="$emit('close')"
 					:item="subitem" :key="`${subitem.label}_${subitem.url}`" border />
 			</div>
 		</transition>
@@ -69,6 +69,7 @@
 
 			&--link {
 				cursor: pointer;
+				position: relative;
 				display: inline-block;
 				color: inherit;
 				text-decoration: none;
@@ -76,6 +77,32 @@
 
 				&:hover {
 					background: var(--grey-850);
+				}
+
+				&::before {
+					content: '';
+					width: 5px;
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					background: transparent;
+					transition: background .4s ease;
+				}
+			}
+
+			&--link&--active {
+				cursor: default;
+				color: var(--foreground-400);
+				transition: color .4s ease;
+				background: var(--grey-900);
+
+				&:hover {
+					background: var(--grey-900);
+				}
+
+				&::before {
+					background: var(--foreground-400);
 				}
 			}
 		}

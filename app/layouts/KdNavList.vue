@@ -7,7 +7,7 @@
 				</button>
 
 				<template v-for="(item, index) in navigation">
-					<kd-nav-item class="KdNavList__item" :item="item"
+					<kd-nav-item class="KdNavList__item" :item="item" @close="close"
 						:style="{'animation-delay': `${(index + 1) * 75 + 200}ms`}" root />
 				</template>
 

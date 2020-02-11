@@ -3,7 +3,8 @@
 		class="KdLink"
 		:rel="rel"
 		:href="hrefReplaceInternal"
-		:target="target">
+		:target="target"
+		@click="$emit('click')">
 
 		<slot></slot>
 	</a>
@@ -11,7 +12,8 @@
 	<router-link v-else
 		class="KdLink"
 		:exact-active-class="activeClass"
-		:to="hrefReplaceInternal">
+		:to="hrefReplaceInternal"
+		@click.native="$emit('click')">
 
 		<slot></slot>
 	</router-link>
