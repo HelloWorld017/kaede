@@ -634,9 +634,9 @@
 					if(ids[node.id]) {
 						ids[node.id]++;
 						node.id = `${node.id}-${ids[node.id]}`;
-					} else {
-						ids[node.id] = 1;
 					}
+					
+					ids[node.id] = 1;
 
 					this.observer.observe(node);
 

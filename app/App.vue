@@ -6,7 +6,7 @@
 					<router-view />
 				</keep-alive>
 			-->
-			<router-view />
+			<router-view :key="determineReload" />
 		</transition>
 	</div>
 	<div id="App" v-else>
@@ -39,6 +39,14 @@
 		computed: {
 			apiKeyInitialized() {
 				return this.$store.state.config.title !== undefined;
+			},
+
+			determineReload() {
+				if(this.$route.name === 'Post') {
+					return `Post__${this.$route.params.post}`;
+				}
+
+				return this.$route.name;
 			}
 		}
 	};
