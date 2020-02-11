@@ -18,7 +18,11 @@ Vue.use(VueRouter);
 	const store = new Vuex.Store(storeDescriptor);
 	await store.dispatch('init');
 
-	const lang = store.state.config ? store.state.config.lang : 'en';
+	const lang = store.state.config.lang ?
+		store.state.config.lang :
+		navigator.language ?
+			navigator.language :
+			'en';
 
 	setLocale({
 		locale: lang,
@@ -26,8 +30,9 @@ Vue.use(VueRouter);
 	});
 
 	const i18n = new VueI18n({
-		locale: lang,
-		fallbackLocale: 'en'
+		locale: lang.split('-').shift(),
+		fallbackLocale: 'en',
+		silentTranslationWarn: (process.env.NODE_ENV || 'development').trim() !== 'development'
 	});
 
 	const postPromise = import("@/pages/Post");

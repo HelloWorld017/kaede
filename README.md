@@ -124,41 +124,41 @@ Kaede settings are editable via `Code Injection` in Ghost settings.
 ### Font
 1. Find your desired font in [Google Fonts](https://fonts.google.com) and add `Embed Font` section in `Code Injection` header.  
 2. Remember the `font-family` in `Specify in CSS` section.
-3. Add following code to the `Code Injection` header.
+3. Add following code to the `Code Injection` header. (You should override with `!important` as css files are lazy loaded.)
 ```html
 <style>
 	:root {
-		--font-ui: "YOUR UI FONT HERE", sans-serif;
-		--font-title: "YOUR TITLE FONT HERE", sans-serif;
-		--font-sans: "YOUR SANS-SERIF FONT HERE", sans-serif;
-		--font-content: "YOUR CONTENT FONT HERE", sans-serif;
-		--font-content-title: "YOUR CONTENT-TITLE FONT HERE", sans-serif;
-		--font-code: "YOUR CODE FONT HERE", monospace;
+		--font-ui: "YOUR UI FONT HERE", sans-serif !important;
+		--font-title: "YOUR TITLE FONT HERE", sans-serif !important;
+		--font-sans: "YOUR SANS-SERIF FONT HERE", sans-serif !important;
+		--font-content: "YOUR CONTENT FONT HERE", sans-serif !important;
+		--font-content-title: "YOUR CONTENT-TITLE FONT HERE", sans-serif !important;
+		--font-code: "YOUR CODE FONT HERE", monospace !important;
 	}
 </style>
 ```
 4. Replace the texts into `font-family` name of your desired font.
 
 ### Colors
-**WARNING:** This is **NOT RECOMMENDED** as some color is not updated.  
+**WARNING:** This is **NOT RECOMMENDED** to change `grey` and `background` colors as some colors are not updated well.  
 There are some variables for colors. You can change it into your desired color.
 ```html
 <style>
 	:root {
-		--foreground-400: #35aba4;
+		--foreground-400: #35aba4 !important;
 
-		--background-400: #efebdd;
+		--background-400: #efebdd !important;
 
-		--red-300: darken(#eb5757, 5%);
-		--red-400: #eb5757;
-		--red-500: lighten(#eb5757, 5%);
+		--red-300: darken(#eb5757, 5%) !important;
+		--red-400: #eb5757 !important;
+		--red-500: lighten(#eb5757, 5%) !important;
 
-		--grey-050: #000000;
-		--grey-100: #202020;
-		--grey-200: #3b3b3b;
-		--grey-700: #cacaca;
-		--grey-850: #f1f2f3;
-		--grey-900: #ffffff;
+		--grey-050: #000000 !important;
+		--grey-100: #202020 !important;
+		--grey-200: #3b3b3b !important;
+		--grey-700: #cacaca !important;
+		--grey-850: #f1f2f3 !important;
+		--grey-900: #ffffff !important;
 	}
 </style>
 ```

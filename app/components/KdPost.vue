@@ -52,6 +52,7 @@
 		}
 
 		&__header {
+			color: var(--grey-050);
 			display: flex;
 			justify-content: space-between;
 			padding: 25px 30px;
@@ -113,6 +114,7 @@
 		}
 
 		&__content {
+			color: var(--grey-050);
 			padding: 15px 30px;
 			user-select: none;
 		}

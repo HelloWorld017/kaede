@@ -78,6 +78,7 @@
 		}
 
 		&__title {
+			color: var(--grey-050);
 			font-family: var(--font-ui);
 			font-size: 2rem;
 			font-weight: 700;

@@ -170,6 +170,7 @@
 		}
 
 		&__body {
+			color: var(--grey-050);
 			width: 100%;
 			max-width: 70vw;
 			box-sizing: border-box;

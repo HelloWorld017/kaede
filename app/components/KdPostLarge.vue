@@ -58,6 +58,7 @@
 
 			display: flex;
 			flex-direction: column;
+			color: var(--grey-050);
 		}
 
 		&__title {
