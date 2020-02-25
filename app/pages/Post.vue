@@ -623,7 +623,7 @@
 				this.updateIntersection.bind(this)
 			);
 
-			const ids = {};
+			const ids = new Map();
 			const outline = [...this.$refs.content.children]
 				.map(node => ({
 					node,
@@ -631,12 +631,12 @@
 				}))
 				.filter(({ node, match }) => match)
 				.map(({ node, match }) => {
-					if(ids[node.id]) {
-						ids[node.id]++;
-						node.id = `${node.id}-${ids[node.id]}`;
+					if(ids.has(node.id)) {
+						ids.set(node.id, ids.get(node.id) + 1);
+						node.id = `${node.id}-${ids.get(node.id)}`;
 					}
 					
-					ids[node.id] = 1;
+					ids.set(node.id, 1);
 
 					this.observer.observe(node);
 
