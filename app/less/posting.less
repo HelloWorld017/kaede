@@ -215,7 +215,13 @@
 		background: transparent;
 	}
 
-	img, iframe {
+	img {
+		object-fit: contain;
+		max-width: 100%;
+		max-height: 500px;
+	}
+
+	iframe {
 		max-width: 100%;
 	}
 
@@ -229,8 +235,21 @@
 		}
 	}
 
-	.kg-width-full img, .kg-width-wide img {
+	.kg-image-card {
+		text-align: center;
+	}
+
+	.kg-width-wide, .kg-width-full {
+		margin: 20px calc((70vw - 100%) / -2);
+	}
+
+	.kg-width-wide img, .kg-width-full img {
+		max-width: 100%;
 		width: 100%;
+	}
+
+	.kg-width-full img {
+		max-height: 100vh;
 	}
 
 	.kg-bookmark-card {
@@ -404,6 +423,14 @@
 	.katex .hangul_fallback, .katex .hangul-fallback,
 	.katex .cjk_fallback, .katex .cjk-fallback {
 		font-family: var(--font-code);
+	}
+}
+
+@media (max-width: 1200px) {
+	.Posting {
+		.kg-width-wide, .kg-width-full {
+			margin: 20px calc((100vw - 100%) / -2);
+		}
 	}
 }
 

@@ -45,7 +45,7 @@
 				</div>
 
 				<h2 class="Post__meta-title">{{$t('authors')}}</h2>
-				<div classs="Post__authors">
+				<div class="Post__authors">
 					<kd-author v-for="author in post.authors" :key="author.slug" :author="author" />
 				</div>
 
@@ -180,8 +180,16 @@
 			position: relative;
 		}
 
+		&__header, &__content, &__meta-title,
+		&__authors, &__tags, &__share-options,
+		&__like-options {
+			max-width: 900px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
 		&__header {
-			margin: 1.5rem 0;
+			margin: 1.5rem auto;
 		}
 
 		&__title {
@@ -189,6 +197,11 @@
 			font-weight: 100;
 			margin: 0;
 			margin-bottom: 10px;
+		}
+
+		&__content {
+			margin: 0 auto;
+			margin-bottom: 100px;
 		}
 
 		&__metadata {
@@ -635,7 +648,7 @@
 						ids.set(node.id, ids.get(node.id) + 1);
 						node.id = `${node.id}-${ids.get(node.id)}`;
 					}
-					
+
 					ids.set(node.id, 1);
 
 					this.observer.observe(node);
