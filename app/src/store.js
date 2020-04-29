@@ -80,12 +80,23 @@ const bookmarks = {
 
 export default {
 	state: {
-		config: {}
+		config: {},
+		listNavOpened: false
 	},
 
 	mutations: {
 		setConfig(state, config) {
 			state.config = config;
+		},
+
+		setListNavOpened(state, value) {
+			if(value) {
+				document.body.className += " Body--opened";
+			} else {
+				document.body.className = document.body.className.replace(/\s*Body--opened/g, '');
+			}
+
+			state.listNavOpened = value;
 		}
 	},
 

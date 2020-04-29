@@ -1,7 +1,7 @@
 <template>
 	<header class="KdHeader" :class="{
 		'KdHeader--minimalized': minimalized, 'KdHeader--transparent': transparent,
-		'KdHeader--top': top, 'KdHeader__opened': opened
+		'KdHeader--top': top
 	}">
 		<kd-link class="KdHeader__branding" href="/">
 			<h1 class="KdHeader__branding__title">
@@ -16,8 +16,7 @@
 		<kd-nav class="KdHeader__navigation" :transparent="transparent" />
 		<kd-nav-list class="KdHeader__navigation-list" ref="listNav"
 			@bookmark="openBookmark"
-			v-if="!minimalized"
-			v-model="_opened" />
+			v-if="!minimalized" />
 
 		<kd-bookmark class="KdHeader__bookmark" ref="bookmark" />
 
@@ -117,10 +116,6 @@
 		&__list-nav-icon {
 			stroke: var(--grey-050);
 		}
-
-		&--opened &__list-nav{
-			right: 42px;
-		}
 	}
 
 	.Topbar {
@@ -195,8 +190,7 @@
 			return {
 				scroll: 0,
 				scrollHeight: document.documentElement.scrollHeight,
-				innerHeight: window.innerHeight,
-				opened: false
+				innerHeight: window.innerHeight
 			};
 		},
 
@@ -219,22 +213,6 @@
 		},
 
 		computed: {
-			_opened: {
-				get() {
-					return this.opened;
-				},
-
-				set(value) {
-					if(value) {
-						document.body.className += " Body--opened";
-					} else {
-						document.body.className = document.body.className.replace(/\s*Body--opened/g, '');
-					}
-
-					this.opened = value;
-				}
-			},
-
 			title() {
 				return this.$store.state.config.title;
 			},

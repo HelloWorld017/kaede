@@ -28,7 +28,6 @@
 		overflow: auto;
 		backdrop-filter: blur(4px);
 		background: rgba(0, 0, 0, .6);
-		will-change: backdrop-filter;
 		z-index: 9;
 
 		&__items {
@@ -72,18 +71,18 @@
 
 	.ListNav {
 		&-enter-active {
-			animation-name: backdrop;
-			animation-duration: .4s;
-			animation-fill-mode: forwards;
-			animation-timing-function: linear;
-		}
-
-		&-leave-active {
-			animation-name: backdrop;
+			animation-name: fadeout;
 			animation-duration: .4s;
 			animation-fill-mode: forwards;
 			animation-timing-function: linear;
 			animation-direction: reverse;
+		}
+
+		&-leave-active {
+			animation-name: fadeout;
+			animation-duration: .4s;
+			animation-fill-mode: forwards;
+			animation-timing-function: linear;
 
 			.KdNavList__item {
 				animation-name: fadeout;
@@ -139,18 +138,6 @@
 		}
 	}
 
-	@keyframes backdrop {
-		from {
-			backdrop-filter: blur(0);
-			background: transparent;
-		}
-
-		to {
-			backdrop-filter: blur(4px);
-			background: rgba(0, 0, 0, .6);
-		}
-	}
-
 	@keyframes item {
 		from {
 			opacity: 0;
@@ -180,15 +167,6 @@
 	import KdNavItem from "@/components/KdNavItem";
 
 	export default {
-		props: {
-			opened: Boolean
-		},
-
-		model: {
-			prop: 'opened',
-			event: 'opened'
-		},
-
 		computed: {
 			bookmarkEnabled() {
 				return this.$store.state.bookmarks.enabled;
@@ -199,27 +177,30 @@
 					return window.$KaedeFullNavigation;
 
 				return this.$store.state.config.navigation;
+			},
+
+			opened: {
+				get() {
+					return this.$store.state.listNavOpened;
+				},
+
+				set(value) {
+					this.$store.commit('setListNavOpened', value);
+				}
 			}
 		},
 
 		methods: {
 			open() {
-				this.$emit('opened', true);
+				this.opened = true;
 			},
 
 			close() {
-				this.$emit('opened', false);
+				this.opened = false;
 			},
 
 			toggle() {
-				this.$emit('opened', !this.opened);
-			},
-
-			openBookmark() {
-				setTimeout(() => {
-					this.$emit('bookmark');
-				}, 1000);
-				this.opened = false;
+				this.opened = !this.opened;
 			}
 		},
 

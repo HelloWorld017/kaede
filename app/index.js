@@ -49,6 +49,10 @@ const devmode = (process.env.NODE_ENV || 'development').trim() === 'development'
 		],
 		mode: 'history'
 	});
+	router.beforeEach((to, from, next) => {
+		store.commit('setListNavOpened', false);
+		next();
+	});
 
 	const vm = new Vue({
 		el: '#App',
