@@ -162,6 +162,8 @@
 </style>
 
 <script>
+	import kaedeSettings from "@/src/kaedeSettings";
+
 	import IconMenu from "@/images/IconMenu?inline";
 	import KdNavBookmark from "@/layouts/KdNavBookmark";
 	import KdNavItem from "@/components/KdNavItem";
@@ -173,8 +175,8 @@
 			},
 
 			navigation() {
-				if(window.$KaedeFullNavigation)
-					return window.$KaedeFullNavigation;
+				if(kaedeSettings.fullNavigation)
+					return kaedeSettings.fullNavigation;
 
 				return this.$store.state.config.navigation;
 			},

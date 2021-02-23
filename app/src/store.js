@@ -1,4 +1,5 @@
 import api from "@/src/api";
+import kaedeSettings from "@/src/kaedeSettings";
 
 const bookmarks = {
 	namespaced: true,
@@ -66,7 +67,7 @@ const bookmarks = {
 		},
 
 		init({ commit, dispatch }) {
-			if(!window.$KaedeBookmarkEnabled)
+			if(!kaedeSettings.bookmarkEnabled)
 				return;
 
 			if(!window.localStorage)

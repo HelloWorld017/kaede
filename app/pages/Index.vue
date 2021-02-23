@@ -1,7 +1,13 @@
 <template>
 	<div id="Index">
 		<kd-header />
-		<kd-post-list :context="[]">
+
+		<kd-selector :items="['all', 'featured']" v-model="type" v-if="featured">
+			<template #all> {{ $t('all') }} </template>
+			<template #featured> {{ featured.name }} </template>
+		</kd-selector>
+
+		<kd-post-list :context="context" :key="type">
 			<div class="Index__tags Tags">
 				<h2 class="Tags__title">
 					{{$t('tags')}}
@@ -21,11 +27,18 @@
 <i18n>
 {
 	"ko": {
-		"tags": "Tags"
+		"tags": "Tags",
+		"all": "전체 포스트"
 	},
 
 	"en": {
-		"tags": "Tags"
+		"tags": "Tags",
+		"all": "All Posts"
+	},
+
+	"ja": {
+		"tags": "Tags",
+		"all": "全ての記事"
 	}
 }
 </i18n>
@@ -73,30 +86,56 @@
 
 <script>
 	import api from "@/src/api";
+	import kaedeSettings from "@/src/kaedeSettings";
 
 	import KdFooter from "@/layouts/KdFooter";
 	import KdHeader from "@/layouts/KdHeader";
 	import KdLink from "@/components/KdLink";
 	import KdPostList from "@/layouts/KdPostList";
+	import KdSelector from "@/components/KdSelector";
 
 	export default {
 		data() {
 			return {
-				tags: []
+				type: 'all',
+				tags: [],
+				featured: kaedeSettings.featuredTags
 			};
 		},
 
-		components: {
-			KdFooter,
-			KdHeader,
-			KdLink,
-			KdPostList
+		computed: {
+			context() {
+				if (this.type === 'all')
+					return null;
+
+				const contexts = [];
+
+				if (this.featured.exclude) {
+					const excludedTags = this.featured.exclude.join(',');
+					contexts.push(`tags:-[${excludedTags}]`);
+				}
+
+				if (this.featured.include) {
+					const includedTags = this.featured.include.join(',');
+					contexts.push(`tags:[${includedTags}]`);
+				}
+
+				return contexts.join(',');
+			}
 		},
 
 		async created() {
 			this.tags = await api.tags.browse({
 				filter: 'visibility:public'
 			});
+		},
+
+		components: {
+			KdFooter,
+			KdHeader,
+			KdLink,
+			KdPostList,
+			KdSelector
 		}
 	};
 </script>

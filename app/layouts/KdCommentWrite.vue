@@ -195,6 +195,7 @@
 <script>
 	import hash from "hash.js";
 	import kaedeApi from "@/src/kaedeApi";
+	import kaedeSettings from "@/src/kaedeSettings";
 
 	import IconSubmit from "@/images/IconSubmit?inline";
 
@@ -226,11 +227,11 @@
 
 		computed: {
 			maxAuthor() {
-				return window.$KaedeCommentsMaxAuthor || 32;
+				return kaedeSettings.commentsMaxAuthor || 32;
 			},
 
 			maxContent() {
-				return window.$KaedeCommentsMaxContent || 1500;
+				return kaedeSettings.commentsMaxContent || 1500;
 			}
 		},
 

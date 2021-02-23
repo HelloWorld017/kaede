@@ -176,6 +176,7 @@
 </style>
 
 <script>
+	import kaedeSettings from "@/src/kaedeSettings";
 	import scroll from "@/src/scroll";
 
 	import IconMenu from "@/images/IconMenu?inline";
@@ -234,7 +235,7 @@
 			},
 
 			listNavEnabled() {
-				return window.$KaedeFullNavigation;
+				return kaedeSettings.fullNavigation;
 			}
 		},
 

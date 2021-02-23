@@ -1,9 +1,10 @@
 import axios from "axios";
+import kaedeSettings from "@/src/kaedeSettings";
 
-const enabled = !!window.$KaedeApiServer;
+const enabled = !!kaedeSettings.apiServer;
 const instance = enabled ?
 	axios.create({
-		baseURL: window.$KaedeApiServer,
+		baseURL: kaedeSettings.apiServer,
 		validateStatus: false
 	}) :
 	null;
