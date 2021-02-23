@@ -5,7 +5,8 @@ const settings = {
 	commentsMaxContent: window.$KaedeCommentsMaxContent || 1500,
 	fullNavigation: window.$KaedeFullNavigation,
 	ghostApiKey: window.$KaedeGhostApiKey,
-	featuredTags: window.$KaedeFeaturedTags
+	featuredTags: window.$KaedeFeaturedTags,
+	readTimeMultiplier: window.$KaedeReadtimeMultiplier || 0.2
 };
 
 export default settings;

@@ -6,17 +6,16 @@
 		</div>
 
 		<div class="KdPost__header">
-			<div class="KdPost__metadata">
+			<div class="KdPost__title-time">
 				<h3 class="KdPost__title">
 					<kd-link :href="post.url">{{post.title}}</kd-link>
 				</h3>
-				<span class="KdPost__readtime">{{readtime}}</span>
-				<div class="KdPost__tags">
-					<kd-tag v-if="post.primary_tag" :tag="post.primary_tag" />
-				</div>
+				<time class="KdPost__time" :datetime="datetime">{{datetext}}</time>
 			</div>
-
-			<time class="KdPost__time" :datetime="datetime">{{datetext}}</time>
+			<span class="KdPost__readtime">{{readtime}}</span>
+			<div class="KdPost__tags">
+				<kd-tag v-if="post.primary_tag" :tag="post.primary_tag" />
+			</div>
 		</div>
 
 		<kd-link class="KdPost__image-link" :href="post.url">
@@ -54,16 +53,18 @@
 		&__header {
 			color: var(--grey-050);
 			display: flex;
+			flex-direction: column;
 			justify-content: space-between;
 			padding: 25px 30px;
 		}
 
-		&__metadata {
-			width: 0;
-			flex: 1;
+		&__title-time {
+			display: flex;
 		}
 
 		&__title {
+			width: 0;
+			flex: 1;
 			margin: 0;
 			margin-right: 10px;
 			color: var(--grey-050);
@@ -198,7 +199,7 @@
 	},
 
 	"ja": {
-		"readtime": "{time}て読める"
+		"readtime": "{time}で読める"
 	}
 }
 </i18n>

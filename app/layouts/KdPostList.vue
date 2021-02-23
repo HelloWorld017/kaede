@@ -15,6 +15,8 @@
 				</vue-agile>
 			</section>
 
+			<slot name="beforeList"></slot>
+
 			<section class="KdPostList__list">
 				<h2 class="KdPostList__title">{{$t('archives')}}</h2>
 
@@ -38,7 +40,7 @@
 
 			</section>
 
-			<slot></slot>
+			<slot name="afterList"></slot>
 
 			<div class="KdPostList__thank">{{$t('thank')}}</div>
 		</div>
@@ -145,6 +147,10 @@
 			&__carousel {
 				margin: 0;
 			}
+
+			&__column {
+				margin: 0;
+			}
 		}
 	}
 </style>
@@ -225,7 +231,7 @@
 
 		props: {
 			context: {
-				type: Array,
+				type: String,
 				required: true
 			},
 
@@ -254,13 +260,15 @@
 		methods: {
 			async loadFeatured() {
 				const featureContext = [
-					'featured:true',
-					...this.context
-				].join('+');
+					'featured:true'
+				];
+
+				if (this.context)
+					featureContext.push(`(${this.context})`);
 
 				const featured = await api.posts.browse({
 					limit: 4,
-					filter: featureContext,
+					filter: featureContext.join('+'),
 					include: 'tags'
 				});
 
@@ -273,7 +281,7 @@
 
 				const posts = await api.posts.browse({
 					page: this.current + 1,
-					filter: this.context.join('+'),
+					filter: this.context,
 					include: 'tags'
 				});
 

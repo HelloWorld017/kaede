@@ -1,6 +1,6 @@
 <template>
 	<div id="App" v-if="apiKeyInitialized">
-		<transition name="Fade" mode="out-in">
+		<transition name="FadeSlide" mode="out-in">
 			<!--
 				<keep-alive exclude="Post">
 					<router-view />

@@ -62,7 +62,7 @@
 			</transition>
 		</div>
 
-		<transition name="Fade">
+		<transition name="FadeSlide">
 			<div class="KdComment__reply" v-if="replyEnabled">
 				<icon-replied class="KdComment__indicator" />
 				<kd-comment-write class="KdComment__reply-write"

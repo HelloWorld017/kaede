@@ -2,24 +2,33 @@
 	<div id="Index">
 		<kd-header />
 
-		<kd-selector :items="['all', 'featured']" v-model="type" v-if="featured">
-			<template #all> {{ $t('all') }} </template>
-			<template #featured> {{ featured.name }} </template>
-		</kd-selector>
-
-		<kd-post-list :context="context" :key="type">
-			<div class="Index__tags Tags">
-				<h2 class="Tags__title">
-					{{$t('tags')}}
-				</h2>
-
-				<div class="Tags__tags">
-					<kd-link class="Tags__tag" :href="tag.url" v-for="tag in tags" :key="tag.slug">
-						#{{tag.name}}
-					</kd-link>
-				</div>
+		<div class="Index__content">
+			<div class="Index__selector">
+				<kd-selector :items="[ 'all', 'featured' ]" v-model="type" v-if="featured">
+					<template #all> {{ $t('all') }} </template>
+					<template #featured> {{ featured.name }} </template>
+				</kd-selector>
 			</div>
-		</kd-post-list>
+
+			<transition name="Fade" mode="out-in">
+				<kd-post-list :context="context" :key="type">
+					<template #afterList>
+						<div class="Index__tags Tags">
+							<h2 class="Tags__title">
+								{{ $t('tags') }}
+							</h2>
+
+							<div class="Tags__tags">
+								<kd-link class="Tags__tag" :href="tag.url" v-for="tag in tags" :key="tag.slug">
+									#{{ tag.name }}
+								</kd-link>
+							</div>
+						</div>
+					</template>
+				</kd-post-list>
+			</transition>
+		</div>
+
 		<kd-footer />
 	</div>
 </template>
@@ -50,6 +59,21 @@
 		align-items: stretch;
 		width: 100%;
 		min-height: 100vh;
+	}
+
+	.Index {
+		&__selector {
+			padding-top: 30px;
+			padding-bottom: 50px;
+			text-align: center;
+		}
+
+		&__content {
+			display: flex;
+			flex-direction: column;
+			background: var(--background-400);
+			flex-grow: 1;
+		}
 	}
 
 	.Tags {
@@ -97,7 +121,10 @@
 	export default {
 		data() {
 			return {
-				type: 'all',
+				type: (
+					kaedeSettings.featuredTags &&
+					kaedeSettings.featuredTags.preferFeatured
+				) ? 'featured' : 'all',
 				tags: [],
 				featured: kaedeSettings.featuredTags
 			};
@@ -105,19 +132,18 @@
 
 		computed: {
 			context() {
-				if (this.type === 'all')
-					return null;
-
 				const contexts = [];
 
-				if (this.featured.exclude) {
-					const excludedTags = this.featured.exclude.join(',');
-					contexts.push(`tags:-[${excludedTags}]`);
-				}
+				if (this.type === 'featured') {
+					if (this.featured.exclude) {
+						const excludedTags = this.featured.exclude.join(',');
+						contexts.push(`tags:-[${excludedTags}]`);
+					}
 
-				if (this.featured.include) {
-					const includedTags = this.featured.include.join(',');
-					contexts.push(`tags:[${includedTags}]`);
+					if (this.featured.include) {
+						const includedTags = this.featured.include.join(',');
+						contexts.push(`tags:[${includedTags}]`);
+					}
 				}
 
 				return contexts.join(',');

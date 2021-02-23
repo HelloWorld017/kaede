@@ -1,5 +1,5 @@
 <template>
-	<transition name="Fade">
+	<transition name="FadeSlide">
 		<div id="Post" v-if="post">
 			<header class="Post__masthead" :style="{ background }">
 				<div class="Post__masthead-filter"></div>
@@ -186,6 +186,16 @@
 			max-width: 900px;
 			margin-left: auto;
 			margin-right: auto;
+		}
+
+		&__tags {
+			display: flex;
+			flex-wrap: wrap;
+			margin: -5px;
+
+			& > * {
+				margin: 5px;
+			}
 		}
 
 		&__header {
@@ -439,6 +449,10 @@
 		.Post {
 			&__body {
 				max-width: 100vw;
+			}
+
+			&__metadata {
+				flex-direction: column;
 			}
 		}
 	}

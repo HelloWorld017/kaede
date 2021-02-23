@@ -135,6 +135,10 @@
 			&__metadata {
 				display: none;
 			}
+
+			&__continue {
+				margin-left: 0;
+			}
 		}
 	}
 </style>

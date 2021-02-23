@@ -95,6 +95,16 @@ body, html {
 
 	&-enter, &-leave-to {
 		opacity: 0;
+	}
+}
+
+.FadeSlide {
+	&-enter-active, &-leave-active {
+		transition: all .4s ease;
+	}
+
+	&-enter, &-leave-to {
+		opacity: 0;
 		transform: translateY(10px);
 	}
 }

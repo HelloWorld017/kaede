@@ -140,6 +140,10 @@
 		&--root > &__submenu {
 			padding-left: 0;
 		}
+
+		@media (max-width: 768px) {
+			width: 65vw;
+		}
 	}
 </style>
 
