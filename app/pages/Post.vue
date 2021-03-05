@@ -41,7 +41,9 @@
 
 				<h2 class="Post__meta-title" v-if="post.tags.length > 0">{{$t('tags')}}</h2>
 				<div class="Post__tags">
-					<kd-tag v-for="tag in post.tags" :key="tag.id" :tag="tag" monochrome />
+					<div class="Post__tags-wrapper">
+						<kd-tag v-for="tag in post.tags" :key="tag.id" :tag="tag" monochrome />
+					</div>
 				</div>
 
 				<h2 class="Post__meta-title">{{$t('authors')}}</h2>
@@ -188,7 +190,7 @@
 			margin-right: auto;
 		}
 
-		&__tags {
+		&__tags-wrapper {
 			display: flex;
 			flex-wrap: wrap;
 			margin: -5px;

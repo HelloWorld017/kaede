@@ -40,7 +40,6 @@
 
 		&__powered {
 			font-weight: 700;
-			text-transform: uppercase;
 		}
 
 		&__credit {

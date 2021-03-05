@@ -70,7 +70,8 @@
 			color: var(--grey-050);
 			font-family: var(--font-sans);
 			font-weight: 700;
-			font-size: 1.6rem;
+			font-size: 1.3rem;
+			letter-spacing: -0.02em;
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -123,6 +124,8 @@
 		&__excerpt {
 			position: relative;
 			margin: 0;
+			font-size: .97rem;
+			letter-spacing: -0.015em;
 			max-height: 8rem;
 			line-height: 1.6rem;
 			text-align: justify;

@@ -1,6 +1,7 @@
 .Posting {
 	font-family: var(--font-content);
-	font-size: 1.2rem;
+	font-size: 1.1rem;
+	letter-spacing: -0.0075em;
 
 	h1, h2, h3,
 	h4, h5, h6 {
@@ -12,31 +13,28 @@
 	}
 
 	h1 {
-		font-size: 3.2rem;
-		letter-spacing: -2px;
+		font-size: 2rem;
 		text-indent: -3px;
 	}
 
 	h2 {
-		font-size: 2.7rem;
-		letter-spacing: -1px;
+		font-size: 1.8rem;
 	}
 
 	h3 {
-		font-size: 2.2rem;
-		letter-spacing: -0.6px;
+		font-size: 1.75rem;
 	}
 
 	h4 {
-		font-size: 1.9rem;
+		font-size: 1.6rem;
 	}
 
 	h5 {
-		font-size: 1.7rem;
+		font-size: 1.5rem;
 	}
 
 	h6 {
-		font-size: 1.7rem;
+		font-size: 1.5rem;
 	}
 
 	a {
@@ -107,8 +105,8 @@
 	blockquote {
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
-		margin: 1.75em 0;
-		padding: 0.3em 1.75em;
+		margin: 1.75rem 0;
+		padding: 1rem 1.75rem;
 		background: rgba(0, 0, 0, .02);
 		border-left: #4A4A4A 4px solid;
 	}
@@ -116,6 +114,14 @@
 	blockquote p {
 		margin: 0.8em 0;
 		font-style: italic;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	blockquote small {

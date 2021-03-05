@@ -52,7 +52,7 @@
 	"ko": {
 		"featured": "Featured",
 		"archives": "Archives",
-		"thank": "Thank you for reading!"
+		"thank": "읽어주셔서 감사합니다!"
 	},
 
 	"en": {
@@ -108,13 +108,13 @@
 
 		&__thank {
 			color: rgba(64, 64, 64, .3);
-			font-size: 3rem;
-			font-weight: 700;
+			font-size: 2.7rem;
+			font-weight: 100;
 			font-family: var(--font-ui);
 			text-align: center;
 			margin: 0 auto;
-			margin-top: 30px;
-			padding-bottom: 60px;
+			margin-top: 90px;
+			padding-bottom: 120px;
 			user-select: none;
 		}
 
