@@ -282,7 +282,8 @@
 				const posts = await api.posts.browse({
 					page: this.current + 1,
 					filter: this.context,
-					include: 'tags'
+					include: 'tags',
+					order: 'created_at DESC'
 				});
 
 				let columnWidth = 300;
