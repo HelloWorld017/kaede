@@ -1,11 +1,9 @@
 @font-face {
-    font-family: 'Iosevka';
-    src: url('iosevka.eot?#iefix') format('embedded-opentype'),
-        url('iosevka.woff2') format('woff2'),
-        url('iosevka.woff') format('woff'),
-        url('iosevka.ttf') format('truetype'),
-        url('iosevka.svg#Iosevka') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Iosevka';
+	src: url('iosevka.woff2') format('woff2'),
+		url('iosevka.woff') format('woff');
+	font-display: swap;
+	font-weight: normal;
+	font-style: normal;
 }
 

@@ -1,7 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const nodeEnv = (process.env.NODE_ENV || 'development').trim();
@@ -46,9 +49,9 @@ module.exports = {
 	},
 
 	output: {
-		path: path.resolve(__dirname, 'assets'),
-		publicPath: '/assets/',
-		filename: '[name].bundle.js'
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/',
+		filename: 'assets/[name].bundle.js?v=[contenthash:8]'
 	},
 
 	mode: nodeEnv,
@@ -70,7 +73,7 @@ module.exports = {
 			{
 				resourceQuery: /blockType=i18n/,
 				type: 'javascript/auto',
-				loader: '@kazupon/vue-i18n-loader',
+				loader: '@intlify/vue-i18n-loader',
 			},
 
 			{
@@ -103,17 +106,17 @@ module.exports = {
 					{
 						loader: 'file-loader',
 						options: {
-							name: 'files/[hash:8].[ext]'
+							name: 'assets/files/[contenthash:8].[ext]'
 						}
 					}
 				]
 			},
 
 			{
-				test: /\.(png|jpe?g|gif|woff2?|otf|ttf|eot)(\?|#.*)?$/,
+				test: /\.(png|jpe?g|gif|woff2?|otf|ttf|eot)((\?|#)*)?$/,
 				loader: 'file-loader',
 				options: {
-					name: 'files/[hash:8].[ext]'
+					name: 'assets/files/[contenthash:8].[ext]'
 				}
 			}
 		]
@@ -128,14 +131,42 @@ module.exports = {
 	},
 
 	plugins: [
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, 'app', 'templates', 'default.hbs.ejs'),
+			filename: 'default.hbs',
+			inject: false
+		}),
+		new PreloadWebpackPlugin({
+			rel: 'preload',
+			include: 'asyncChunks',
+			// fileWhitelist: [ /\.(css|js)((\?|#).*)?$/ ]
+			fileBlacklist: [ /\.(woff2?|eot|ttf|otf|svg|png|jpe?g|gif|txt|map)((\?|#).*)?$/ ]
+		}),
+		new CopyWebpackPlugin({
+			// Need to copy ghost-specific files
+			
+			patterns: [
+				{
+					from: path.posix.join(
+						path.resolve(__dirname, 'app', 'templates').replace(/\\/g, '/'),
+						'*.hbs'
+					),
+					to: '[name][ext]'
+				},
+				{
+					from: path.resolve(__dirname, 'package.json'),
+					to: '[name][ext]'
+				}
+			]
+		}),
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': `"${nodeEnv}"`
 		}),
-		new MiniCssExtractPlugin({filename: '[name].bundle.css'}),
+		new MiniCssExtractPlugin({filename: 'assets/[name].bundle.css?v=[contenthash:8]'}),
 		new VueLoaderPlugin()
 	],
 
-	devtool: '#eval-source-map',
+	devtool: 'eval-source-map',
 	devServer: {
 		index: '',
 		host: '0.0.0.0',
@@ -148,5 +179,5 @@ module.exports = {
 };
 
 if(nodeEnv === 'production') {
-	module.exports.devtool = '#source-map';
+	module.exports.devtool = 'source-map';
 }
