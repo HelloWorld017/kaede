@@ -1,12 +1,14 @@
 {
   "name": "kaede",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A neat ghost theme",
   "private": true,
   "engines": {
     "ghost-api": "v3"
   },
-  "browserslist": [ "last 4 versions" ],
+  "browserslist": [
+    "last 4 versions"
+  ],
   "scripts": {
     "analyze": "cross-env NODE_ENV=production webpack --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json",
     "build": "cross-env NODE_ENV=production webpack",
