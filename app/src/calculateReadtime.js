@@ -6,7 +6,7 @@ export default post => {
 	if (!post.reading_time)
 		return 0;
 	
-	const seconds = post.reading_time * 60 + 25 * kaedeSettings.readTimeMultiplier;
+	const seconds = (post.reading_time * 60 + 25) * kaedeSettings.readTimeMultiplier;
 	const now = Date.now();
 
 	return formatDistance(new Date(now), new Date(now + seconds * 1000), dateLocale());
