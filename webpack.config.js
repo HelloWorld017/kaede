@@ -144,7 +144,7 @@ module.exports = {
 		}),
 		new CopyWebpackPlugin({
 			// Need to copy ghost-specific files
-			
+
 			patterns: [
 				{
 					from: path.posix.join(

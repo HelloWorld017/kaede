@@ -1,4 +1,4 @@
-import { enUS, ko, ja } from "date-fns/locale";
+import { enUS, ko, ja } from "date-fns/esm/locale";
 
 let locale = 'en';
 const supportedLocales = { en: enUS, ko, ja };

@@ -6,8 +6,9 @@
   "engines": {
     "ghost-api": "v3"
   },
+  "browserslist": [ "last 4 versions" ],
   "scripts": {
-    "analyze": "cross-env NODE_ENV=production webpack --profile --json > assets/stats.json && webpack-bundle-analyzer assets/stats.json",
+    "analyze": "cross-env NODE_ENV=production webpack --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack-dev-server --hot --inline",
     "watch": "webpack --watch"
