@@ -27,8 +27,8 @@
 		align-self: flex-start;
 		padding: 5px 13px;
 
-		color: var(--foreground-400);
-		border: 3px solid var(--foreground-400);
+		color: rgba(var(--foreground-400), 1);
+		border: 3px solid rgba(var(--foreground-400), 1);
 
 		font-family: var(--font-ui);
 		font-weight: 700;
@@ -38,18 +38,18 @@
 		user-select: none;
 
 		&:hover {
-			background: var(--foreground-400);
-			color: var(--grey-900);
+			background: rgba(var(--foreground-400), 1);
+			color: rgba(var(--grey-900), 1);
 		}
 
 		&:hover &__icon {
-			stroke: var(--grey-900);
+			stroke: rgba(var(--grey-900), 1);
 		}
 
 		&__icon {
 			margin-left: 7px;
 			height: 1rem;
-			stroke: var(--foreground-400);
+			stroke: rgba(var(--foreground-400), 1);
 			transition: all .4s ease;
 		}
 	}

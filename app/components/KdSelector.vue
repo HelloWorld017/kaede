@@ -14,7 +14,7 @@
 <style lang="less" scoped>
 	.Selector {
 		display: inline-flex;
-		background: var(--grey-100);
+		background: rgba(var(--grey-100), 1);
 		border-radius: 50px;
 
 		&__item {
@@ -25,18 +25,18 @@
 			border: none;
 			border-radius: 50px;
 			outline: none;
-			color: var(--grey-900);
+			color: rgba(var(--grey-900), 1);
 			font-family: var(--font-sans);
 			transition: background .4s ease;
 
 			&:not(&--active):hover {
-				background: var(--grey-200);
-				color: var(--grey-900);
+				background: rgba(var(--grey-200), 1);
+				color: rgba(var(--grey-900), 1);
 			}
 
 			&--active {
-				background: var(--grey-850);
-				color: var(--grey-100);
+				background: rgba(var(--grey-850), 1);
+				color: rgba(var(--grey-100), 1);
 			}
 		}
 	}

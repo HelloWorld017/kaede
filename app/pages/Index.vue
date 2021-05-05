@@ -71,7 +71,7 @@
 		&__content {
 			display: flex;
 			flex-direction: column;
-			background: var(--background-400);
+			background: rgba(var(--background-400), 1);
 			flex-grow: 1;
 		}
 	}
@@ -91,8 +91,8 @@
 		}
 
 		&__tag {
-			color: rgba(32, 32, 32, .4);
-			background: rgba(255, 255, 255, .4);
+			color: rgba(var(--grey-100), .4);
+			background: rgba(var(--grey-900), .4);
 			font-family: var(--font-sans);
 			font-weight: 700;
 			text-decoration: none;
@@ -102,7 +102,7 @@
 			transition: color .4s ease;
 
 			&:hover {
-				color: rgba(32, 32, 32, .7);
+				color: rgba(var(--grey-100), .7);
 			}
 		}
 	}

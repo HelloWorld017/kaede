@@ -23,13 +23,13 @@
 			padding: 10px 14px;
 			outline: none;
 
-			color: var(--grey-050);
+			color: rgba(var(--grey-050), 1);
 			font-family: var(--font-sans);
 			font-size: 1.1rem;
 			font-weight: 500;
 			text-decoration: none;
 
-			fill: var(--grey-050);
+			fill: rgba(var(--grey-050), 1);
 
 			&::after {
 				content: '';
@@ -42,7 +42,7 @@
 
 				width: 100%;
 				height: 3px;
-				background: var(--grey-050);
+				background: rgba(var(--grey-050), 1);
 
 				transition: transform .4s ease;
 				transform: scaleX(0);
@@ -61,11 +61,11 @@
 
 		&--transparent & {
 			&__item {
-				color: var(--grey-900);
-				fill: var(--grey-900);
+				color: rgba(var(--grey-900), 1);
+				fill: rgba(var(--grey-900), 1);
 
 				&::after {
-					background: var(--grey-900);
+					background: rgba(var(--grey-900), 1);
 				}
 			}
 		}

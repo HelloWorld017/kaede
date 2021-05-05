@@ -33,7 +33,7 @@
 		}
 
 		&__delete-icon {
-			stroke: var(--grey-050);
+			stroke: rgba(var(--grey-050), 1);
 			vertical-align: middle;
 		}
 	}

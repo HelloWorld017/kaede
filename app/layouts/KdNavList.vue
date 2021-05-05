@@ -27,7 +27,7 @@
 		height: 100vh;
 		overflow: auto;
 		backdrop-filter: blur(4px);
-		background: rgba(0, 0, 0, .6);
+		background: rgba(var(--grey-050), .6);
 		z-index: 9;
 
 		&__items {
@@ -56,7 +56,7 @@
 			cursor: pointer;
 			border: none;
 			outline: none;
-			background: var(--grey-900);
+			background: rgba(var(--grey-900), 1);
 			padding: 15px 20px;
 			margin: 0;
 			margin-bottom: 10px;
@@ -65,7 +65,7 @@
 
 		&__close {
 			vertical-align: middle;
-			stroke: var(--grey-200);
+			stroke: rgba(var(--grey-200), 1);
 		}
 	}
 

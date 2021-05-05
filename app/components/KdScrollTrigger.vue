@@ -53,7 +53,7 @@
 			width: 32px;
 			height: 32px;
 			box-sizing: border-box;
-			border: 15px solid rgba(0, 0, 0, .4);
+			border: 15px solid rgba(var(--grey-050), .4);
 
 			animation-name: loading;
 			animation-duration: .7s;

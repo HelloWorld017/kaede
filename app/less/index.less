@@ -11,31 +11,121 @@
 	--font-code: 'Iosevka', 'Noto Sans KR_JP', monospace;
 	// --font-content: 'RIDIBatang', sans-serif;
 
-	--foreground-400: #35aba4;
+	// theme color scheme
+	// --variable: r, g, b;
 
-	--background-400: #efebdd;
+	// light mode
+	--foreground-400-light: 44, 141, 135;
+	--foreground-850-light: 216, 243, 237;
 
-	--red-300: darken(#eb5757, 5%);
-	--red-400: #eb5757;
-	--red-500: lighten(#eb5757, 5%);
+	--background-400-light: 239, 235, 221;
 
-	--grey-050: #000000;
-	--grey-100: #202020;
-	--grey-200: #3b3b3b;
-	--grey-700: #cacaca;
-	--grey-850: #f1f2f3;
-	--grey-900: #ffffff;
+	--red-300-light: darken(rgba(235, 87, 8, 1), 5%);
+	--red-400-light: 235, 87, 8;
+	--red-500-light: lighten(rgba(235, 87, 8, 1), 5%);
+
+	--yellow-800-light: 253, 255, 182;
+
+	--grey-050-light: 0, 0, 0;
+	--grey-100-light: 32, 32, 32;
+	--grey-200-light: 59, 59, 59;
+	--grey-300-light: 74, 74, 74;
+	--grey-700-light: 202, 202, 202;
+	--grey-800-light: 225, 225, 225;
+	--grey-850-light: 241, 242, 243;
+	--grey-900-light: 255, 255, 255;
+
+	--darken-transparent-light: 32;
+	--lighten-transparent-light: 255;
+
+	// dark mode
+	--foreground-400-dark: 44, 141, 135;
+	--foreground-850-dark: 216, 243, 237;
+
+	--background-400-dark: 28, 30, 32;
+
+	--red-300-dark: darken(rgba(235, 87, 8, 1), 5%);
+	--red-400-dark: 235, 87, 8;
+	--red-500-dark: lighten(rgba(235, 87, 8, 1), 5%);
+
+	--yellow-800-light: 69, 71, 0;
+
+	--grey-050-dark: 255, 255, 255;
+	--grey-100-dark: 241, 242, 243;
+	--grey-200-dark: 225, 225, 225;
+	--grey-300-dark: 202, 202, 202;
+	--grey-700-dark: 74, 74, 74;
+	--grey-800-dark: 59, 59, 59;
+	--grey-850-dark: 32, 32, 32;
+	--grey-900-dark: 0, 0, 0;
+
+	--darken-transparent-dark: 223;
+	--lighten-transparent-dark: 0;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--foreground-400: var(--foreground-400-light);
+		--foreground-850: var(--foreground-850-light);
+
+		--background-400: var(--background-400-light);
+
+		--red-300: var(--red-300-light);
+		--red-400: var(--red-400-light);
+		--red-500: var(--red-500-light);
+
+		--yellow-800: var(--yellow-800-light);
+
+		--grey-050: var(--grey-050-light);
+		--grey-100: var(--grey-100-light);
+		--grey-200: var(--grey-200-light);
+		--grey-300: var(--grey-300-light);
+		--grey-700: var(--grey-700-light);
+		--grey-800: var(--grey-800-light);
+		--grey-850: var(--grey-850-light);
+		--grey-900: var(--grey-900-light);
+
+		--darken-transparent: var(--darken-transparent-light);
+		--lighten-transparent: var(--lighten-transparent-light);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-400: var(--foreground-400-dark);
+		--foreground-850: var(--foreground-850-dark);
+
+		--background-400: var(--background-400-dark);
+
+		--red-300: var(--red-300-dark);
+		--red-400: var(--red-400-dark);
+		--red-500: var(--red-500-dark);
+
+		--yellow-800: var(--yellow-800-dark);
+
+		--grey-050: var(--grey-050-dark);
+		--grey-100: var(--grey-100-dark);
+		--grey-200: var(--grey-200-dark);
+		--grey-300: var(--grey-300-dark);
+		--grey-700: var(--grey-700-dark);
+		--grey-800: var(--grey-800-dark);
+		--grey-850: var(--grey-850-dark);
+		--grey-900: var(--grey-900-dark);
+		
+		--darken-transparent: var(--darken-transparent-dark);
+		--lighten-transparent: var(--lighten-transparent-dark);
+	}
 }
 
 body, html {
 	margin: 0;
 	padding: 0;
-	background: var(--grey-900);
+	background: rgba(var(--grey-900), 1);
 	scroll-behavior: smooth;
 }
 
 ::selection {
-	background: #d8f3ed;
+	background: rgba(var(--foreground-850), 1);
 }
 
 ::-webkit-scrollbar {
@@ -49,42 +139,42 @@ body, html {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, .35);
+	background: rgba(var(--grey-050), .35);
 	border: none;
 	border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, .3);
+	background: rgba(var(--grey-050), .3);
 }
 
 ::-webkit-scrollbar-thumb:active {
-	background: rgba(0, 0, 0, .4);
+	background: rgba(var(--grey-050), .4);
 }
 
 ::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, .5);
+	background: rgba(var(--grey-050), .5);
 	border: none;
 	border-radius: 0px;
 }
 
 ::-webkit-scrollbar-track:active {
-	background: rgba(0, 0, 0, .5);
+	background: rgba(var(--grey-050), .5);
 }
 
 ::-webkit-scrollbar-corner {
-	background: rgba(0, 0, 0, .5);
+	background: rgba(var(--grey-050), .5);
 }
 
 * {
-	scrollbar-arrow-color: rgba(0, 0, 0, .35);
-	scrollbar-base-color: rgba(0, 0, 0, .5);
-	scrollbar-track-color: rgba(0, 0, 0, .5);
-	scrollbar-face-color: rgba(0, 0, 0, .35);
-	scrollbar-highlight-color: rgba(0, 0, 0, .5);
-	scrollbar-3dlight-color: rgba(0, 0, 0, .5);
-	scrollbar-darkshadow-color: rgba(0, 0, 0, .5);
-	scrollbar-shadow-color: rgba(0, 0, 0, .35);
+	scrollbar-arrow-color: rgba(var(--grey-050), .35);
+	scrollbar-base-color: rgba(var(--grey-050), .5);
+	scrollbar-track-color: rgba(var(--grey-050), .5);
+	scrollbar-face-color: rgba(var(--grey-050), .35);
+	scrollbar-highlight-color: rgba(var(--grey-050), .5);
+	scrollbar-3dlight-color: rgba(var(--grey-050), .5);
+	scrollbar-darkshadow-color: rgba(var(--grey-050), .5);
+	scrollbar-shadow-color: rgba(var(--grey-050), .35);
 }
 
 .Fade {
