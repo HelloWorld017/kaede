@@ -70,7 +70,7 @@
 <style lang="less" scoped>
 	.KdPostList {
 		flex-grow: 1;
-		background: var(--background-400);
+		background: rgba(var(--background-400), 1);
 
 		&__content {
 			width: 100%;
@@ -80,7 +80,7 @@
 		}
 
 		&__title {
-			color: var(--grey-050);
+			color: rgba(var(--grey-050), 1);
 			font-family: var(--font-ui);
 			font-size: 2rem;
 			font-weight: 700;
@@ -107,7 +107,7 @@
 		}
 
 		&__thank {
-			color: rgba(64, 64, 64, .3);
+			color: rgba(var(--grey-200), .3);
 			font-size: 2.7rem;
 			font-weight: 100;
 			font-family: var(--font-ui);
@@ -182,7 +182,7 @@
 	.agile__dot button {
 		width: 8px;
 		height: 8px;
-		border: 1.5px solid var(--grey-100);
+		border: 1.5px solid rgba(var(--grey-100), 1);
 		border-radius: 100%;
 		padding: 0;
 		margin: 0 10px;
@@ -190,7 +190,7 @@
 	}
 
 	.agile__dot--current button {
-		background: var(--grey-100);
+		background: rgba(var(--grey-100), 1);
 	}
 
 	@media (max-width: 900px) {

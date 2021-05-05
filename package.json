@@ -12,7 +12,7 @@
   "scripts": {
     "analyze": "cross-env NODE_ENV=production webpack --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json",
     "build": "cross-env NODE_ENV=production webpack",
-	"clean": "rm -r ./dist",
+    "clean": "rm -r ./dist",
     "dev": "webpack-dev-server --hot --inline",
     "watch": "webpack --watch"
   },

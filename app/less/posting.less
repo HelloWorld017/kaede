@@ -38,12 +38,12 @@
 	}
 
 	a {
-		color: var(--foreground-400);
+		color: rgba(var(--foreground-400), 1);
 		transition: color 0.3s ease;
 	}
 
 	a:hover {
-		color: #4A4A4A;
+		color: rgba(var(--grey-300), 1);
 	}
 
 	p, ul, ol, dl {
@@ -97,7 +97,7 @@
 		display: block;
 		height: 1px;
 		border: 0;
-		border-top: #d1d2d3 1px solid;
+		border-top: rgba(var(--grey-700), 1) 1px solid;
 		margin: 1.5em 0;
 		padding: 0;
 	}
@@ -107,8 +107,8 @@
 		box-sizing: border-box;
 		margin: 1.75rem 0;
 		padding: 1rem 1.75rem;
-		background: rgba(0, 0, 0, .02);
-		border-left: #4A4A4A 4px solid;
+		background: rgba(var(--grey-900), .02);
+		border-left: rgba(var(--grey-300), 1) 4px solid;
 	}
 
 	blockquote p {
@@ -128,7 +128,7 @@
 		display: inline-block;
 		margin: 0.8em 0 0.8em 1.5em;
 		font-size: 0.9em;
-		color: #CCC;
+		color: rgba(var(--grey-700), 1);
 	}
 
 	blockquote small:before { content: "\2014 \00A0"; }
@@ -140,16 +140,16 @@
 	blockquote cite a { font-weight: normal; }
 
 	mark {
-		background-color: #fdffb6;
+		background-color: rgba(var(--yellow-800), 1);
 	}
 
 	code, tt, kbd {
 		display: inline-block;
-		color: #222;
+		color: rgba(var(--grey-100));
 		padding: 3px 5px;
 		font-size: 0.9em;
 		white-space: pre-wrap;
-		background: rgba(255, 255, 255, .5);
+		background: rgba(var(--grey-050), .5);
 		border-radius: 6px;
 		word-break: break-all;
 		word-break: break-word;
@@ -163,12 +163,12 @@
 		font-size: 0.9em;
 		white-space: pre;
 		overflow: auto;
-		background: var(--grey-200);
-		color: var(--grey-900);
+		background: rgba(var(--grey-200), 1);
+		color: rgba(var(--grey-900), 1);
 	}
 
 	pre code, pre tt {
-		color: var(--grey-900);
+		color: rgba(var(--grey-900), 1);
 		font-size: inherit;
 		white-space: pre;
 		background: transparent;
@@ -196,10 +196,10 @@
 		line-height: 20px;
 		text-align: left;
 		vertical-align: top;
-		border-top: #e1e2e3 1px solid;
+		border-top: rgba(var(--grey-800), 1) 1px solid;
 	}
 
-	table th { color: #000; }
+	table th { color: rgba(var(--grey-050), 1); }
 
 	table caption + thead tr:first-child th,
 	table caption + thead tr:first-child td,
@@ -210,13 +210,13 @@
 		border-top: 0;
 	}
 
-	table tbody + tbody { border-top: #e1e2e3 2px solid; }
+	table tbody + tbody { border-top: rgba(var(--grey-800), 1) 2px solid; }
 
-	table table table { background-color: #FFF; }
+	table table table { background-color: rgba(var(--grey-900), 1); }
 
 	table tbody > tr:nth-child(odd) > td,
 	table tbody > tr:nth-child(odd) > th {
-		background-color: rgba(255, 255, 255, .3);
+		background-color: rgba(var(--grey-900), .3);
 	}
 
 	table.plain tbody > tr:nth-child(odd) > td,
@@ -273,7 +273,7 @@
 		color: currentColor;
 		font-family: inherit;
 		text-decoration: none;
-		border: 1px solid rgba(0, 0, 0, 0.1);
+		border: 1px solid rgba(var(--grey-050), 0.1);
 	}
 
 	.kg-bookmark-container:hover {
@@ -400,7 +400,7 @@
 			transition: all .4s ease;
 
 			&:hover {
-				color: var(--grey-900);
+				color: rgba(var(--grey-900), 1);
 			}
 		}
 	}
@@ -415,7 +415,7 @@
 			position: absolute;
 			top: 10px;
 			left: 10px;
-			color: var(--grey-700);
+			color: rgba(var(--grey-700), 1);
 			font-family: var(--font-sans);
 		}
 
@@ -424,8 +424,8 @@
 		}
 
 		&::selection, *::selection {
-			background: var(--grey-900);
-			color: var(--grey-050) !important;
+			background: rgba(var(--grey-900), 1);
+			color: rgba(var(--grey-050), 1) !important;
 		}
 	}
 

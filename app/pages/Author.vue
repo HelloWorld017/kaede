@@ -72,7 +72,7 @@
 			opacity: 1;
 			transition: opacity .4s ease;
 
-			color: var(--grey-900);
+			color: rgba(var(--grey-900), 1);
 			font-family: var(--font-sans);
 
 			background-size: cover !important;
@@ -89,7 +89,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: rgba(32, 32, 32, .5);
+			background: rgba(var(--grey-100), .5);
 		}
 
 		&__content {
@@ -134,14 +134,14 @@
 		}
 
 		&__metadata-item {
-			color: rgba(255, 255, 255, .7);
+			color: rgba(var(--grey-900) .7);
 			font-size: 1rem;
 			margin: 0 10px;
 			text-decoration: none;
 		}
 
 		&__metadata-icon {
-			fill: rgba(255, 255, 255, .7);
+			fill: rgba(var(--grey-900), .7);
 			height: 1rem;
 			margin-right: .3rem;
 			vertical-align: middle;
@@ -184,7 +184,7 @@
 			background() {
 				return this.author.cover_image ?
 					`url(${this.author.cover_image})` :
-					'#202020';
+					'rgba(var(--grey-100), 1)';
 			},
 
 			twitter() {

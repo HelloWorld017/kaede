@@ -34,24 +34,24 @@
 <style lang="less" scoped>
 	.KdNavItem {
 		position: relative;
-		background: var(--grey-900);
+		background: rgba(var(--grey-900), 1);
 
 		margin-bottom: 10px;
 		width: 30vw;
 		max-width: 230px;
 
-		color: var(--grey-050);
+		color: rgba(var(--grey-050), 1);
 		font-family: var(--font-sans);
 		font-size: 1.05rem;
 		font-weight: 500;
 
 		&--label, &--root&--label-sub {
 			cursor: default;
-			background: var(--grey-700);
+			background: rgba(var(--grey-700), 1);
 		}
 
 		&--border {
-			border-top: 1px solid var(--grey-850);
+			border-top: 1px solid rgba(var(--grey-850), 1);
 			margin: 0;
 		}
 
@@ -76,7 +76,7 @@
 				transition: background .4s ease;
 
 				&:hover {
-					background: var(--grey-850);
+					background: rgba(var(--grey-850), 1);
 				}
 
 				&::before {
@@ -93,16 +93,16 @@
 
 			&--link&--active {
 				cursor: default;
-				color: var(--foreground-400);
+				color: rgba(var(--foreground-400), 1);
 				transition: color .4s ease;
-				background: var(--grey-900);
+				background: rgba(var(--grey-900), 1);
 
 				&:hover {
-					background: var(--grey-900);
+					background: rgba(var(--grey-900), 1);
 				}
 
 				&::before {
-					background: var(--foreground-400);
+					background: rgba(var(--foreground-400), 1);
 				}
 			}
 		}
@@ -116,7 +116,7 @@
 			transition: all .4s ease;
 
 			&:hover {
-				background: var(--grey-850);
+				background: rgba(var(--grey-850), 1);
 			}
 
 			&-icon {

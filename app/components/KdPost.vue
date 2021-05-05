@@ -39,7 +39,7 @@
 	@import "../less/utils.less";
 
 	.KdPost {
-		background: var(--grey-900);
+		background: rgba(var(--grey-900), 1);
 		transition: all .5s ease;
 		transform-origin: top center;
 		transform: rotateX(-90deg);
@@ -51,7 +51,7 @@
 		}
 
 		&__header {
-			color: var(--grey-050);
+			color: rgba(var(--grey-050), 1);
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -67,7 +67,7 @@
 			flex: 1;
 			margin: 0;
 			margin-right: 10px;
-			color: var(--grey-050);
+			color: rgba(var(--grey-050), 1);
 			font-family: var(--font-sans);
 			font-weight: 700;
 			font-size: 1.3rem;
@@ -116,7 +116,7 @@
 		}
 
 		&__content {
-			color: var(--grey-050);
+			color: rgba(var(--grey-050), 1);
 			padding: 15px 30px;
 			user-select: none;
 		}
@@ -150,7 +150,7 @@
 		top: 100px;
 		height: 0;
 		transform: translate(-10rem, 30px);
-		color: var(--grey-100);
+		color: rgba(var(--grey-100), 1);
 		font-family: var(--font-ui);
 		font-weight: 400;
 		font-size: 1.1rem;
@@ -160,7 +160,7 @@
 			width: 7px;
 			height: 7px;
 			margin-left: 10px;
-			background: var(--grey-100);
+			background: rgba(var(--grey-100), 1);
 			border-radius: 50%;
 			vertical-align: middle;
 		}
