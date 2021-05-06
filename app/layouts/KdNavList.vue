@@ -2,6 +2,7 @@
 	<transition name="ListNav">
 		<div class="KdNavList" v-if="opened" @click.self="close">
 			<div class="KdNavList__items" @click.self="close">
+
 				<button @click="close" class="KdNavList__item KdNavList__button" style="animation-delay: 200ms">
 					<icon-menu class="KdNavList__close" :class="{ 'MenuClose--active': opened }" />
 				</button>
@@ -13,6 +14,11 @@
 
 				<kd-nav-bookmark v-if="bookmarkEnabled" class="KdNavList__item"
 					:style="{'animation-delay': `${(navigation.length + 1) * 75 + 200}ms`}" />
+
+				<div style="flex: 1" />
+
+				<kd-theme-button class="KdNavList__item"
+					:style="{'animation-delay': `${(navigation.length + 2) * 75 + 200}ms`}" />
 			</div>
 		</div>
 	</transition>
@@ -29,6 +35,7 @@
 		backdrop-filter: blur(4px);
 		background: rgba(var(--grey-050), .6);
 		z-index: 9;
+		display: flex;
 
 		&__items {
 			display: flex;
@@ -38,6 +45,8 @@
 			padding-top: 16px;
 			margin-top: 1.3rem;
 			padding-bottom: 28px;
+
+			flex: 1;
 
 			& > *:first-child {
 				margin-top: 0;
@@ -167,6 +176,7 @@
 	import IconMenu from "@/images/IconMenu?inline";
 	import KdNavBookmark from "@/layouts/KdNavBookmark";
 	import KdNavItem from "@/components/KdNavItem";
+	import KdThemeButton from "@/components/KdThemeButton";
 
 	export default {
 		computed: {
@@ -209,7 +219,8 @@
 		components: {
 			IconMenu,
 			KdNavBookmark,
-			KdNavItem
+			KdNavItem,
+			KdThemeButton
 		}
 	};
 </script>

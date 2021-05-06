@@ -1,0 +1,109 @@
+<template>
+  <div @click="change" class="KdThemeButton__button">
+		<icon-LightMode v-if="isDark" class="KdThemeButton__icon"/>
+		<icon-DarkMode v-if="isLight" class="KdThemeButton__icon" />
+    
+    <div class="KdThemeButton__text" v-if="isDark">{{$t('lightmode')}}</div>
+    <div class="KdThemeButton__text" v-if="isLight">{{$t('darkmode')}}</div>
+  </div>
+</template>
+
+<i18n>
+{
+	"ko": {
+    "lightmode": "밝은 테마",
+		"darkmode": "어두운 테마"
+	},
+
+	"en": {
+    "lightmode": "Light Theme",
+		"darkmode": "Dark Theme"
+	},
+
+	"ja": {
+    "lightmode": "明るいテーマ",
+		"darkmode": "暗いテーマ"
+	}
+}
+</i18n>
+
+<style lang="less" scoped>
+  .KdThemeButton__button {
+
+		width: 30vw;
+		max-width: 190px;
+
+		font-family: var(--font-sans);
+		font-size: 1.05rem;
+		font-weight: 500;
+
+    display: flex;
+    flex: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px 20px;
+		margin-bottom: 10px;
+		text-overflow: ellipsis;
+		text-decoration: none;
+		overflow: hidden;
+    white-space: nowrap;
+
+    cursor: pointer;
+    
+		background: rgba(var(--grey-050), 1);
+		color: rgba(var(--grey-900), 1);
+		transition: background .4s ease;
+
+		&:hover {
+			background: rgba(var(--grey-100), 1);
+		}
+  }
+
+  .KdThemeButton__icon {
+    width: 16px;
+    height: 16px;
+
+    font-size: 0;
+  }
+
+  .KdThemeButton__text {
+    margin-left: 8px;
+  }
+</style>
+
+<script>
+	import IconLightMode from "@/images/IconLightMode?inline";
+	import IconDarkMode from "@/images/IconDarkMode?inline";
+
+  export default {
+    computed: {
+      theme() {
+        return this.$store.state.theme.theme;
+      },
+
+      isDark() {
+        return this.$store.state.theme.theme === 'dark';
+      },
+
+      isLight() {
+        return this.$store.state.theme.theme === 'light';
+      }
+    },
+
+    methods: {
+      change() {
+        if (this.$store.state.theme.theme === 'dark') {
+          this.$store.dispatch('theme/changeTheme', 'light');
+        } else {
+          this.$store.dispatch('theme/changeTheme', 'dark');
+        }
+      }
+    },
+
+    components: {
+      IconLightMode,
+      IconDarkMode,
+    }
+  }
+</script>
