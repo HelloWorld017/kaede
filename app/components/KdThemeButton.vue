@@ -1,10 +1,12 @@
 <template>
   <div @click="change" class="KdThemeButton__button">
-		<icon-LightMode v-if="isDark" class="KdThemeButton__icon"/>
-		<icon-DarkMode v-if="isLight" class="KdThemeButton__icon" />
+    <div class="KdThemeButton__container">
+		  <icon-LightMode v-if="isDark" class="KdThemeButton__icon" />
+		  <icon-DarkMode v-if="isLight" class="KdThemeButton__icon" />
     
-    <div class="KdThemeButton__text" v-if="isDark">{{$t('lightmode')}}</div>
-    <div class="KdThemeButton__text" v-if="isLight">{{$t('darkmode')}}</div>
+      <div class="KdThemeButton__text" v-if="isDark">{{$t('lightmode')}}</div>
+      <div class="KdThemeButton__text" v-if="isLight">{{$t('darkmode')}}</div>
+    </div>
   </div>
 </template>
 
@@ -29,27 +31,32 @@
 
 <style lang="less" scoped>
   .KdThemeButton__button {
-
 		width: 30vw;
-		max-width: 190px;
+		max-width: 230px;
+		padding-bottom: 10px;
 
+    cursor: pointer;
+
+		@media (max-width: 768px) {
+			width: 65vw;
+		}
+  }
+  
+  .KdThemeButton__container {
 		font-family: var(--font-sans);
 		font-size: 1.05rem;
 		font-weight: 500;
 
-    display: flex;
-    flex: row;
-    justify-content: center;
-    align-items: center;
-
     padding: 10px 20px;
-		margin-bottom: 10px;
 		text-overflow: ellipsis;
 		text-decoration: none;
 		overflow: hidden;
     white-space: nowrap;
 
-    cursor: pointer;
+    display: flex;
+    flex: row;
+    justify-content: center;
+    align-items: center;
     
 		background: rgba(var(--grey-050), 1);
 		color: rgba(var(--grey-900), 1);
@@ -93,17 +100,13 @@
 
     methods: {
       change() {
-        if (this.$store.state.theme.theme === 'dark') {
-          this.$store.dispatch('theme/changeTheme', 'light');
-        } else {
-          this.$store.dispatch('theme/changeTheme', 'dark');
-        }
+        this.$store.commit('theme/setIsAnimation', true);
       }
     },
 
     components: {
       IconLightMode,
-      IconDarkMode,
+      IconDarkMode
     }
   }
 </script>

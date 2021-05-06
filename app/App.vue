@@ -8,6 +8,7 @@
 			-->
 			<router-view :key="determineReload" />
 		</transition>
+		<kd-theme-overlay />
 	</div>
 	<div id="App" v-else>
 		{{$t('no-api-given')}}
@@ -35,6 +36,8 @@
 </style>
 
 <script>
+	import KdThemeOverlay from '@/layouts/KdThemeOverlay';
+
 	export default {
 		computed: {
 			apiKeyInitialized() {
@@ -48,6 +51,10 @@
 
 				return this.$route.name;
 			}
+		},
+
+		components: {
+			KdThemeOverlay
 		}
 	};
 </script>

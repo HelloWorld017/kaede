@@ -83,12 +83,17 @@ const theme = {
 	namespaced: true,
 	state: {
 		theme: 'light',
+		isAnimation: false,
 		enabled: false
 	},
 
 	mutations: {
 		enable(state) {
 			state.enabled = true;
+		},
+
+		setIsAnimation(state, isAnimation) {
+			state.isAnimation = isAnimation;
 		},
 
 		setTheme(state, theme) {
@@ -98,7 +103,6 @@ const theme = {
 
 	actions: {
 		loadTheme({ commit, state }) {
-			console.log('theme enabled', state.enabled);
 			if (!state.enabled) return;
 
 			try {
