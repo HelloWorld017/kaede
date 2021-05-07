@@ -66,6 +66,11 @@
 			text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
+			
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			gap: 5px;
 
 			&--link {
 				cursor: pointer;

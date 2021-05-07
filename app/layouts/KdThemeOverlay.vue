@@ -1,10 +1,10 @@
 <template>
   <transition name="fade">
     <div v-if="isAnimation" class="KdThemeOverlay">
-      <transition name="fade">
+      <transition name="slide">
         <icon-LightMode v-if="isLight" class="KdThemeOverlay__icon" />
       </transition>
-      <transition name="fade">
+      <transition name="slide">
         <icon-DarkMode v-if="isDark" class="KdThemeOverlay__icon" />
       </transition>
     </div>
@@ -26,7 +26,7 @@
 
     background: rgba(var(--grey-900), 1);
 
-    transition: background 1s;
+    transition: background .75s;
   }
 
   .KdThemeOverlay__icon {
@@ -36,14 +36,28 @@
     width: 128px;
     height: 128px;
 
-    transition: color 1s;
+    transition: color .75s;
   }
 
   .fade-enter-active, .fade-leave-active {
-    transition: all 1s;
+    transition: all .75s;
   }
 
   .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+
+  .slide-enter-active, .slide-leave-active {
+    transition: all .75s;
+  }
+
+  .slide-enter {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  .slide-leave-to {
+    transform: translateX(-100%);
     opacity: 0;
   }
 </style>
@@ -77,8 +91,8 @@
               this.$store.dispatch("theme/changeTheme", "dark");
             }
 
-            setTimeout(() => this.$store.commit('theme/setIsAnimation', false), 1000);
-          }, 1000);
+            setTimeout(() => this.$store.commit('theme/setIsAnimation', false), 750);
+          }, 750);
         }
       },
     },

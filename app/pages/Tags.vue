@@ -79,8 +79,11 @@
 		}
 
 		&__title, &__description {
+			width: 80vw;
+			text-align: center;
 			position: relative;
 			z-index: 1;
+			word-break: keep-all;
 		}
 
 		&__list {

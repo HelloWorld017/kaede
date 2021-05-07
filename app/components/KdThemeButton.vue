@@ -33,7 +33,6 @@
   .KdThemeButton__button {
 		width: 30vw;
 		max-width: 230px;
-		padding-bottom: 10px;
 
     cursor: pointer;
 
