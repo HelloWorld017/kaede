@@ -151,6 +151,10 @@
 			&__column {
 				margin: 0;
 			}
+
+			&__thank {
+			font-size: 1.2rem;
+			}
 		}
 	}
 </style>

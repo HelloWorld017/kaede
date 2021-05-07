@@ -27,8 +27,8 @@
 		}
 
 		&__icon {
-			height: 1.1rem;
-			margin-right: 5px;
+			fill: rgba(var(--grey-050), 1);
+			height: 16px;
 			vertical-align: middle;
 		}
 

@@ -12,13 +12,17 @@
 						:style="{'animation-delay': `${(index + 1) * 75 + 200}ms`}" root />
 				</template>
 
-				<kd-nav-bookmark v-if="bookmarkEnabled" class="KdNavList__item"
-					:style="{'animation-delay': `${(navigation.length + 1) * 75 + 200}ms`}" />
+				<div class="KdNavList__group">
+					<kd-nav-bookmark v-if="bookmarkEnabled" class="KdNavList__item"
+						:style="{'animation-delay': `${(navigation.length + 1) * 75 + 200}ms`}" />
+				</div>
 
 				<div style="flex: 1" />
 
-				<kd-theme-button class="KdNavList__item"
-					:style="{'animation-delay': `${(navigation.length + 2) * 75 + 200}ms`}" />
+				<div class="KdNavList__group">
+					<kd-theme-button class="KdNavList__item KdNavList__group"
+						:style="{'animation-delay': `${(navigation.length + 2) * 75 + 200}ms`}" />
+				</div>
 			</div>
 		</div>
 	</transition>
@@ -75,6 +79,10 @@
 		&__close {
 			vertical-align: middle;
 			stroke: rgba(var(--grey-200), 1);
+		}
+
+		&__group {
+			margin-bottom: 10px;
 		}
 	}
 

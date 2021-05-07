@@ -78,6 +78,7 @@
 
 	.Tags {
 		&__title {
+			color: rgba(var(--grey-050), 1);
 			font-family: var(--font-ui);
 			font-size: 2rem;
 			font-weight: 700;
