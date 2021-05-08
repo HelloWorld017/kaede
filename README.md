@@ -105,6 +105,21 @@ Item:
 	children?: Item[]
 ```
 
+### Featured Tags
+In Kaede, you can highlight some tags in mainpage.
+
+```js
+window.$KaedeFeaturedTags = {
+	name: '개발 포스트',
+	include: [ 'development', 'javascript', 'nas', 'projects', 'server', 'shovel', 'web-2' ],
+	preferFeatured: true
+};
+```
+* `name`: string value that appear main page.
+* `include`: string array. Kaede show your posts that include them.
+* `exclude`: vice versa
+* `preferFeatured`: if this option is true, Kaede show featured tagged posts first
+
 ### Options
 There are other options you can edit.
 
@@ -116,6 +131,7 @@ There are other options you can edit.
 | $KaedeCommentsMaxAuthor  | Maximum length of author name in comments.                                                |
 | $KaedeCommentsMaxContent | Maximum length of content of comments.                                                    |
 | $KaedeFullNavigation     | Navigation of ghost blog. For detail, please refer to *Navigation* section.               |
+| $KaedeFeaturedTags     | Tags to feature on main page. For detail, please refer to *Featured Tags* section.               |
 
 ## Styling
 You can customize default Kaede settings by modifying CSS variable.
@@ -142,23 +158,49 @@ Kaede settings are editable via `Code Injection` in Ghost settings.
 ### Colors
 **WARNING:** This is **NOT RECOMMENDED** to change `grey` and `background` colors as some colors are not updated well.  
 There are some variables for colors. You can change it into your desired color.
+
 ```html
 <style>
 	:root {
-		--foreground-400: #35aba4 !important;
+		/*
+		 * color code: r g b
+		 * example: 0, 125, 255 -> #007DFF
+		 */
+		--foreground-400: 44, 141, 135 !important;
+		--foreground-850: 216, 243, 237 !important;
 
-		--background-400: #efebdd !important;
+		--background-400: 239, 235, 221 !important;
 
-		--red-300: darken(#eb5757, 5%) !important;
-		--red-400: #eb5757 !important;
-		--red-500: lighten(#eb5757, 5%) !important;
+		--red-300: 233, 72, 72 !important;
+		--red-400: 235, 87, 87 !important;
+		--red-500: 235, 95, 95 !important;
 
-		--grey-050: #000000 !important;
-		--grey-100: #202020 !important;
-		--grey-200: #3b3b3b !important;
-		--grey-700: #cacaca !important;
-		--grey-850: #f1f2f3 !important;
-		--grey-900: #ffffff !important;
+		--yellow-800: 253, 255, 182 !important;
+
+		--grey-050: 0, 0, 0 !important;
+		--grey-100: 32, 32, 32 !important;
+		--grey-200: 59, 59, 59 !important;
+		--grey-300: 74, 74, 74 !important;
+		--grey-700: 202, 202, 202 !important;
+		--grey-800: 225, 225, 225 !important;
+		--grey-850: 241, 242, 243 !important;
+		--grey-900: 255, 255, 255 !important;
 	}
 </style>
 ```
+
+if you want to make colors difference by theme, add suffix like `-dark` or `-light`
+
+example
+```html
+<style>
+	:root {
+		/* original variable name is --foreground-400 */
+		--foreground-400-dark: 44, 141, 135 !important;
+
+		/* original variable name is --yellow-800 */
+		--yellow-800-light: 253, 255, 182 !important;
+	}
+</style>
+```
+
