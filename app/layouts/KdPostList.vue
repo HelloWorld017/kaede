@@ -7,10 +7,10 @@
 				<vue-agile class="KdPostList__carousel">
 					<kd-post-large v-for="post in featured" :post="post" :key="post.id" />
 					<template #prevButton>
-						<icon-previous />
+						<icon-previous stroke="rgba(var(--grey-100), 1)" />
 					</template>
 					<template #nextButton>
-						<icon-next />
+						<icon-next stroke="rgba(var(--grey-100), 1)" />
 					</template>
 				</vue-agile>
 			</section>

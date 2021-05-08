@@ -1,10 +1,10 @@
 <template>
-  <transition name="fade">
+  <transition name="fade" mode="out-in">
     <div v-if="isAnimation" class="KdThemeOverlay">
-      <transition name="slide">
+      <transition name="slide" mode="out-in">
         <icon-LightMode v-if="isLight" class="KdThemeOverlay__icon" />
       </transition>
-      <transition name="slide">
+      <transition name="slide" mode="out-in">
         <icon-DarkMode v-if="isDark" class="KdThemeOverlay__icon" />
       </transition>
     </div>
