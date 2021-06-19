@@ -46,7 +46,7 @@
 		box-sizing: border-box;
 		padding: 30px 0;
 
-		background: var(--grey-900);
+		background: var(--grey-900_rgb);
 		user-select: none;
 
 
@@ -60,11 +60,11 @@
 
 		&--transparent > & {
 			&__branding {
-				color: var(--grey-900);
+				color: var(--grey-900_rgb);
 			}
 
 			&__list-nav .KdHeader__list-nav-icon {
-				stroke: var(--grey-900);
+				stroke: var(--grey-900_rgb);
 			}
 		}
 
@@ -76,7 +76,7 @@
 
 		&__branding {
 			display: block;
-			color: var(--grey-050);
+			color: var(--grey-050_rgb);
 			text-decoration: none;
 
 			&__title {
@@ -114,7 +114,7 @@
 		}
 
 		&__list-nav-icon {
-			stroke: var(--grey-050);
+			stroke: var(--grey-050_rgb);
 		}
 	}
 
@@ -125,8 +125,8 @@
 		width: 100vw;
 		z-index: 8;
 
-		background: var(--grey-900);
-		box-shadow: 0 1px 6px 1px rgba(0, 0, 0, .2);
+		background: var(--grey-900_rgb);
+		box-shadow: 0 1px 6px 1px rgba(var(--grey-050), .2);
 		// backdrop-filter: blur(5px);
 		// background: rgba(255, 255, 255, .8);
 
@@ -138,7 +138,7 @@
 			position: absolute;
 			height: 3px;
 			bottom: 0;
-			background: var(--foreground-400);
+			background: var(--foreground-400_rgb);
 		}
 	}
 

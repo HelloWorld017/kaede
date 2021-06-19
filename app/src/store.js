@@ -79,6 +79,79 @@ const bookmarks = {
 	}
 };
 
+const theme = {
+	namespaced: true,
+	state: {
+		theme: 'light',
+		isAnimation: false,
+		enabled: false
+	},
+
+	mutations: {
+		enable(state) {
+			state.enabled = true;
+		},
+
+		setIsAnimation(state, isAnimation) {
+			state.isAnimation = isAnimation;
+		},
+
+		setTheme(state, theme) {
+			state.theme = theme;
+		}
+	},
+
+	actions: {
+		loadTheme({ commit, state }) {
+			if (!state.enabled) return;
+
+			try {
+				const theme = localStorage.getItem('KaedeTheme');
+
+				if (theme === 'light' || theme === 'dark') {
+					commit('setTheme', theme);
+				} else {
+					const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+					commit('setTheme', isDark ? 'dark' : 'light');
+				}
+			} catch {}
+		},
+
+		writeTheme({ state }) {
+			if (!state.enabled) return;
+
+			localStorage.setItem('KaedeTheme', state.theme);
+		},
+
+		changeTheme({ commit, dispatch }, theme) {
+			dispatch('loadTheme');
+			if (theme === 'light' || theme === 'dark') {
+				commit('setTheme', theme);
+			}
+			dispatch('writeTheme');
+			dispatch('sync');
+		},
+
+		sync({ state }) {
+			if(state.theme === 'dark') {
+				document.body.className += " Body--dark";
+			} else {
+				document.body.className = document.body.className.replace(/\s*Body--dark/g, '');
+			}
+		},
+
+		init({ commit, dispatch }) {
+			if(!window.localStorage)
+				return;
+
+			commit('enable');
+			dispatch('loadTheme');
+			dispatch('sync');
+		}
+	}
+};
+
 export default {
 	state: {
 		config: {},
@@ -110,10 +183,12 @@ export default {
 			} catch(err) {}
 
 			dispatch('bookmarks/init');
+			dispatch('theme/init');
 		}
 	},
 
 	modules: {
-		bookmarks
+		bookmarks,
+		theme,
 	}
 };

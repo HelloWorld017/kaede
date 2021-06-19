@@ -2,6 +2,7 @@
 	<transition name="ListNav">
 		<div class="KdNavList" v-if="opened" @click.self="close">
 			<div class="KdNavList__items" @click.self="close">
+
 				<button @click="close" class="KdNavList__item KdNavList__button" style="animation-delay: 200ms">
 					<icon-menu class="KdNavList__close" :class="{ 'MenuClose--active': opened }" />
 				</button>
@@ -11,8 +12,17 @@
 						:style="{'animation-delay': `${(index + 1) * 75 + 200}ms`}" root />
 				</template>
 
-				<kd-nav-bookmark v-if="bookmarkEnabled" class="KdNavList__item"
-					:style="{'animation-delay': `${(navigation.length + 1) * 75 + 200}ms`}" />
+				<div class="KdNavList__group">
+					<kd-nav-bookmark v-if="bookmarkEnabled" class="KdNavList__item"
+						:style="{'animation-delay': `${(navigation.length + 1) * 75 + 200}ms`}" />
+				</div>
+
+				<div style="flex: 1" />
+
+				<div class="KdNavList__group">
+					<kd-theme-button class="KdNavList__item KdNavList__group"
+						:style="{'animation-delay': `${(navigation.length + 2) * 75 + 200}ms`}" />
+				</div>
 			</div>
 		</div>
 	</transition>
@@ -27,8 +37,9 @@
 		height: 100vh;
 		overflow: auto;
 		backdrop-filter: blur(4px);
-		background: rgba(0, 0, 0, .6);
+		background: rgba(var(--grey-050), .6);
 		z-index: 9;
+		display: flex;
 
 		&__items {
 			display: flex;
@@ -38,6 +49,8 @@
 			padding-top: 16px;
 			margin-top: 1.3rem;
 			padding-bottom: 28px;
+
+			flex: 1;
 
 			& > *:first-child {
 				margin-top: 0;
@@ -56,7 +69,7 @@
 			cursor: pointer;
 			border: none;
 			outline: none;
-			background: var(--grey-900);
+			background: var(--grey-900_rgb);
 			padding: 15px 20px;
 			margin: 0;
 			margin-bottom: 10px;
@@ -65,7 +78,11 @@
 
 		&__close {
 			vertical-align: middle;
-			stroke: var(--grey-200);
+			stroke: var(--grey-200_rgb);
+		}
+
+		&__group {
+			margin-bottom: 10px;
 		}
 	}
 
@@ -167,6 +184,7 @@
 	import IconMenu from "@/images/IconMenu?inline";
 	import KdNavBookmark from "@/layouts/KdNavBookmark";
 	import KdNavItem from "@/components/KdNavItem";
+	import KdThemeButton from "@/components/KdThemeButton";
 
 	export default {
 		computed: {
@@ -209,7 +227,8 @@
 		components: {
 			IconMenu,
 			KdNavBookmark,
-			KdNavItem
+			KdNavItem,
+			KdThemeButton
 		}
 	};
 </script>

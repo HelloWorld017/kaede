@@ -34,24 +34,24 @@
 <style lang="less" scoped>
 	.KdNavItem {
 		position: relative;
-		background: var(--grey-900);
+		background: var(--grey-900_rgb);
 
 		margin-bottom: 10px;
 		width: 30vw;
 		max-width: 230px;
 
-		color: var(--grey-050);
+		color: var(--grey-050_rgb);
 		font-family: var(--font-sans);
 		font-size: 1.05rem;
 		font-weight: 500;
 
 		&--label, &--root&--label-sub {
 			cursor: default;
-			background: var(--grey-700);
+			background: var(--grey-700_rgb);
 		}
 
 		&--border {
-			border-top: 1px solid var(--grey-850);
+			border-top: 1px solid var(--grey-850_rgb);
 			margin: 0;
 		}
 
@@ -66,6 +66,11 @@
 			text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
+			
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			gap: 5px;
 
 			&--link {
 				cursor: pointer;
@@ -76,7 +81,7 @@
 				transition: background .4s ease;
 
 				&:hover {
-					background: var(--grey-850);
+					background: var(--grey-850_rgb);
 				}
 
 				&::before {
@@ -93,16 +98,16 @@
 
 			&--link&--active {
 				cursor: default;
-				color: var(--foreground-400);
+				color: var(--foreground-400_rgb);
 				transition: color .4s ease;
-				background: var(--grey-900);
+				background: var(--grey-900_rgb);
 
 				&:hover {
-					background: var(--grey-900);
+					background: var(--grey-900_rgb);
 				}
 
 				&::before {
-					background: var(--foreground-400);
+					background: var(--foreground-400_rgb);
 				}
 			}
 		}
@@ -116,7 +121,7 @@
 			transition: all .4s ease;
 
 			&:hover {
-				background: var(--grey-850);
+				background: var(--grey-850_rgb);
 			}
 
 			&-icon {

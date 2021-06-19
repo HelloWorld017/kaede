@@ -172,7 +172,7 @@
 		}
 
 		&__option-icon {
-			stroke: var(--grey-200);
+			stroke: var(--grey-200_rgb);
 			height: .8rem;
 		}
 
@@ -180,13 +180,13 @@
 			align-items: stretch;
 			flex: 1;
 			margin: 0 10px;
-			background: rgba(0, 0, 0, .1);
+			background: rgba(var(--grey-050), .1);
 			border-radius: 10px;
 			padding: 10px 15px;
 
 			&::selection {
-				background: var(--grey-100);
-				color: var(--grey-900);
+				background: var(--grey-100_rgb);
+				color: var(--grey-900_rgb);
 			}
 		}
 
@@ -214,7 +214,7 @@
 
 		&--admin & {
 			&__bubble {
-				background: rgba(0, 0, 0, .25);
+				background: rgba(var(--grey-050) .25);
 				font-weight: 700;
 			}
 		}
@@ -226,18 +226,18 @@
 		justify-content: space-between;
 		box-sizing: content-box;
 		padding: 20px;
-		background: rgba(0, 0, 0, .4);
+		background: rgba(var(--grey-050), .4);
 
 		&__input {
 			display: inline-block;
 
-			background: var(--grey-700);
+			background: var(--grey-700_rgb);
 			border: none;
 			border-radius: 5px;
 			box-sizing: border-box;
 			padding: 5px 20px;
 
-			color: var(--grey-100);
+			color: var(--grey-100_rgb);
 			font-family: var(--font-sans);
 			font-size: .9rem;
 			font-weight: 700;
@@ -250,9 +250,9 @@
 			border: none;
 			outline: none;
 			border-radius: 5px;
-			color: var(--grey-900);
+			color: var(--grey-900_rgb);
 
-			background: var(--grey-100);
+			background: var(--grey-100_rgb);
 			font-family: var(--font-ui);
 			font-weight: 300;
 			font-size: .8rem;
@@ -262,29 +262,29 @@
 			transition: all .4s ease;
 
 			&:hover {
-				background: var(--grey-200);
+				background: var(--grey-200_rgb);
 			}
 
 			&:active {
-				background: var(--grey-050);
+				background: var(--grey-050_rgb);
 			}
 
 			&--primary {
-				background: var(--red-400);
+				background: var(--red-400_rgb);
 
 				&:hover {
-					background: var(--red-500);
+					background: var(--red-500_rgb);
 				}
 
 				&:active {
-					background: var(--red-300);
+					background: var(--red-300_rgb);
 				}
 			}
 		}
 
 		&__button-icon {
-			fill: var(--grey-900);
-			stroke: var(--grey-900);
+			fill: var(--grey-900_rgb);
+			stroke: var(--grey-900_rgb);
 
 			height: .8rem;
 			margin-right: 10px;
@@ -295,7 +295,7 @@
 			position: absolute;
 			left: 20px;
 			bottom: 5px;
-			color: var(--red-500);
+			color: var(--red-500_rgb);
 			font-size: .9rem;
 			font-family: var(--font-sans);
 		}

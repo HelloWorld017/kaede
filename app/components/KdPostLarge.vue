@@ -34,7 +34,7 @@
 
 	.KdPostLarge {
 		display: flex;
-		background: var(--grey-900);
+		background: var(--grey-900_rgb);
 		min-height: 450px;
 		flex-basis: 0;
 
@@ -58,12 +58,12 @@
 
 			display: flex;
 			flex-direction: column;
-			color: var(--grey-050);
+			color: var(--grey-050_rgb);
 		}
 
 		&__title {
-			background: var(--grey-100);
-			color: var(--grey-900);
+			background: var(--grey-100_rgb);
+			color: var(--grey-900_rgb);
 			font-family: var(--font-title);
 			font-weight: 300;
 			font-size: 1.6rem;

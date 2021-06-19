@@ -11,31 +11,121 @@
 	--font-code: 'Iosevka', 'Noto Sans KR_JP', monospace;
 	// --font-content: 'RIDIBatang', sans-serif;
 
-	--foreground-400: #35aba4;
+	// Theme Color Scheme
+	// ====
+	// `--variable: r, g, b;`
 
-	--background-400: #efebdd;
+	// Light Mode
+	--foreground-400-light: 44, 141, 135;
+	--foreground-850-light: 216, 243, 237;
 
-	--red-300: darken(#eb5757, 5%);
-	--red-400: #eb5757;
-	--red-500: lighten(#eb5757, 5%);
+	--background-400-light: 239, 235, 221;
 
-	--grey-050: #000000;
-	--grey-100: #202020;
-	--grey-200: #3b3b3b;
-	--grey-700: #cacaca;
-	--grey-850: #f1f2f3;
-	--grey-900: #ffffff;
+	--red-300-light: 233, 72, 72;
+	--red-400-light: 235, 87, 87;
+	--red-500-light: 235, 95, 95;
+
+	--yellow-800-light: 253, 255, 182;
+
+	--grey-050-light: 0, 0, 0;
+	--grey-100-light: 32, 32, 32;
+	--grey-200-light: 59, 59, 59;
+	--grey-300-light: 74, 74, 74;
+	--grey-700-light: 202, 202, 202;
+	--grey-800-light: 225, 225, 225;
+	--grey-850-light: 241, 242, 243;
+	--grey-900-light: 255, 255, 255;
+
+	// Dark Mode
+	--foreground-400-dark: 44, 141, 135;
+	--foreground-850-dark: 216, 243, 237;
+
+	--background-400-dark: 28, 30, 32;
+
+	--red-300-dark: 233, 72, 72;
+	--red-400-dark: 235, 87, 87;
+	--red-500-dark: 235, 95, 95;
+
+	--yellow-800-light: 69, 71, 0;
+
+	--grey-050-dark: 255, 255, 255;
+	--grey-100-dark: 241, 242, 243;
+	--grey-200-dark: 225, 225, 225;
+	--grey-300-dark: 202, 202, 202;
+	--grey-700-dark: 74, 74, 74;
+	--grey-800-dark: 59, 59, 59;
+	--grey-850-dark: 32, 32, 32;
+	--grey-900-dark: 0, 0, 0;
 }
 
 body, html {
 	margin: 0;
 	padding: 0;
-	background: var(--grey-900);
+	background: var(--grey-900_rgb);
 	scroll-behavior: smooth;
 }
 
+body {
+	--foreground-400: var(--foreground-400-light);
+	--foreground-400_rgb: rgb(var(--foreground-400));
+	--foreground-850: var(--foreground-850-light);
+	--foreground-850_rgb: rgb(var(--foreground-400));
+
+	--background-400: var(--background-400-light);
+	--background-400_rgb: rgb(var(--background-400));
+
+	--red-300: var(--red-300-light);
+	--red-300_rgb: rgb(var(--red-300));
+	--red-400: var(--red-400-light);
+	--red-400_rgb: rgb(var(--red-400));
+	--red-500: var(--red-500-light);
+	--red-500_rgb: rgb(var(--red-500));
+
+	--yellow-800: var(--yellow-800-light);
+	--yellow-800_rgb: rgb(var(--yellow-800));
+
+	--grey-050: var(--grey-050-light);
+	--grey-050_rgb: rgb(var(--grey-050));
+	--grey-100: var(--grey-100-light);
+	--grey-100_rgb: rgb(var(--grey-100));
+	--grey-200: var(--grey-200-light);
+	--grey-200_rgb: rgb(var(--grey-200));
+	--grey-300: var(--grey-300-light);
+	--grey-300_rgb: rgb(var(--grey-300));
+	--grey-700: var(--grey-700-light);
+	--grey-700_rgb: rgb(var(--grey-700));
+	--grey-800: var(--grey-800-light);
+	--grey-800_rgb: rgb(var(--grey-800));
+	--grey-850: var(--grey-850-light);
+	--grey-850_rgb: rgb(var(--grey-850));
+	--grey-900: var(--grey-900-light);
+	--grey-900_rgb: rgb(var(--grey-900));
+}
+
+body.Body--dark {
+	--foreground-400: var(--foreground-400-dark);
+	--foreground-850: var(--foreground-850-dark);
+
+	--background-400: var(--background-400-dark);
+
+	--red-300: var(--red-300-dark);
+	--red-400: var(--red-400-dark);
+	--red-500: var(--red-500-dark);
+
+	--yellow-800: var(--yellow-800-dark);
+
+	--grey-050: var(--grey-050-dark);
+	--grey-100: var(--grey-100-dark);
+	--grey-200: var(--grey-200-dark);
+	--grey-300: var(--grey-300-dark);
+	--grey-700: var(--grey-700-dark);
+	--grey-800: var(--grey-800-dark);
+	--grey-850: var(--grey-850-dark);
+	--grey-900: var(--grey-900-dark);
+}
+
 ::selection {
-	background: #d8f3ed;
+	background: var(--foreground-850_rgb);
 }
 
 ::-webkit-scrollbar {
@@ -49,42 +139,42 @@ body, html {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, .35);
+	background: rgba(var(--grey-050), .35);
 	border: none;
 	border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, .3);
+	background: rgba(var(--grey-050), .3);
 }
 
 ::-webkit-scrollbar-thumb:active {
-	background: rgba(0, 0, 0, .4);
+	background: rgba(var(--grey-050), .4);
 }
 
 ::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, .5);
+	background: rgba(var(--grey-050), .5);
 	border: none;
 	border-radius: 0px;
 }
 
 ::-webkit-scrollbar-track:active {
-	background: rgba(0, 0, 0, .5);
+	background: rgba(var(--grey-050), .5);
 }
 
 ::-webkit-scrollbar-corner {
-	background: rgba(0, 0, 0, .5);
+	background: rgba(var(--grey-050), .5);
 }
 
 * {
-	scrollbar-arrow-color: rgba(0, 0, 0, .35);
-	scrollbar-base-color: rgba(0, 0, 0, .5);
-	scrollbar-track-color: rgba(0, 0, 0, .5);
-	scrollbar-face-color: rgba(0, 0, 0, .35);
-	scrollbar-highlight-color: rgba(0, 0, 0, .5);
-	scrollbar-3dlight-color: rgba(0, 0, 0, .5);
-	scrollbar-darkshadow-color: rgba(0, 0, 0, .5);
-	scrollbar-shadow-color: rgba(0, 0, 0, .35);
+	scrollbar-arrow-color: rgba(var(--grey-050), .35);
+	scrollbar-base-color: rgba(var(--grey-050), .5);
+	scrollbar-track-color: rgba(var(--grey-050), .5);
+	scrollbar-face-color: rgba(var(--grey-050), .35);
+	scrollbar-highlight-color: rgba(var(--grey-050), .5);
+	scrollbar-3dlight-color: rgba(var(--grey-050), .5);
+	scrollbar-darkshadow-color: rgba(var(--grey-050), .5);
+	scrollbar-shadow-color: rgba(var(--grey-050), .35);
 }
 
 .Fade {

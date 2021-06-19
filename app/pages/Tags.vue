@@ -43,7 +43,7 @@
 			opacity: 1;
 			transition: opacity .4s ease;
 
-			color: var(--grey-900);
+			color: var(--grey-900_rgb);
 			font-family: var(--font-sans);
 
 			background-size: cover !important;
@@ -60,7 +60,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: rgba(32, 32, 32, .5);
+			background: rgba(var(--grey-100), .5);
 		}
 
 		&__title {
@@ -70,7 +70,7 @@
 
 			&::before {
 				content: '#';
-				color: rgba(255, 255, 255, .4);
+				color: rgba(var(--grey-900), .4);
 			}
 		}
 
@@ -79,8 +79,11 @@
 		}
 
 		&__title, &__description {
+			width: 80vw;
+			text-align: center;
 			position: relative;
 			z-index: 1;
+			word-break: keep-all;
 		}
 
 		&__list {
@@ -139,7 +142,7 @@
 			background() {
 				return this.tag.feature_image ?
 					`url(${this.tag.feature_image})` :
-					'#202020';
+					'var(--grey-100_rgb)';
 			},
 
 			count() {

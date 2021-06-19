@@ -45,7 +45,7 @@
 	.KdAuthor {
 		display: flex;
 		align-items: center;
-		background: var(--grey-200);
+		background: var(--grey-200_rgb);
 		padding: 40px;
 		padding-bottom: 25px;
 		max-width: 800px;
@@ -61,7 +61,7 @@
 		}
 
 		&__text {
-			color: var(--grey-900);
+			color: var(--grey-900_rgb);
 			flex: 1;
 		}
 
@@ -102,14 +102,14 @@
 		}
 
 		&__metadata-item {
-			color: var(--grey-700);
+			color: var(--grey-700_rgb);
 			font-size: 1rem;
 			margin: 0 10px;
 			text-decoration: none;
 		}
 
 		&__metadata-icon {
-			fill: var(--grey-700);
+			fill: var(--grey-700_rgb);
 			height: 1rem;
 			margin-right: .3rem;
 			vertical-align: middle;

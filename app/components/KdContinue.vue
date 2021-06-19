@@ -27,8 +27,8 @@
 		align-self: flex-start;
 		padding: 5px 13px;
 
-		color: var(--foreground-400);
-		border: 3px solid var(--foreground-400);
+		color: var(--foreground-400_rgb);
+		border: 3px solid var(--foreground-400_rgb);
 
 		font-family: var(--font-ui);
 		font-weight: 700;
@@ -38,18 +38,18 @@
 		user-select: none;
 
 		&:hover {
-			background: var(--foreground-400);
-			color: var(--grey-900);
+			background: var(--foreground-400_rgb);
+			color: var(--grey-900_rgb);
 		}
 
 		&:hover &__icon {
-			stroke: var(--grey-900);
+			stroke: var(--grey-900_rgb);
 		}
 
 		&__icon {
 			margin-left: 7px;
 			height: 1rem;
-			stroke: var(--foreground-400);
+			stroke: var(--foreground-400_rgb);
 			transition: all .4s ease;
 		}
 	}

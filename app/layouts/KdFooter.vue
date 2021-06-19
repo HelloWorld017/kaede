@@ -18,10 +18,10 @@
 <style lang="less" scoped>
 	.KdFooter {
 		padding: 15px 20px;
-		background: var(--grey-100);
+		background: var(--grey-100_rgb);
 		user-select: none;
 
-		color: var(--grey-900);
+		color: var(--grey-900_rgb);
 		font-family: var(--font-ui);
 
 		&__content {
