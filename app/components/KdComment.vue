@@ -172,7 +172,7 @@
 		}
 
 		&__option-icon {
-			stroke: rgba(var(--grey-200), 1);
+			stroke: var(--grey-200_rgb);
 			height: .8rem;
 		}
 
@@ -185,8 +185,8 @@
 			padding: 10px 15px;
 
 			&::selection {
-				background: rgba(var(--grey-100), 1);
-				color: rgba(var(--grey-900), 1);
+				background: var(--grey-100_rgb);
+				color: var(--grey-900_rgb);
 			}
 		}
 
@@ -231,13 +231,13 @@
 		&__input {
 			display: inline-block;
 
-			background: rgba(var(--grey-700), 1);
+			background: var(--grey-700_rgb);
 			border: none;
 			border-radius: 5px;
 			box-sizing: border-box;
 			padding: 5px 20px;
 
-			color: rgba(var(--grey-100), 1);
+			color: var(--grey-100_rgb);
 			font-family: var(--font-sans);
 			font-size: .9rem;
 			font-weight: 700;
@@ -250,9 +250,9 @@
 			border: none;
 			outline: none;
 			border-radius: 5px;
-			color: rgba(var(--grey-900), 1);
+			color: var(--grey-900_rgb);
 
-			background: rgba(var(--grey-100), 1);
+			background: var(--grey-100_rgb);
 			font-family: var(--font-ui);
 			font-weight: 300;
 			font-size: .8rem;
@@ -262,29 +262,29 @@
 			transition: all .4s ease;
 
 			&:hover {
-				background: rgba(var(--grey-200), 1);
+				background: var(--grey-200_rgb);
 			}
 
 			&:active {
-				background: rgba(var(--grey-050), 1);
+				background: var(--grey-050_rgb);
 			}
 
 			&--primary {
-				background: rgba(var(--red-400), 1);
+				background: var(--red-400_rgb);
 
 				&:hover {
-					background: rgba(var(--red-500), 1);
+					background: var(--red-500_rgb);
 				}
 
 				&:active {
-					background: rgba(var(--red-300), 1);
+					background: var(--red-300_rgb);
 				}
 			}
 		}
 
 		&__button-icon {
-			fill: rgba(var(--grey-900), 1);
-			stroke: rgba(var(--grey-900), 1);
+			fill: var(--grey-900_rgb);
+			stroke: var(--grey-900_rgb);
 
 			height: .8rem;
 			margin-right: 10px;
@@ -295,7 +295,7 @@
 			position: absolute;
 			left: 20px;
 			bottom: 5px;
-			color: rgba(var(--red-500), 1);
+			color: var(--red-500_rgb);
 			font-size: .9rem;
 			font-family: var(--font-sans);
 		}

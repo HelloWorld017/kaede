@@ -42,13 +42,13 @@
 			height: 140px;
 			padding: 20px;
 
-			color: rgba(var(--grey-100), 1);
+			color: var(--grey-100_rgb);
 			font-family: var(--font-sans);
 			font-size: 1rem;
 
 			&::selection {
-				background: rgba(var(--grey-100), 1);
-				color: rgba(var(--grey-900), 1);
+				background: var(--grey-100_rgb);
+				color: var(--grey-900_rgb);
 			}
 		}
 
@@ -60,14 +60,14 @@
 		}
 
 		&__error {
-			color: rgba(var(--red-400), 1);
+			color: var(--red-400_rgb);
 			font-size: .8rem;
 			font-family: var(--font-sans);
 		}
 
 		&__input-wrapper {
 			display: inline-block;
-			background: rgba(var(--grey-100), 1);
+			background: var(--grey-100_rgb);
 			padding: 10px;
 			width: 160px;
 			margin: 0 5px;
@@ -82,13 +82,13 @@
 		}
 
 		&__input {
-			background: rgba(var(--grey-100), 1);
+			background: var(--grey-100_rgb);
 			border: 1px solid rgba(var(--grey-900), .2);
 			box-sizing: border-box;
 			padding: 5px 20px;
 			width: 100%;
 
-			color: rgba(var(--grey-900), 1);
+			color: var(--grey-900_rgb);
 			font-family: var(--font-sans);
 			font-size: .9rem;
 			font-weight: 700;

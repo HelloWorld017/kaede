@@ -23,13 +23,13 @@
 			padding: 10px 14px;
 			outline: none;
 
-			color: rgba(var(--grey-050), 1);
+			color: var(--grey-050_rgb);
 			font-family: var(--font-sans);
 			font-size: 1.1rem;
 			font-weight: 500;
 			text-decoration: none;
 
-			fill: rgba(var(--grey-050), 1);
+			fill: var(--grey-050_rgb);
 
 			&::after {
 				content: '';
@@ -42,7 +42,7 @@
 
 				width: 100%;
 				height: 3px;
-				background: rgba(var(--grey-050), 1);
+				background: var(--grey-050_rgb);
 
 				transition: transform .4s ease;
 				transform: scaleX(0);
@@ -61,11 +61,11 @@
 
 		&--transparent & {
 			&__item {
-				color: rgba(var(--grey-900), 1);
-				fill: rgba(var(--grey-900), 1);
+				color: var(--grey-900_rgb);
+				fill: var(--grey-900_rgb);
 
 				&::after {
-					background: rgba(var(--grey-900), 1);
+					background: var(--grey-900_rgb);
 				}
 			}
 		}

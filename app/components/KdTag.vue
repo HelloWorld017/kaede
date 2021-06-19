@@ -7,9 +7,9 @@
 <style lang="less" scoped>
 	.KdTag {
 		cursor: pointer;
-		background: rgba(var(--foreground-400), 1);
+		background: var(--foreground-400_rgb);
 		padding: 8px 16px;
-		color: rgba(var(--grey-900), 1);
+		color: var(--grey-900_rgb);
 		font-family: var(--font-ui);
 		font-size: 1rem;
 		font-weight: 700;
@@ -18,7 +18,7 @@
 		text-decoration: none;
 
 		&--monochrome {
-			background: rgba(var(--grey-200), 1);
+			background: var(--grey-200_rgb);
 		}
 	}
 </style>

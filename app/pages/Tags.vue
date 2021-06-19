@@ -43,7 +43,7 @@
 			opacity: 1;
 			transition: opacity .4s ease;
 
-			color: rgba(var(--grey-900), 1);
+			color: var(--grey-900_rgb);
 			font-family: var(--font-sans);
 
 			background-size: cover !important;
@@ -142,7 +142,7 @@
 			background() {
 				return this.tag.feature_image ?
 					`url(${this.tag.feature_image})` :
-					'rgba(var(--grey-100), 1)';
+					'var(--grey-100_rgb)';
 			},
 
 			count() {

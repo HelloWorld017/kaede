@@ -71,14 +71,14 @@
 		&__content {
 			display: flex;
 			flex-direction: column;
-			background: rgba(var(--background-400), 1);
+			background: var(--background-400_rgb);
 			flex-grow: 1;
 		}
 	}
 
 	.Tags {
 		&__title {
-			color: rgba(var(--grey-050), 1);
+			color: var(--grey-050_rgb);
 			font-family: var(--font-ui);
 			font-size: 2rem;
 			font-weight: 700;

@@ -150,7 +150,7 @@
 
 <style lang="less" scoped>
 	#Post {
-		background: rgba(var(--background-400), 1);
+		background: var(--background-400_rgb);
 		min-height: 100vh;
 	}
 
@@ -172,7 +172,7 @@
 		}
 
 		&__body {
-			color: rgba(var(--grey-050), 1);
+			color: var(--grey-050_rgb);
 			width: 100%;
 			max-width: 70vw;
 			box-sizing: border-box;
@@ -283,14 +283,14 @@
 			}
 
 			&--active {
-				color: rgba(var(--grey-100), 1);
+				color: var(--grey-100_rgb);
 			}
 		}
 
 		&__meta-title {
 			font-family: var(--font-ui);
 			font-weight: 700;
-			color: rgba(var(--grey-100), 1);
+			color: var(--grey-100_rgb);
 			margin-top: 50px;
 			user-select: none;
 		}
@@ -313,13 +313,13 @@
 			border-radius: 5px;
 			padding: 5px 13px;
 			margin: 5px;
-			background: rgba(var(--grey-200), 1);
+			background: var(--grey-200_rgb);
 
 			display: inline-flex;
 			align-items: center;
 
-			color: rgba(var(--grey-900), 1);
-			fill: rgba(var(--grey-900), 1);
+			color: var(--grey-900_rgb);
+			fill: var(--grey-900_rgb);
 			font-family: var(--font-ui);
 			font-weight: 300;
 			font-size: 1.2rem;
@@ -328,17 +328,17 @@
 
 			&--toggle {
 				fill: transparent;
-				stroke: rgba(var(--grey-900), 1);
+				stroke: var(--grey-900_rgb);
 				stroke-width: 2px;
 				transition: all .4s ease;
 			}
 
 			&--toggle&--active {
-				fill: rgba(var(--grey-900), 1);
+				fill: var(--grey-900_rgb);
 			}
 
 			&--large {
-				background: rgba(var(--red-400), 1);
+				background: var(--red-400_rgb);
 				font-size: 1.2rem;
 				padding: 10px 20px;
 				margin: 10px;
@@ -392,7 +392,7 @@
 		}
 
 		&__footer-title {
-			color: rgba(var(--grey-100), 1);
+			color: var(--grey-100_rgb);
 			font-family: var(--font-sans);
 			margin: .8rem 0;
 		}
@@ -400,7 +400,7 @@
 		&__footer-decorator {
 			width: 45px;
 			height: 7px;
-			background: rgba(var(--grey-100), 1);
+			background: var(--grey-100_rgb);
 		}
 
 		&__category {
@@ -413,7 +413,7 @@
 		}
 
 		&__category-item {
-			color: rgba(var(--grey-100), 1);
+			color: var(--grey-100_rgb);
 			font-size: 1.1rem;
 			font-family: var(--font-sans);
 			text-decoration: none;
@@ -437,7 +437,7 @@
 		}
 
 		&__category-icon {
-			stroke: rgba(var(--grey-100), 1);
+			stroke: var(--grey-100_rgb);
 			height: 1.1rem;
 			transition: all .4s ease;
 		}
@@ -552,7 +552,7 @@
 			background() {
 				return this.post.feature_image ?
 					`url(${this.post.feature_image})` :
-					'rgba(var(--grey-100), 1)';
+					'var(--grey-100_rgb)';
 			},
 
 			readtime() {

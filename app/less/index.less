@@ -11,10 +11,11 @@
 	--font-code: 'Iosevka', 'Noto Sans KR_JP', monospace;
 	// --font-content: 'RIDIBatang', sans-serif;
 
-	// theme color scheme
-	// --variable: r, g, b;
+	// Theme Color Scheme
+	// ====
+	// `--variable: r, g, b;`
 
-	// light mode
+	// Light Mode
 	--foreground-400-light: 44, 141, 135;
 	--foreground-850-light: 216, 243, 237;
 
@@ -35,7 +36,7 @@
 	--grey-850-light: 241, 242, 243;
 	--grey-900-light: 255, 255, 255;
 
-	// dark mode
+	// Dark Mode
 	--foreground-400-dark: 44, 141, 135;
 	--foreground-850-dark: 216, 243, 237;
 
@@ -60,30 +61,45 @@
 body, html {
 	margin: 0;
 	padding: 0;
-	background: rgba(var(--grey-900), 1);
+	background: var(--grey-900_rgb);
 	scroll-behavior: smooth;
 }
 
 body {
 	--foreground-400: var(--foreground-400-light);
+	--foreground-400_rgb: rgb(var(--foreground-400));
 	--foreground-850: var(--foreground-850-light);
+	--foreground-850_rgb: rgb(var(--foreground-400));
 
 	--background-400: var(--background-400-light);
+	--background-400_rgb: rgb(var(--background-400));
 
 	--red-300: var(--red-300-light);
+	--red-300_rgb: rgb(var(--red-300));
 	--red-400: var(--red-400-light);
+	--red-400_rgb: rgb(var(--red-400));
 	--red-500: var(--red-500-light);
+	--red-500_rgb: rgb(var(--red-500));
 
 	--yellow-800: var(--yellow-800-light);
+	--yellow-800_rgb: rgb(var(--yellow-800));
 
 	--grey-050: var(--grey-050-light);
+	--grey-050_rgb: rgb(var(--grey-050));
 	--grey-100: var(--grey-100-light);
+	--grey-100_rgb: rgb(var(--grey-100));
 	--grey-200: var(--grey-200-light);
+	--grey-200_rgb: rgb(var(--grey-200));
 	--grey-300: var(--grey-300-light);
+	--grey-300_rgb: rgb(var(--grey-300));
 	--grey-700: var(--grey-700-light);
+	--grey-700_rgb: rgb(var(--grey-700));
 	--grey-800: var(--grey-800-light);
+	--grey-800_rgb: rgb(var(--grey-800));
 	--grey-850: var(--grey-850-light);
+	--grey-850_rgb: rgb(var(--grey-850));
 	--grey-900: var(--grey-900-light);
+	--grey-900_rgb: rgb(var(--grey-900));
 }
 
 body.Body--dark {
@@ -109,7 +125,7 @@ body.Body--dark {
 }
 
 ::selection {
-	background: rgba(var(--foreground-850), 1);
+	background: var(--foreground-850_rgb);
 }
 
 ::-webkit-scrollbar {

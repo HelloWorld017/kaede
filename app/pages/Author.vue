@@ -72,7 +72,7 @@
 			opacity: 1;
 			transition: opacity .4s ease;
 
-			color: rgba(var(--grey-900), 1);
+			color: var(--grey-900_rgb);
 			font-family: var(--font-sans);
 
 			background-size: cover !important;
@@ -184,7 +184,7 @@
 			background() {
 				return this.author.cover_image ?
 					`url(${this.author.cover_image})` :
-					'rgba(var(--grey-100), 1)';
+					'var(--grey-100_rgb)';
 			},
 
 			twitter() {

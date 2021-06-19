@@ -57,12 +57,12 @@
     justify-content: center;
     align-items: center;
     
-		background: rgba(var(--grey-050), 1);
-		color: rgba(var(--grey-900), 1);
+		background: var(--grey-050_rgb);
+		color: var(--grey-900_rgb);
 		transition: background .4s ease;
 
 		&:hover {
-			background: rgba(var(--grey-100), 1);
+			background: var(--grey-100_rgb);
 		}
   }
 

@@ -38,12 +38,12 @@
 	}
 
 	a {
-		color: rgba(var(--foreground-400), 1);
+		color: var(--foreground-400_rgb);
 		transition: color 0.3s ease;
 	}
 
 	a:hover {
-		color: rgba(var(--grey-300), 1);
+		color: var(--grey-300_rgb);
 	}
 
 	p, ul, ol, dl {
@@ -97,7 +97,7 @@
 		display: block;
 		height: 1px;
 		border: 0;
-		border-top: rgba(var(--grey-700), 1) 1px solid;
+		border-top: var(--grey-700_rgb) 1px solid;
 		margin: 1.5em 0;
 		padding: 0;
 	}
@@ -108,7 +108,7 @@
 		margin: 1.75rem 0;
 		padding: 1rem 1.75rem;
 		background: rgba(var(--grey-900), .02);
-		border-left: rgba(var(--grey-300), 1) 4px solid;
+		border-left: var(--grey-300_rgb) 4px solid;
 	}
 
 	blockquote p {
@@ -128,7 +128,7 @@
 		display: inline-block;
 		margin: 0.8em 0 0.8em 1.5em;
 		font-size: 0.9em;
-		color: rgba(var(--grey-700), 1);
+		color: var(--grey-700_rgb);
 	}
 
 	blockquote small:before { content: "\2014 \00A0"; }
@@ -140,7 +140,7 @@
 	blockquote cite a { font-weight: normal; }
 
 	mark {
-		background-color: rgba(var(--yellow-800), 1);
+		background-color: var(--yellow-800_rgb);
 	}
 
 	code, tt, kbd {
@@ -163,12 +163,12 @@
 		font-size: 0.9em;
 		white-space: pre;
 		overflow: auto;
-		background: rgba(var(--grey-200), 1);
-		color: rgba(var(--grey-900), 1);
+		background: var(--grey-200_rgb);
+		color: var(--grey-900_rgb);
 	}
 
 	pre code, pre tt {
-		color: rgba(var(--grey-900), 1);
+		color: var(--grey-900_rgb);
 		font-size: inherit;
 		white-space: pre;
 		background: transparent;
@@ -196,10 +196,10 @@
 		line-height: 20px;
 		text-align: left;
 		vertical-align: top;
-		border-top: rgba(var(--grey-800), 1) 1px solid;
+		border-top: var(--grey-800_rgb) 1px solid;
 	}
 
-	table th { color: rgba(var(--grey-050), 1); }
+	table th { color: var(--grey-050_rgb); }
 
 	table caption + thead tr:first-child th,
 	table caption + thead tr:first-child td,
@@ -210,9 +210,9 @@
 		border-top: 0;
 	}
 
-	table tbody + tbody { border-top: rgba(var(--grey-800), 1) 2px solid; }
+	table tbody + tbody { border-top: var(--grey-800_rgb) 2px solid; }
 
-	table table table { background-color: rgba(var(--grey-900), 1); }
+	table table table { background-color: var(--grey-900_rgb); }
 
 	table tbody > tr:nth-child(odd) > td,
 	table tbody > tr:nth-child(odd) > th {
@@ -400,7 +400,7 @@
 			transition: all .4s ease;
 
 			&:hover {
-				color: rgba(var(--grey-900), 1);
+				color: var(--grey-900_rgb);
 			}
 		}
 	}
@@ -415,7 +415,7 @@
 			position: absolute;
 			top: 10px;
 			left: 10px;
-			color: rgba(var(--grey-700), 1);
+			color: var(--grey-700_rgb);
 			font-family: var(--font-sans);
 		}
 
@@ -424,8 +424,8 @@
 		}
 
 		&::selection, *::selection {
-			background: rgba(var(--grey-900), 1);
-			color: rgba(var(--grey-050), 1) !important;
+			background: var(--grey-900_rgb);
+			color: var(--grey-050_rgb) !important;
 		}
 	}
 

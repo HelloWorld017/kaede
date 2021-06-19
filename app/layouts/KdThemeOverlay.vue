@@ -24,13 +24,13 @@
     align-items: center;
     z-index: 10000;
 
-    background: rgba(var(--grey-900), 1);
+    background: var(--grey-900_rgb);
 
     transition: background .75s;
   }
 
   .KdThemeOverlay__icon {
-    color: rgba(var(--grey-050), 1);
+    color: var(--grey-050_rgb);
 
     position: absolute;
     width: 128px;

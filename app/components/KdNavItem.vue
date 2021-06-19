@@ -34,24 +34,24 @@
 <style lang="less" scoped>
 	.KdNavItem {
 		position: relative;
-		background: rgba(var(--grey-900), 1);
+		background: var(--grey-900_rgb);
 
 		margin-bottom: 10px;
 		width: 30vw;
 		max-width: 230px;
 
-		color: rgba(var(--grey-050), 1);
+		color: var(--grey-050_rgb);
 		font-family: var(--font-sans);
 		font-size: 1.05rem;
 		font-weight: 500;
 
 		&--label, &--root&--label-sub {
 			cursor: default;
-			background: rgba(var(--grey-700), 1);
+			background: var(--grey-700_rgb);
 		}
 
 		&--border {
-			border-top: 1px solid rgba(var(--grey-850), 1);
+			border-top: 1px solid var(--grey-850_rgb);
 			margin: 0;
 		}
 
@@ -81,7 +81,7 @@
 				transition: background .4s ease;
 
 				&:hover {
-					background: rgba(var(--grey-850), 1);
+					background: var(--grey-850_rgb);
 				}
 
 				&::before {
@@ -98,16 +98,16 @@
 
 			&--link&--active {
 				cursor: default;
-				color: rgba(var(--foreground-400), 1);
+				color: var(--foreground-400_rgb);
 				transition: color .4s ease;
-				background: rgba(var(--grey-900), 1);
+				background: var(--grey-900_rgb);
 
 				&:hover {
-					background: rgba(var(--grey-900), 1);
+					background: var(--grey-900_rgb);
 				}
 
 				&::before {
-					background: rgba(var(--foreground-400), 1);
+					background: var(--foreground-400_rgb);
 				}
 			}
 		}
@@ -121,7 +121,7 @@
 			transition: all .4s ease;
 
 			&:hover {
-				background: rgba(var(--grey-850), 1);
+				background: var(--grey-850_rgb);
 			}
 
 			&-icon {

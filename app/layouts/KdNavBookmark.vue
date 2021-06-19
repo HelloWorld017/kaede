@@ -27,13 +27,13 @@
 		}
 
 		&__icon {
-			fill: rgba(var(--grey-050), 1);
+			fill: var(--grey-050_rgb);
 			height: 16px;
 			vertical-align: middle;
 		}
 
 		&__delete-icon {
-			stroke: rgba(var(--grey-050), 1);
+			stroke: var(--grey-050_rgb);
 			vertical-align: middle;
 		}
 	}

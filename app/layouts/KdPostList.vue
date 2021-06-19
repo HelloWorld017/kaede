@@ -7,10 +7,10 @@
 				<vue-agile class="KdPostList__carousel">
 					<kd-post-large v-for="post in featured" :post="post" :key="post.id" />
 					<template #prevButton>
-						<icon-previous stroke="rgba(var(--grey-100), 1)" />
+						<icon-previous stroke="var(--grey-100_rgb)" />
 					</template>
 					<template #nextButton>
-						<icon-next stroke="rgba(var(--grey-100), 1)" />
+						<icon-next stroke="var(--grey-100_rgb)" />
 					</template>
 				</vue-agile>
 			</section>
@@ -70,7 +70,7 @@
 <style lang="less" scoped>
 	.KdPostList {
 		flex-grow: 1;
-		background: rgba(var(--background-400), 1);
+		background: var(--background-400_rgb);
 
 		&__content {
 			width: 100%;
@@ -80,7 +80,7 @@
 		}
 
 		&__title {
-			color: rgba(var(--grey-050), 1);
+			color: var(--grey-050_rgb);
 			font-family: var(--font-ui);
 			font-size: 2rem;
 			font-weight: 700;
@@ -186,7 +186,7 @@
 	.agile__dot button {
 		width: 8px;
 		height: 8px;
-		border: 1.5px solid rgba(var(--grey-100), 1);
+		border: 1.5px solid var(--grey-100_rgb);
 		border-radius: 100%;
 		padding: 0;
 		margin: 0 10px;
@@ -194,7 +194,7 @@
 	}
 
 	.agile__dot--current button {
-		background: rgba(var(--grey-100), 1);
+		background: var(--grey-100_rgb);
 	}
 
 	@media (max-width: 900px) {

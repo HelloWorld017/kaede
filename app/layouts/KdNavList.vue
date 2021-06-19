@@ -69,7 +69,7 @@
 			cursor: pointer;
 			border: none;
 			outline: none;
-			background: rgba(var(--grey-900), 1);
+			background: var(--grey-900_rgb);
 			padding: 15px 20px;
 			margin: 0;
 			margin-bottom: 10px;
@@ -78,7 +78,7 @@
 
 		&__close {
 			vertical-align: middle;
-			stroke: rgba(var(--grey-200), 1);
+			stroke: var(--grey-200_rgb);
 		}
 
 		&__group {
