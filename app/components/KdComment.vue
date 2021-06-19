@@ -182,6 +182,7 @@
 			margin: 0 10px;
 			background: rgba(var(--grey-050), .1);
 			border-radius: 10px;
+			overflow-wrap: break-word;
 			padding: 10px 15px;
 
 			&::selection {
