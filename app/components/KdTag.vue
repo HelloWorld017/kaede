@@ -7,9 +7,10 @@
 <style lang="less" scoped>
 	.KdTag {
 		cursor: pointer;
-		background: var(--foreground-400_rgb);
+		background: var(--grey-800_rgb);
+		border-radius: 5px;
 		padding: 8px 16px;
-		color: var(--grey-900_rgb);
+		color: var(--grey-100_rgb);
 		font-family: var(--font-ui);
 		font-size: 1rem;
 		font-weight: 700;

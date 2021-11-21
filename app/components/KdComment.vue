@@ -317,6 +317,11 @@
 				text-overflow: ellipsis;
 			}
 
+			&__indicator {
+				width: 20px;
+				height: 40px;
+			}
+
 			&__bubble {
 				margin-right: 0;
 			}

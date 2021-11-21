@@ -46,6 +46,7 @@
 		display: flex;
 		align-items: center;
 		background: var(--grey-200_rgb);
+		border-radius: 5px;
 		padding: 40px;
 		padding-bottom: 25px;
 		max-width: 800px;

@@ -125,13 +125,15 @@
 		width: 100vw;
 		z-index: 8;
 
-		background: var(--grey-900_rgb);
-		box-shadow: 0 1px 6px 1px rgba(var(--grey-050), .2);
-		// backdrop-filter: blur(5px);
-		// background: rgba(255, 255, 255, .8);
+		background: rgba(var(--grey-900), .87);
+		backdrop-filter: blur(10px);
+		box-shadow:
+			0 0 20px 0 rgba(0, 0, 0, .08),
+			0 0 5px 0 rgba(0, 0, 0, .05);
 
 		&__header {
 			background: transparent;
+			padding: 15px 0;
 		}
 
 		&__scroll-view {

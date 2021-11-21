@@ -40,6 +40,7 @@
 
 	.KdPost {
 		background: var(--grey-900_rgb);
+		border-radius: 5px;
 		transition: all .5s ease;
 		transform-origin: top center;
 		transform: rotateX(-90deg);
@@ -56,6 +57,7 @@
 			flex-direction: column;
 			justify-content: space-between;
 			padding: 25px 30px;
+			padding-bottom: 10px;
 		}
 
 		&__title-time {
@@ -102,9 +104,11 @@
 
 		&__tags {
 			display: flex;
+			margin-top: 10px;
 		}
 
 		&__image-link {
+			display: flex;
 			user-select: none;
 		}
 
@@ -112,6 +116,8 @@
 			display: inline-block;
 			width: 100%;
 			height: 200px;
+			margin-top: 20px;
+			margin-bottom: 10px;
 			object-fit: cover;
 		}
 
@@ -136,6 +142,10 @@
 			&--noncustom::after {
 				.OverflowFade;
 			}
+		}
+
+		&__continue {
+			margin-top: 20px;
 		}
 
 		&__footer {

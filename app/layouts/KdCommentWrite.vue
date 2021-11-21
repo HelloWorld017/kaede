@@ -34,8 +34,9 @@
 	.KdCommentWrite {
 		&__text {
 			background: rgba(var(--grey-050), .12);
-			box-sizing: border-box;
 			border: none;
+			border-radius: 5px;
+			box-sizing: border-box;
 			resize: none;
 			outline: none;
 			width: 100%;
@@ -50,6 +51,12 @@
 				background: var(--grey-100_rgb);
 				color: var(--grey-900_rgb);
 			}
+		}
+
+		&__auth {
+			display: flex;
+			flex-shrink: 1;
+			min-width: 0;
 		}
 
 		&__row {
@@ -67,9 +74,11 @@
 
 		&__input-wrapper {
 			display: inline-block;
+			flex: 1;
 			background: var(--grey-100_rgb);
+			border-radius: 5px;
 			padding: 10px;
-			width: 160px;
+			max-width: 160px;
 			margin: 0 5px;
 
 			&:first-child {
@@ -84,6 +93,7 @@
 		&__input {
 			background: var(--grey-100_rgb);
 			border: 1px solid rgba(var(--grey-900), .2);
+			border-radius: 5px;
 			box-sizing: border-box;
 			padding: 5px 20px;
 			width: 100%;
@@ -99,6 +109,7 @@
 		&__submit {
 			cursor: pointer;
 			background: transparent;
+			padding: 18px;
 			border: none;
 			outline: none;
 			transition: transform .4s ease;
@@ -109,13 +120,14 @@
 			}
 		}
 
+		&__submit-icon {
+			width: 18px;
+			height: 18px;
+		}
+
 		&--small & {
 			&__text {
 				height: 80px;
-			}
-
-			&__submit-icon {
-				height: 30px;
 			}
 
 			&__input-wrapper {
@@ -124,26 +136,6 @@
 
 			&__input {
 				font-size: .8rem;
-			}
-		}
-	}
-
-	@media (max-width: 600px) {
-		.KdCommentWrite {
-			&__input-wrapper {
-				margin: 5px;
-
-				&:first-child {
-					margin-left: 5px;
-				}
-
-				&:last-child {
-					margin-right: 5px;
-				}
-			}
-
-			&__submit-icon {
-				width: 1.5rem;
 			}
 		}
 	}

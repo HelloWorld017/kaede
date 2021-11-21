@@ -57,6 +57,7 @@
 
 		&__row {
 			display: flex;
+			padding: 3px;
 		}
 
 		&__item {
@@ -66,7 +67,7 @@
 			text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
-			
+
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
@@ -86,11 +87,13 @@
 
 				&::before {
 					content: '';
-					width: 5px;
 					position: absolute;
-					top: 0;
-					left: 0;
-					bottom: 0;
+					width: 5px;
+					height: 5px;
+					border-radius: 50%;
+					top: 50%;
+					left: 20px;
+					transform: translatE(0, -50%);
 					background: transparent;
 					transition: background .4s ease;
 				}
@@ -98,9 +101,10 @@
 
 			&--link&--active {
 				cursor: default;
-				color: var(--foreground-400_rgb);
-				transition: color .4s ease;
 				background: var(--grey-900_rgb);
+				color: var(--foreground-400_rgb);
+				padding-left: 40px;
+				transition: all .4s ease;
 
 				&:hover {
 					background: var(--grey-900_rgb);

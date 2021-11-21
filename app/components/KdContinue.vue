@@ -25,16 +25,17 @@
 		display: inline-flex;
 		align-items: center;
 		align-self: flex-start;
-		padding: 5px 13px;
+		padding: 8px 16px;
 
-		color: var(--foreground-400_rgb);
-		border: 3px solid var(--foreground-400_rgb);
+		background: var(--foreground-400_rgb);
+		color: var(--grey-900_rgb);
+		border-radius: 5px;
 
 		font-family: var(--font-ui);
 		font-weight: 700;
 		text-decoration: none;
 		text-transform: uppercase;
-		
+
 		user-select: none;
 
 		&:hover {
@@ -43,13 +44,13 @@
 		}
 
 		&:hover &__icon {
-			stroke: var(--grey-900_rgb);
+			transform: translate(3px);
 		}
 
 		&__icon {
 			margin-left: 7px;
 			height: 1rem;
-			stroke: var(--foreground-400_rgb);
+			stroke: currentColor;
 			transition: all .4s ease;
 		}
 	}

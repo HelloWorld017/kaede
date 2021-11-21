@@ -16,6 +16,13 @@
 		padding: 10px;
 		padding-top: 30px;
 	}
+
+	@media (max-width: 768px) {
+		.KdCommentList {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
 </style>
 
 <script>

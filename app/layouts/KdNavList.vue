@@ -61,6 +61,8 @@
 			animation-name: item;
 			animation-duration: .4s;
 			animation-fill-mode: forwards;
+			border-radius: 10px;
+			overflow: hidden;
 			opacity: 0;
 		}
 
@@ -70,7 +72,8 @@
 			border: none;
 			outline: none;
 			background: var(--grey-900_rgb);
-			padding: 15px 20px;
+			border-radius: 10px;
+			padding: 15px;
 			margin: 0;
 			margin-bottom: 10px;
 			text-decoration: none;

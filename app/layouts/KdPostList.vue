@@ -108,7 +108,7 @@
 
 		&__thank {
 			color: rgba(var(--grey-200), .3);
-			font-size: 2.7rem;
+			font-size: 1.5rem;
 			font-weight: 100;
 			font-family: var(--font-ui);
 			text-align: center;

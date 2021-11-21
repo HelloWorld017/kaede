@@ -98,12 +98,12 @@
 						</div>
 					</div>
 
-					<div class="Post__comments">
+					<div class="Post__comment">
 						<h3 class="Post__footer-title">
 							{{$t('comments')}}
 						</h3>
 						<div class="Post__footer-decorator"></div>
-						<kd-comment-list :id="post.id" />
+						<kd-comment-list class="Post__comment-list" :id="post.id" />
 					</div>
 				</div>
 			</section>
@@ -206,9 +206,8 @@
 
 		&__title {
 			font-family: var(--font-title);
-			font-weight: 100;
+			font-weight: 900;
 			margin: 0;
-			margin-bottom: 10px;
 		}
 
 		&__content {
@@ -222,10 +221,11 @@
 
 		&__metadata-item {
 			font-family: var(--font-sans);
-			font-weight: 700;
+			font-weight: 500;
 			color: rgba(var(--grey-100), .5);
 			fill: rgba(var(--grey-100), .5);
 			margin-right: 20px;
+			margin-bottom: 10px;
 		}
 
 		&__metadata-icon {
@@ -311,7 +311,7 @@
 			outline: none;
 			border: none;
 			border-radius: 5px;
-			padding: 5px 13px;
+			padding: 10px 15px;
 			margin: 5px;
 			background: var(--grey-200_rgb);
 
@@ -322,9 +322,17 @@
 			fill: var(--grey-900_rgb);
 			font-family: var(--font-ui);
 			font-weight: 300;
-			font-size: 1.2rem;
+			font-size: 1rem;
 			text-decoration: none;
 			text-transform: uppercase;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
 
 			&--toggle {
 				fill: transparent;
@@ -420,7 +428,7 @@
 			display: flex;
 			justify-content: space-between;
 			margin: 5px 0;
-			margin-left: 10px;
+			margin-left: 0;
 
 			&:hover .Post__category-icon {
 				transform: translate(5px, 0);
@@ -442,14 +450,20 @@
 			transition: all .4s ease;
 		}
 
-		&__comments {
+		&__comment {
 			flex: 1;
+		}
+
+		&__comment-list {
+			padding-left: 0;
 		}
 	}
 
 	@media (max-width: 768px) {
 		.Post {
 			&__body {
+				padding-left: 10px;
+				padding-right: 10px;
 				max-width: 100vw;
 			}
 
@@ -461,6 +475,10 @@
 
 	@media (max-width: 1200px) {
 		.Post {
+			&__body {
+				max-width: 90vw;
+			}
+
 			&__outline-wrapper {
 				display: none;
 			}
